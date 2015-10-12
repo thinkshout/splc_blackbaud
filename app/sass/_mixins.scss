@@ -1,0 +1,27 @@
+// Media Queries
+@mixin mq($screen) {
+  // Mobile
+  @if $screen == m {
+    @media (max-width: 480px) { @content; }
+  }
+  // Tablet
+  @if $screen == t {
+    @media (min-width: 480px) and (max-width: 979px) { @content; }
+  }
+  // Desktop
+  @if $screen == d {
+    @media (min-width: 980px) { @content; }
+  }
+  // Large Desktop
+  @if $screen == l {
+    @media (min-width: 1200px) { @content }
+  }
+
+  // Retina
+  @if $screen == r {
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      /* Retina-specific stuff here */
+      @content;
+    }
+  }
+}

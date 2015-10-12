@@ -1,0 +1,78 @@
+.prefooter {
+    background: $offwhite;
+    padding: 2rem 0;
+
+    h3 {
+        font-weight: normal;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+    }
+
+    .block {
+        @include span-columns(4);
+
+        @include mq(t) {
+            @include span-columns(12);
+            margin-bottom: 2rem;
+            border-bottom: 1px solid $alto;
+            padding-bottom: 2rem;
+        }
+
+        @include mq(m) {
+            @include span-columns(12);
+            margin-bottom: 2rem;
+        }
+
+        text-align: center;
+
+        .inner {
+            padding: 0 1rem;
+        }
+
+        &.second .inner {
+            border-left: 1px solid $alto;
+            border-right: 1px solid $alto;
+
+            @include mq(t) {
+                border: none;
+            }
+
+            @include mq(m) {
+                border: none;
+            }
+        }
+    }
+
+    .block a {
+        @extend %button-clear-dark;
+        border: 2px solid $dune;
+        font-size: rem(21px);
+    }
+
+    .block p {
+        margin-bottom: 2rem;
+        margin-top: 0;
+    }
+
+    .block input[type=text] {
+        border: 2px solid $dune;
+        display: block;
+        height: 44px;
+        float: left;
+        width: 70%;
+    }
+
+    .block input[type=submit] {
+        background: none;
+        border: 2px solid $dune;
+        border-left: none;
+        font-family: $heading-font-light;
+        font-size: rem(21px);
+        text-transform: uppercase;
+        display: block;
+        float: left;
+        height: 44px;
+        width: 30%;
+    }
+}

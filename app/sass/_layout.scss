@@ -1,0 +1,30 @@
+.container {
+    @include outer-container;
+}
+
+aside {
+    @include span-columns(4);
+
+    @include mq(t) {
+        @include span-columns(12);
+    }
+
+    @include mq(m) {
+        @include span-columns(12);
+    }
+}
+
+.main-content {
+    @include span-columns(8);
+    padding: 0 0 2rem;
+
+    @include mq(t) {
+        @include span-columns(12);
+        padding: 0 1rem;
+    }
+
+    @include mq(m) {
+        @include span-columns(12);
+        padding: 0 1rem;
+    }
+}

@@ -1,0 +1,29 @@
+.promo-block {
+    min-height: rem(220px);
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+
+    h1 {
+        font-size: rem(36px);
+        margin-top: 0;
+    }
+
+    p {
+        margin-bottom: 2rem;
+    }
+
+    a {
+        @extend %button-clear;
+    }
+}
+
+.promo-block.memoriam {
+    background: url(../img/memoriam.jpg);
+    background-size: cover;
+    color: $white;
+}
+
+.promo-block.gift {
+    color: $dune;
+}

@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="//cloud.typography.com/71500/671746/css/fonts.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="splcDonationApp">
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <header>
+      <div class="container">
+        <a class="logo" href="http://www.splcenter.org">
+        </a>
+        <div class="nav-toggle">
+            <a href="#"><i class="fa fa-bars"></i></a>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <div class="container">
+          <ul>
+              <li>
+                  <a href="http://www.splcenter.org/what-we-do">What We Do</a>
+              </li>
+              <li>
+                  <a href="http://www.splcenter.org/our-issues">Our Issues</a>
+              </li>
+              <li>
+                  <a href="http://www.splcenter.org/resources">Resources</a>
+              </li>
+              <li>
+                  <a href="http://www.splcenter.org/hate-map">Hate Map</a>
+              </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container">
+    <div ng-view=""></div>
+    </div>
+
+    <section class="prefooter">
+        <div class="container">
+            <div class="block">
+                <div class="inner">
+                    <h3>Join Our Mailing List</h3>
+                    <p>
+                        Get the latest news updates from the Southern Poverty Law Center.
+                    </p>
+                    <form action="" method="">
+                        <div class="form-group">
+                            <input type="text" placeholder="Email">
+                            <input type="submit" value="Subscribe">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="block second">
+                <div class="inner">
+                    <h3>Become a Member</h3>
+                    <p>
+                        Friends of the Center support the fight for tolerance and justice with a modest, monthly gift.
+                    </p>
+                    <a href="">Learn More</a>
+                </div>
+            </div>
+            <div class="block">
+                <div class="inner">
+                    <h3>Send Us a Hate Incident Tip</h3>
+                    <p>
+                        Hate and extremist groups operating in the U.S. foment racism, anti-LGBT hate, religious bigotry and anti-immigrant sentiment.
+                    </p>
+                    <a href="">Report Hate Incident</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+          <div class="col-1">
+            <ul class="social">
+              <li><a href="http://www.splcenter.org"><img src="img/logo.png" alt="SPLC Logo"></a></li>
+              <li><a href="https://www.facebook.com/SPLCenter"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="https://twitter.com/splcenter"><i class="fa fa-twitter"></i></a></li>
+            </ul>
+            <div class="address">
+              <h3>The Southern Poverty Law Center</h3>
+              <p>
+                  400 Washington Ave<br>
+                  Montgomery, AL 36104
+              </p>
+            </div>
+            <div class="memorial-center">
+              <h3>The Civil Rights Memorial Center</h3>
+              <p>
+                  <a href="">Learn More</a>
+              </p>
+            </div>
+          </div>
+          <div class="col">
+            <h3>About Us</h3>
+            <ul>
+              <li><a href="">Board of Directors</a></li>
+              <li><a href="">Senior Program Staff</a></li>
+              <li><a href="">Financial Information</a></li>
+              <li><a href="">Careers</a></li>
+            </ul>
+          </div>
+          <div class="col second">
+            <h3>State Offices</h3>
+            <ul>
+              <li><a href="">Florida</a></li>
+              <li><a href="">Mississippi</a></li>
+              <li><a href="">Louisiana</a></li>
+              <li><a href="">Alabama</a></li>
+            </ul>
+          </div>
+          <div class="col">
+            <h3>Support Us</h3>
+            <ul>
+              <li><a href="">Donate</a></li>
+              <li><a href="">Other Ways of Giving</a></li>
+              <li><a href="">Update Your Giving</a></li>
+              <li><a href=""></a></li>
+            </ul>
+          </div>
+          <div class="col last">
+            <h3>Resources</h3>
+            <ul>
+              <li><a href="">News</a></li>
+              <li><a href="">Case Docket</a></li>
+              <li><a href="">Extremist Files</a></li>
+              <li><a href="">Hatewatch</a></li>
+              <li><a href="">Publications</a></li>
+            </ul>
+          </div>
+          <div class="colophon">&copy;2015 Southern Poverty Law Center</div>
+        </div>
+    </footer>
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/about.js"></script>
+        <!-- endbuild -->
+</body>
+</html>

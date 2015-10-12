@@ -1,0 +1,79 @@
+header {
+    .container {
+        position: relative;
+    }
+
+    .logo {
+        background: $brick-red-lower url(../img/logo.png) center center no-repeat;
+        display: block;
+        height: em(123px);
+        width: em(245px);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+
+        @include mq(r) {
+            background: $brick-red-lower url(../img/logo_2x.png) center center no-repeat;
+            background-size: 90%
+        }
+
+        @include mq(t) {
+            background: $brick-red-lower url(../img/logo.png) 1rem center no-repeat;
+            background-size: 35%;
+            float: left;
+            padding: 0.5rem;
+            position: relative;
+            width: 85%;
+            height: 85px;
+        }
+
+        @include mq(m) {
+            background: $brick-red-lower url(../img/logo.png) center center no-repeat;
+            background-size: 50%;
+            float: left;
+            padding: 0.5rem;
+            position: relative;
+            width: 80%;
+            height: 65px;
+        }
+    }
+
+    .nav-toggle {
+        @include span-columns(2);
+        @include omega;
+
+        @include mq(t) {
+            line-height: 85px;
+            width: 15%;
+        }
+
+        @include mq(d) {
+            display: none;
+        }
+
+        font-size: rem(24px);
+        float: left;
+        line-height: 65px;
+        text-align: center;
+        width: 20%;
+
+        &.open {
+            background: $dune;
+
+            @include mq(t) {
+                background: $dune;
+            }
+
+            a {
+                color: $white;
+            }
+        }
+
+        a {
+            display: block;
+            height: 100%;
+            width: 100%;
+        }
+    }
+}

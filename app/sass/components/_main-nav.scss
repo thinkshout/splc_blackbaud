@@ -1,0 +1,69 @@
+// Main nav
+.main-nav {
+    border-top: 3px solid  $gallery;
+    margin-top: 2rem;
+
+    @include mq(t) {
+        display: none;
+        margin: 0;
+        border-top: none;
+    }
+
+    @include mq(m) {
+        display: none;
+        margin: 0;
+        border-top: none;
+    }
+
+    ul {
+        text-align: right;
+
+        @include mq(t) {
+            text-align: left;
+        }
+
+        @include mq(m) {
+          background: $dune;
+          margin: 0;
+          padding: 0;
+          text-align: left;
+        }
+    }
+
+    ul li {
+        display: inline;
+        margin: 0;
+        padding: 0;
+
+        @include mq(m) {
+          display: list-item;
+        }
+    }
+
+    ul li a {
+        color: $dune;
+        font-family: $heading-font;
+        font-size: em(18px);
+        padding: 1em 0.5em 1.05em;
+        position: relative;
+        text-decoration: none;
+        text-transform: uppercase;
+
+        @include mq(m) {
+            color: $white;
+            display: block;
+        }
+
+        &:hover {
+            color: $brick-red;
+
+            @include mq(t) {
+                color: $white;
+            }
+
+            @include mq(m) {
+                color: $white;
+            }
+        }
+    }
+}

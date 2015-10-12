@@ -1,0 +1,107 @@
+body {
+  font-family: $body-font;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+h1, %h1 {
+  font-family: $heading-font-light;
+  font-size: 64px;
+  font-weight: normal;
+  text-transform: uppercase;
+
+  @include mq(m) {
+    font-size: rem(48px);
+  }
+}
+
+h2, %h2,
+h3, %h3,
+h4, %h4,
+h5, %h5,
+h6, %h6 {
+  font-family: $heading-font-light;
+}
+
+h2, %h2 {
+  clear: both;
+  font-size: rem(36px);
+
+  @include mq(m) {
+    font-size: rem(28px);
+  }
+}
+
+h3, %h3 {
+  font-size: rem(24px);
+}
+
+h4, %h4 {
+  font-size: rem(20px);
+}
+
+h5, %h6 {
+  font-size: rem(18px);
+}
+
+// Links
+a {
+  color: $brick-red-lower;
+  text-decoration: underline;
+  @include default-transition;
+
+  // External link icon
+  span.ext {
+    background-image: url(../images/extlink_s_red.png);
+    margin-right: 0.3em;
+  }
+}
+
+a:hover {
+  color: $brick-red;
+  @include default-transition;
+
+  span.ext {
+    background-image: url(../images/extlink_s_red_bright.png);
+    margin-right: 0.3em;
+  }
+}
+
+#header a,
+footer a {
+  text-decoration: none;
+}
+
+blockquote {
+  border-left: 4px solid $alto;
+  font-size: em(14px);
+  font-style: italic;
+  margin: 2em 10%;
+  padding: 0 1em;
+}
+
+
+
+// Drupalisms
+.element-invisible {
+  display: none;
+}
+
+.element-focusable {
+  display: none;
+
+  &:active,
+  &:focus {
+    display: block;
+  }
+}
+
+// Field Collections
+.field-collection-container {
+  margin: 0;
+  border-bottom: none;
+}
+
+.field-collection-view {
+  border-bottom: none;
+}

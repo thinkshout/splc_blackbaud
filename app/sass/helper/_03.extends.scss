@@ -1,0 +1,300 @@
+%button-clear {
+  border: 3px solid $white;
+  border-radius: 0;
+  color: $white;
+  font-family: $heading-font-light;
+  font-size: em(26px);
+  padding: 0.2em 1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  @include default-transition;
+
+  &:hover {
+    background: $white;
+    border: 3px solid $white;
+    color: $brick-red-lower;
+    @include default-transition;
+  }
+}
+
+%button-clear-dark {
+  border: 3px solid $dune;
+  border-radius: 0;
+  color: $dune;
+  font-family: $heading-font-light;
+  font-size: em(26px);
+  padding: 0.2em 1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  @include default-transition;
+
+  &:hover {
+    background: $brick-red-lower;
+    border: 3px solid $brick-red-lower;
+    color: $white;
+    @include default-transition;
+  }
+}
+
+%button-dark {
+  background: $dune;
+  border: 3px solid $dune;
+  border-radius: 0;
+  color: $white;
+  font-family: $heading-font-light;
+  font-size: em(26px);
+  padding: 0.2em 1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  @include default-transition;
+
+  &:hover {
+    background: $brick-red;
+    border: 3px solid $brick-red;
+    color: $white;
+    @include default-transition;
+  }
+}
+
+// Yellow tag
+%tag {
+  background: $buttercup;
+  color: $dune;
+  display: inline-block;
+  font-family: $heading-font-light;
+  line-height: 1;
+  padding: 0.2em 0.5em 0.1em;
+  text-transform: uppercase;
+}
+
+%tag-mustard {
+  @extend %tag;
+  background: $mustard;
+  color: $white;
+}
+
+%tag-red {
+  @extend %tag;
+  background: $brick-red;
+  color: $white;
+}
+
+// Font icons
+%font-icon {
+  font-family: "splc-icons";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+%splc-arrow-right-circle {
+  @extend %font-icon;
+  content: '\e800';
+} /* '' */
+
+%splc-chevron-down {
+  @extend %font-icon;
+  content: '\e801';
+} /* '' */
+
+%splc-facebook {
+  @extend %font-icon;
+  content: '\e802';
+} /* '' */
+
+%splc-plus {
+  @extend %font-icon;
+  content: '\e804';
+} /* '' */
+
+%splc-facebook-square {
+  @extend %font-icon;
+  content: '\e805';
+} /* '' */
+
+%splc-twitter {
+  @extend %font-icon;
+  content: '\e806';
+} /* '' */
+
+%splc-youtube {
+  @extend %font-icon;
+  content: '\e807';
+} /* '' */
+
+%splc-linkedin {
+  @extend %font-icon;
+  content: '\e808';
+} /* '' */
+
+%splc-close {
+  @extend %font-icon;
+  content: '\e809';
+} /* '' */
+
+%splc-comment {
+  @extend %font-icon;
+  content: '\e80a';
+} /* '' */
+
+%splc-menu {
+  @extend %font-icon;
+  content: '\e80d';
+} /* '' */
+
+%splc-search {
+  @extend %font-icon;
+  content: '\e80e';
+} /* '' */
+
+%splc-chevron-left {
+  @extend %font-icon;
+  content: '\e80f';
+} /* '' */
+
+%splc-chevron-right {
+  @extend %font-icon;
+  content: '\e810';
+} /* '' */
+
+%splc-chevron-up {
+  @extend %font-icon;
+  content: '\e811';
+} /* '' */
+
+%splc-file {
+  @extend %font-icon;
+  content: '\e803';
+}
+
+// HEADINGS
+%sidebar-heading {
+  @extend %h2;
+  font-family: $heading-font-light;
+  font-size: em(32px);
+  font-weight: normal;
+  border-bottom: 3px solid $alto;
+  margin-bottom: 0.2em;
+  padding-bottom: 0.2em;
+  text-transform: uppercase;
+}
+
+// STAFF AND GROUP TEASER
+%person-teaser,
+%staff-person-teaser,
+%group-teaser {
+  .views-row {
+    border-bottom: 1px solid $alto;
+    clear: left;
+    list-style-type: none;
+    margin-left: 0;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .views-row a {
+    @extend %h3;
+    font-family: $heading-font-light;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .views-row .field-name-field-image {
+    float: left;
+    margin-right: 1em;
+    max-height: em(64px);
+    max-width: em(64px);
+    overflow: hidden;
+    border-radius: 50%;
+  }
+
+  .view-row .field-name-field-image img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+// Inline field label and field items
+%field-label-field-item {
+  .field-label,
+  .field-items,
+  .field-item {
+    display: inline;
+    float: none;
+  }
+
+  h2 {
+    border-bottom: none;
+    display: inline;
+    font-family: $body-font;
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: none;
+    &:after { content: ": "; }
+  }
+
+  .field-item {
+    font-family: $body-font;
+    font-size: 1em;
+    font-weight: normal;
+  }
+}
+
+%document-link {
+  .field-item {
+    img { display: none; }
+  }
+
+  .field-item::before {
+    @extend %splc-file;
+    color: $brick-red;
+  }
+}
+
+%more-link {
+  text-align: left;
+
+  a {
+    font-size: em(18px);
+    font-family: $heading-font;
+    text-decoration: none;
+
+    &::after {
+      @extend %splc-arrow-right-circle;
+      font-size: em(14px);
+      margin-left: 0;
+    }
+  }
+}

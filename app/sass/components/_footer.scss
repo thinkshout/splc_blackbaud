@@ -1,0 +1,124 @@
+footer {
+    background: $dune url(../img/footer-bg.jpg) left top no-repeat;
+    background-size: 100%;
+    min-height: rem(541px);
+    padding-bottom: 1rem;
+    padding-top: 2em;
+
+    .container {
+        @include mq(t) {
+            padding: 0 1rem;
+        }
+
+        @include mq(m) {
+            padding: 0 1rem;
+        }
+    }
+
+    h3 {
+        color: $white;
+        font-weight: normal;
+        margin-top: 0;
+        text-transform: uppercase;
+    }
+
+    a {
+        color: $white;
+    }
+
+    .social {
+        padding: 0;
+    }
+
+    .social li {
+        display: inline;
+        margin: 0 1rem 0 0;
+
+        img {
+            width: 150px;
+
+            @include mq(t) {
+              width: 28%;
+            }
+        }
+
+        a {
+            color: $buttercup;
+            font-size: rem(23px);
+        }
+    }
+
+    .address p {
+        color: $gallery;
+        font-size: rem(14px);
+    }
+
+    .memorial-center {
+        margin-bottom: 2rem;
+        a {
+            @extend %button-clear;
+        }
+    }
+
+    .col-1 {
+        @include span-columns(4);
+
+        @include mq(t) {
+            @include span-columns(12);
+        }
+
+        @include mq(m) {
+            @include span-columns(12);
+        }
+    }
+
+    .col {
+        @include span-columns(2);
+
+        @include mq(t) {
+            @include span-columns(6);
+            margin-bottom: 2rem;
+
+            &.second {
+                @include omega;
+            }
+        }
+
+        @include mq(m) {
+            @include span-columns(6);
+
+            &.second {
+                @include omega;
+            }
+        }
+
+        ul {
+            padding-left: 0;
+        }
+
+        ul li {
+            font-family: $heading-font;
+            font-size: rem(14px);
+            font-we: normal;
+            list-style-type: none;
+            margin-bottom: 1rem;
+        }
+
+        &.last {
+            @include omega;
+        }
+    }
+
+    .colophon {
+        @include span-columns(12);
+        color: $gallery;
+        font-size: rem(18px);
+        font-weight: normal;
+        margin-top: 2rem;
+        text-align: center;
+
+        @include mq(m) {
+            font-size: rem(14px);
+        }
+    }
+}
