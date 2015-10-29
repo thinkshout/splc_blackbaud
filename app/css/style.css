@@ -235,7 +235,7 @@ input[type="checkbox"], input[type="radio"] {
     -moz-transition: all 0.3s;
     transition: all 0.3s; }
 
-form .form-actions input[type=submit] {
+form .form-actions input[type=submit], form .form-actions button.disabled {
   background: #393635;
   border: 3px solid #393635;
   border-radius: 0;
@@ -248,7 +248,7 @@ form .form-actions input[type=submit] {
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   transition: all 0.3s; }
-  form .form-actions input[type=submit]:hover {
+  form .form-actions input[type=submit]:hover, form .form-actions button.disabled:hover {
     background: #d5292a;
     border: 3px solid #d5292a;
     color: #ffffff;
@@ -449,154 +449,168 @@ aside {
   .form-group.third.last {
     margin-right: 0; }
 
-form h2 {
-  border-bottom: 0.25rem solid #d8d8d8;
-  font-weight: normal;
-  margin-bottom: 1.5rem;
-  margin-top: 2rem;
-  padding-bottom: 1rem;
-  text-transform: uppercase; }
-  form h2:first-child {
-    margin-top: 0; }
-form h3 {
-  font-family: "Knockout 31 A", "Knockout 31 B", "Arial", sans-serif;
-  font-size: 1.5rem;
-  font-weight: normal; }
-form .form-group {
-  margin-bottom: 1.5rem; }
-form .radio-grp {
-  margin-bottom: 1rem; }
-  form .radio-grp:after {
-    content: ' ';
-    display: table;
-    clear: both; }
-  form .radio-grp .radio-btn {
-    margin-right: 0.5rem;
-    display: inline-block; }
-    form .radio-grp .radio-btn:last-of-type {
-      margin-right: 0; }
-    form .radio-grp .radio-btn input {
-      display: none; }
-    form .radio-grp .radio-btn input[type="radio"]:checked ~ label {
-      background: #d5292a;
-      border: 3px solid #cb1f20;
-      color: #ffffff; }
-    form .radio-grp .radio-btn .tribute-btn,
-    form .radio-grp .radio-btn .paypal-btn,
-    form .radio-grp .radio-btn label {
-      font-family: "Knockout 28 A", "Knockout 28 B", "Arial", sans-serif;
-      font-size: 1.625rem;
-      font-weight: normal;
-      text-transform: uppercase;
-      display: inline-block;
-      color: #393635;
-      padding: 0.5rem 1rem;
-      border: 3px solid #393635;
-      transition: color .3s ease;
-      cursor: pointer;
-      user-select: none; }
-      @media (max-width: 480px) {
-        form .radio-grp .radio-btn .tribute-btn,
-        form .radio-grp .radio-btn .paypal-btn,
-        form .radio-grp .radio-btn label {
-          padding: 0.5rem 1rem;
-          font-size: 1.25rem; } }
-      form .radio-grp .radio-btn .tribute-btn:hover,
-      form .radio-grp .radio-btn .paypal-btn:hover,
-      form .radio-grp .radio-btn label:hover {
+form {
+  /*.bank-draft-group {
+      display: none;
+  }*/ }
+  form h2 {
+    border-bottom: 0.25rem solid #d8d8d8;
+    font-weight: normal;
+    margin-bottom: 1.5rem;
+    margin-top: 2rem;
+    padding-bottom: 1rem;
+    text-transform: uppercase; }
+    form h2:first-child {
+      margin-top: 0; }
+  form h3 {
+    font-family: "Knockout 31 A", "Knockout 31 B", "Arial", sans-serif;
+    font-size: 1.5rem;
+    font-weight: normal; }
+  form .form-group {
+    margin-bottom: 1.5rem; }
+  form .radio-grp {
+    margin-bottom: 1rem; }
+    form .radio-grp:after {
+      content: ' ';
+      display: table;
+      clear: both; }
+    form .radio-grp .radio-btn {
+      margin-right: 0.5rem;
+      display: inline-block; }
+      form .radio-grp .radio-btn:last-of-type {
+        margin-right: 0; }
+      form .radio-grp .radio-btn input {
+        display: none; }
+      form .radio-grp .radio-btn input[type="radio"]:checked ~ label {
         background: #d5292a;
         border: 3px solid #cb1f20;
         color: #ffffff; }
-    form .radio-grp .radio-btn .paypal-btn {
-      text-decoration: none; }
-    form .radio-grp .radio-btn .tribute-btn {
-      background: #234472;
-      border: 3px solid #234472;
-      color: #ffffff;
-      text-decoration: none; }
-form .other-group {
-  display: none; }
-form .tribute-group {
-  display: none; }
-form .bank-draft-group {
-  display: none; }
-form .form-actions {
-  border-top: 4px solid #d8d8d8;
-  clear: left;
-  padding-top: 2rem;
-  margin-top: 2rem; }
-form .select,
-form textarea,
-form input[type=text],
-form input[type=email],
-form input[type=tel],
-form input[type=password],
-form input[type=search] {
-  border: 2px solid #d8d8d8;
-  border-radius: 0;
-  display: block;
-  font-family: "Knockout 31 A", "Knockout 31 B", "Arial", sans-serif;
-  font-weight: bold;
-  display: block;
-  padding: 0.5rem 1rem;
-  box-shadow: none;
-  width: 100%; }
-  form .select:hover,
-  form textarea:hover,
-  form input[type=text]:hover,
-  form input[type=email]:hover,
-  form input[type=tel]:hover,
-  form input[type=password]:hover,
-  form input[type=search]:hover {
-    border: 2px solid #393635;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    transition: all 0.3s; }
-  form .select:focus,
-  form textarea:focus,
-  form input[type=text]:focus,
-  form input[type=email]:focus,
-  form input[type=tel]:focus,
-  form input[type=password]:focus,
-  form input[type=search]:focus {
-    border: 2px solid #393635;
-    color: #393635;
-    outline: none; }
-  form .select.error,
-  form textarea.error,
-  form input[type=text].error,
-  form input[type=email].error,
-  form input[type=tel].error,
-  form input[type=password].error,
-  form input[type=search].error {
-    border: 2px solid #d5292a;
-    color: #d5292a; }
-form .select {
-  padding: 0;
-  background: url(../img/chevron-down.png) 95% center no-repeat; }
-form select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -ms-appearance: none;
-  -o-appearance: none;
-  appearance: none;
-  background: transparent;
-  border: none;
-  color: #989898;
-  display: block;
-  padding: 0.5rem 1rem;
-  width: 100%; }
-form label {
-  display: block;
-  font-family: "Knockout 31 A", "Knockout 31 B", "Arial", sans-serif;
-  margin-bottom: 0.5rem; }
-  form label span.required {
-    color: #d5292a; }
-  form label[for=year] {
-    color: #ffffff; }
-    @media (max-width: 480px) {
-      form label[for=year] {
-        display: none; } }
+      form .radio-grp .radio-btn .tribute-btn,
+      form .radio-grp .radio-btn .paypal-btn,
+      form .radio-grp .radio-btn label {
+        font-family: "Knockout 28 A", "Knockout 28 B", "Arial", sans-serif;
+        font-size: 1.625rem;
+        font-weight: normal;
+        text-transform: uppercase;
+        display: inline-block;
+        color: #393635;
+        padding: 0.5rem 1rem;
+        border: 3px solid #393635;
+        transition: color .3s ease;
+        cursor: pointer;
+        user-select: none; }
+        @media (max-width: 480px) {
+          form .radio-grp .radio-btn .tribute-btn,
+          form .radio-grp .radio-btn .paypal-btn,
+          form .radio-grp .radio-btn label {
+            padding: 0.5rem 1rem;
+            font-size: 1.25rem; } }
+        form .radio-grp .radio-btn .tribute-btn:hover,
+        form .radio-grp .radio-btn .paypal-btn:hover,
+        form .radio-grp .radio-btn label:hover {
+          background: #d5292a;
+          border: 3px solid #cb1f20;
+          color: #ffffff; }
+      form .radio-grp .radio-btn .paypal-btn {
+        text-decoration: none; }
+      form .radio-grp .radio-btn .tribute-btn {
+        background: #234472;
+        border: 3px solid #234472;
+        color: #ffffff;
+        text-decoration: none; }
+  form .tribute-group {
+    display: none; }
+  form .form-actions {
+    border-top: 4px solid #d8d8d8;
+    clear: left;
+    padding-top: 2rem;
+    margin-top: 2rem; }
+    form .form-actions button.disabled {
+      background: #989898;
+      border: 3px solid #989898; }
+      form .form-actions button.disabled:hover {
+        background: #989898;
+        border: 3px solid #989898; }
+  form .select,
+  form textarea,
+  form input[type=text],
+  form input[type=email],
+  form input[type=tel],
+  form input[type=password],
+  form input[type=search],
+  form input[type=number] {
+    border: 2px solid #d8d8d8;
+    border-radius: 0;
+    display: block;
+    font-family: "Knockout 31 A", "Knockout 31 B", "Arial", sans-serif;
+    font-weight: bold;
+    display: block;
+    padding: 0.5rem 1rem;
+    box-shadow: none;
+    width: 100%; }
+    form .select:hover,
+    form textarea:hover,
+    form input[type=text]:hover,
+    form input[type=email]:hover,
+    form input[type=tel]:hover,
+    form input[type=password]:hover,
+    form input[type=search]:hover,
+    form input[type=number]:hover {
+      border: 2px solid #393635;
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      transition: all 0.3s; }
+    form .select:focus,
+    form textarea:focus,
+    form input[type=text]:focus,
+    form input[type=email]:focus,
+    form input[type=tel]:focus,
+    form input[type=password]:focus,
+    form input[type=search]:focus,
+    form input[type=number]:focus {
+      border: 2px solid #393635;
+      color: #393635;
+      outline: none; }
+    form .select.error,
+    form textarea.error,
+    form input[type=text].error,
+    form input[type=email].error,
+    form input[type=tel].error,
+    form input[type=password].error,
+    form input[type=search].error,
+    form input[type=number].error {
+      border: 2px solid #d5292a;
+      color: #d5292a; }
+  form .select {
+    padding: 0;
+    background: url(../img/chevron-down.png) 95% center no-repeat; }
+  form select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    background: transparent;
+    border: none;
+    color: #989898;
+    display: block;
+    padding: 0.5rem 1rem;
+    width: 100%; }
+  form label {
+    display: block;
+    clear: left;
+    font-family: "Knockout 31 A", "Knockout 31 B", "Arial", sans-serif;
+    margin-bottom: 0.5rem; }
+    form label span.required {
+      color: #d5292a; }
+    form label[for=year] {
+      color: #ffffff; }
+      @media (max-width: 480px) {
+        form label[for=year] {
+          display: none; } }
+  form .error {
+    color: #d5292a;
+    margin-top: 0.5rem; }
 
 .card {
   height: auto; }

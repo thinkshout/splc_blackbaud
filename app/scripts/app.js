@@ -16,13 +16,14 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'validation.match',
   ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/donation.html',
-        controller: 'DonationCtrl',
+        controller: 'DonationController',
         controllerAs: 'donation'
       })
       .when('/about', {
@@ -33,4 +34,9 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+  }).config(function($httpProvider) {
+    $httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers.common["X-Requested-With"];
+    $httpProvider.defaults.headers.common["Content-Type"] = "text/plain";
+    console.log('hello');
   });

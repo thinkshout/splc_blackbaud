@@ -1,0 +1,224 @@
+
+<form name="donationForm" novalidate>
+  <h2>Donation Information</h2>
+  <!-- DONATION AMOUNT -->
+  <h3>Donation Amount:</h3>
+  <div class="radio-grp donation-group">
+      <div class="radio-btn">
+        <input type="radio" id="25" name="amount" value="25" ng-model="Gift.Designations.Amount"/>
+        <label for="25">$25</label>
+      </div>
+      <div class="radio-btn">
+          <input type="radio" id="50" name="amount" value="50" ng-model="Gift.Designations.Amount"/>
+          <label for="50">$50</label>
+      </div>
+      <div class="radio-btn">
+          <input type="radio" id="100" name="amount" value="100" ng-model="Gift.Designations.Amount"/>
+          <label for="100">$100</label>
+      </div>
+      <div class="radio-btn">
+          <input type="radio" id="500" name="amount" value="500" ng-model="Gift.Designations.Amount"/>
+          <label for="500">$500</label>
+      </div>
+      <div class="radio-btn">
+          <input type="radio" id="other" name="amount" value="other" ng-model="Gift.Designations.Amount"/>
+          <label class="other-toggle" for="other">Other Amount:</label>
+      </div>
+      <div class="form-group other-group" ng-show="Gift.Designations.Amount == 'other'">
+          <label for="other_amount">Other Amount: {{donation.otherAmount | currency}}</label>
+          <input type="number" name="other_amount" ng-min="1" />
+          <p class="error" ng-if="donationForm.other_amount.$error.min && donation.amount == 'other'">Please enter at least 1.00</p>
+      </div>
+  </div>
+
+  <!-- DONATION OPTIONS -->
+  <h3>Donation Options:</h3>
+  <div class="radio-grp donation-options-group">
+      <div class="radio-btn">
+          <input type="radio" id="once" name="donation_option" value="once" ng-model="donation.contributionType"/>
+          <label for="once">One Time Contribution</label>
+      </div>
+      <div class="radio-btn">
+          <input type="radio" id="renewal" name="donation_option" value="renewal" ng-model="donation.contributionType"/>
+          <label for="renewal">Renewal</label>
+      </div>
+      <div class="radio-btn">
+          <input type="radio" id="monthly" name="donation_option" value="monthly" ng-model="donation.contributionType"/>
+          <label for="monthly">Monthly Donation</label>
+      </div>
+      <div class="radio-btn">
+          <a href="tribute.html" class="tribute-btn">Tribute</a>
+      </div>
+  </div>
+
+  <!-- DONOR INFORMATION -->
+  <h2>Donor Information</h2>
+  <div class="form-group half">
+      <label for="first_name">First Name<span class="required">*</span></label>
+      <input type="text" ng-model="Donor.FirstName" name="first_name" ng-minlength="2" required>
+      <div class="error" ng-messages="donationForm.first_name.$error" ng-if="donationForm.first_name.$touched">
+        <p ng-message="required">Please enter your first name</p>
+        <p ng-message="minlength">Enter at least 2 letters for your first name</p>
+      </div>
+  </div>
+  <div class="form-group half last">
+      <label for="last_name">Last Name<span class="required">*</span></label>
+      <input type="text" name="last_name" ng-model="Donor.LastName" ng-minlength="2" required>
+      <div class="error" ng-messages="donationForm.last_name.$error" ng-if="donationForm.last_name.$touched">
+        <p ng-message="required">Please enter your last name</p>
+        <p ng-message="minlength">Enter at least 2 letters for your last name</p>
+      </div>
+  </div>
+  <div class="form-group">
+      <label for="street_address">Address<span class="required">*</span></label>
+      <input type="text" name="street_address" ng-model="Donor.Address.StreetAddress" required>
+      <div class="error" ng-messages="donationForm.street_address.$error" ng-if="donationForm.street_address.$touched">
+        <p ng-message="required">Please enter your address</p>
+      </div>
+  </div>
+  <div class="form-group">
+      <label for="city">City<span class="required">*</span></label>
+      <input type="text" name="city" ng-model="Donor.Address.City" required>
+      <div class="error" ng-messages="donationForm.city.$error" ng-if="donationForm.city.$touched">
+        <p ng-message="required">Please enter your city</p>
+      </div>
+  </div>
+  <div class="form-group third">
+      <label for="state">State<span class="required">*</span></label>
+      <div class="select">
+          <select class="state-select" name="state" ng-model="Donor.Address.State" required>
+          </select>
+      </div>
+  </div>
+  <div class="form-group third">
+      <label for="zipcode">Zip Code<span class="required">*</span></label>
+      <input type="text" name="postal_code" ng-model="Donor.Address.PostalCode" ng-pattern="/(^([0-9]{5})$)|(^[ABCEGHJKLMNPRSTVXYabceghjklmnprstvxy]{1}\d{1}[A-Za-z]{1} *\d{1}[A-Za-z]{1}\d{1}$)/" required>
+      <div class="error" ng-messages="donationForm.postal_code.$error" ng-if="donationForm.postal_code.$touched">
+        <p ng-message="required">Please enter your zip code</p>
+      </div>
+      <p class="error" ng-show="donationForm.postal_code.$error.pattern">Please enter a valid zipcode</p>
+  </div>
+  <div class="form-group third last">
+      <label for="country">Country<span class="required">*</span></label>
+      <div class="select">
+          <select class="country-select" name="country" ng-model="Donor.Address.Country" required>
+          </select>
+      </div>
+      <div class="error" ng-messages="donationForm.donor_country.$error" ng-if="donationForm.donor_country.$touched && Donor.Address.Country == ''">
+        <p ng-message="required">Please enter your country</p>
+      </div>
+  </div>
+  <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <input type="text" name="phone" ng-model="Donor.Phone">
+  </div>
+  <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" name="email" ng-model="Donor.EmailAddress" ng-pattern="/^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$/">
+      <p class="error" ng-show="donationForm.email.$error.pattern">Please enter a valid email address</p>
+  </div>
+  <div class="form-group">
+      <label for="confirm_email">Confirm Email Address</label>
+      <input type="email" name="donor_confirm_email" ng-model="Donor.ConfirmEmail" match="Donor.EmailAddress">
+      <p class="error" ng-show="donationForm.donor_confirm_email.$error.match">Make sure the email addresses match</p>
+  </div>
+
+  <!-- PAYMENT INFORMATION -->
+  <h2>Payment</h2>
+  <div class="radio-grp payment-type">
+      <div class="radio-btn">
+          <input type="radio" id="credit_card" name="donor_payment_type" value="credit card" ng-model="donation.paymentType"/>
+          <label class="credit-card" for="credit_card">Credit Card</label>
+      </div>
+      <div class="radio-btn">
+          <input type="radio" id="paypal" name="donor_payment_type" value="paypal" ng-model="donation.paymentType"/>
+          <label class="paypal" for="paypal">Paypal</label>
+      </div>
+      <div class="radio-btn">
+          <input type="radio" id="bank_draft" name="donor_payment_type" value="bank draft" ng-model="donation.paymentType"/>
+          <label class="bank-draft" for="bank_draft">Bank Draft</label>
+      </div>
+  </div>
+
+  <!-- Credit Card -->
+  <!--<div class="credit-card-group" ng-show="donation.paymentType === 'credit card'">
+      <div class="form-group">
+        <label for="donor_cardholder_name">Name as it appears on card<span class="required">*</span></label>
+        <input type="text" name="donor_cardholder_name" ng-model="donation.donorCardholderName" ng-required="donation.paymentType == 'credit card'">
+        <p class="error"
+           ng-if="donationForm.donor_cardholder_name.$touched"
+           ng-show="donationForm.donor_cardholder_name.$error.required">
+           Please enter the cardholder name
+        </p>
+      </div>
+      <div class="form-group">
+        <label for="donor_credit_card_number">Credit Card Number<span class="required">*</span></label>
+        <input type="text" name="donor_credit_card_number"
+               ng-model="donation.donorCreditCardNumber"
+               ng-required="donation.paymentType === 'credit card'"
+               ng-pattern="/^[0-9]+$/"
+               ng-minlength="15"
+               maxlength="19">
+        <div ng-messages="donationForm.donor_credit_card_number.$error" ng-if="donationForm.donor_credit_card_number.$touched">
+          <p class="error" ng-message="required">Please enter your credit card number</p>
+          <p class="error" ng-message="minlength">Please enter a valid card number</p>
+          <p class="error" ng-message="pattern">Please enter a valid card number</p>
+          <p class="error" ng-message="maxlength">Please enter a valid card number</p>
+        </div>
+      </div>
+      <div class="form-group third">
+          <label for="donor_expiration_date">Expiration Date<span class="required">*</span></label>
+          <div class="select">
+              <select name="donor_credit_card_month">
+                  <option value="Month">Month</option>
+              </select>
+          </div>
+      </div>
+      <div class="form-group third">
+          <label for="donor_credit_card_year">Year</label>
+          <div class="select">
+              <select name="year">
+                  <option value="year">Year</option>
+              </select>
+          </div>
+      </div>
+      <div class="form-group third last">
+          <label for="cvv">CVV<span class="required">*</span></label>
+          <input type="text" name="donor_cvv" ng-model="donationCVV"
+                 ng-required="donation.paymentType === 'credit card'"
+                 ng-minlength="3"
+                 ng-maxlength="4"
+                 ng-pattern="/^[0-9]+$/">
+          <div ng-messages="donationForm.donor_cvv.$error" ng-if="donationForm.donor_cvv.$touched">
+            <p class="error" ng-message="required">Please enter your CVV</p>
+            <p class="error" ng-message="minlength">Please enter a valid CVV</p>
+            <p class="error" ng-message="pattern">Please enter a valid CVV</p>
+            <p class="error" ng-message="maxlength">Please enter a valid CVV</p>
+          </div>
+      </div>
+  </div>
+
+  <!-- Bank Draft -->
+  <div class="bank-draft-group" ng-show="donation.paymentType === 'bank draft'">
+      <div class="form-group half">
+          <label for="routing_number">Routing Number<span class="required">*</span></label>
+          <input type="text" name="routing_number">
+      </div>
+      <div class="form-group half last">
+          <label for="account_number">Account Number<span class="required">*</span></label>
+          <input type="text" name="account_number">
+      </div>
+      <div class="form-group">
+          <label for="account_holder">Account Holder's Name<span class="required">*</span></label>
+          <input type="text" name="account_holder">
+      </div>
+    </div>
+  <div class="form-group form-actions">
+      <button class="disabled" value="Enter Required Fields to Submit" disabled ng-show="donationForm.$invalid">
+        Enter required fields to submit
+      </button>
+      <button type="submit" ng-show="donationForm.$valid" ng-click="createDonation()">
+      <pre>{{donationData | json}}<pre>
+  </div>
+
+</form>

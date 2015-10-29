@@ -17,11 +17,6 @@
     <!-- endbuild -->
   </head>
   <body ng-app="splcDonationApp">
-    <!--[if lte IE 8]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-
-    <!-- Add your site or application content here -->
     <header>
       <div class="container">
         <a class="logo" href="http://www.splcenter.org">
@@ -49,11 +44,37 @@
         </div>
       </nav>
     </header>
-
+    <section class="hero">
+        <div class="container">
+            <div class="text">
+                <h1>Donate To SPLC</h1>
+                <p>
+                    Your gift will help win justice on behalf of those who have no other champion, expose and fight the hate that thrives in our country, and provide tolerance education materials free of charge to schools across our nation.
+                </p>
+            </div>
+        </div>
+    </section>
     <div class="container">
-    <div ng-view=""></div>
+      <aside>
+          <div class="promo-block memoriam">
+              <h1>Give In Memoriam</h1>
+              <p>
+                  Donate to SPLC in someone’s honor, or in memoriam of a friend or loved one.
+              </p>
+              <a class="button-clear" href="">Get Started</a>
+          </div>
+          <div class="promo-block gift">
+              <h1>A Free Gift for You</h1>
+              <img src="img/gift.png" alt="3 Intelligence Report magazines" />
+              <p>
+                  Supporters giving $25 or more receive a subscription to our quarterly magazine Intelligence Report.
+              </p>
+          </div>
+      </aside>
+      <div class="main-content">
+        <div ng-view="" class="BBDonationApiContainer" data-partid="688"></div>
+      </div>
     </div>
-
     <section class="prefooter">
         <div class="container">
             <div class="block">
@@ -175,13 +196,16 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-validation-match/dist/angular-validation-match.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="scripts/vendor/BBAPI-min.js"></script>
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/donation.js"></script>
+        <script src="scripts/directives/donation-form.js"></script>
         <!-- endbuild -->
 </body>
 </html>

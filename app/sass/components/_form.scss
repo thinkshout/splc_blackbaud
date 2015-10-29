@@ -115,16 +115,16 @@ form {
     }
 
     .other-group {
-        display: none;
+        //display: none;
     }
 
     .tribute-group {
         display: none;
     }
 
-    .bank-draft-group {
+    /*.bank-draft-group {
         display: none;
-    }
+    }*/
 
 
     .form-actions {
@@ -136,6 +136,17 @@ form {
         input[type=submit] {
             @extend %button-dark;
         }
+
+        button.disabled {
+            @extend %button-dark;
+            background: $oregon;
+            border: 3px solid $oregon;
+
+            &:hover {
+              background: $oregon;
+              border: 3px solid $oregon;
+            }
+        }
     }
 
     .select,
@@ -144,7 +155,8 @@ form {
     input[type=email],
     input[type=tel],
     input[type=password],
-    input[type=search] {
+    input[type=search],
+    input[type=number] {
         border: 2px solid $alto;
         border-radius: 0;
         display: block;
@@ -189,6 +201,7 @@ form {
 
     label {
         display: block;
+        clear: left;
         font-family: $heading-font;
         margin-bottom: 0.5rem;
 
@@ -202,6 +215,11 @@ form {
                 display: none;
             }
         }
+    }
+
+    .error {
+      color: $brick-red;
+      margin-top: 0.5rem;
     }
 }
 
