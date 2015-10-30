@@ -26,10 +26,13 @@ angular
         controller: 'DonationController',
         controllerAs: 'donation'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+      .when('/tribute', {
+        templateUrl: 'views/tribute.html',
+        controller: 'DonationController',
+        controllerAs: 'tribute'
+      })
+      .when('/confirmation', {
+        templateUrl: 'views/confirmation.html'
       })
       .otherwise({
         redirectTo: '/'
@@ -38,5 +41,4 @@ angular
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common["X-Requested-With"];
     $httpProvider.defaults.headers.common["Content-Type"] = "text/plain";
-    console.log('hello');
   });

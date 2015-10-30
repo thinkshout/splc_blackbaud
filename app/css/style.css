@@ -195,7 +195,9 @@ input[type="checkbox"], input[type="radio"] {
   box-sizing: border-box;
   padding: 0; }
 
-.promo-block a, footer .memorial-center a {
+.button-clear,
+.promo-block a,
+footer .memorial-center a {
   border: 3px solid #ffffff;
   border-radius: 0;
   color: #ffffff;
@@ -207,7 +209,9 @@ input[type="checkbox"], input[type="radio"] {
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   transition: all 0.3s; }
-  .promo-block a:hover, footer .memorial-center a:hover {
+  .button-clear:hover,
+  .promo-block a:hover,
+  footer .memorial-center a:hover {
     background: #ffffff;
     border: 3px solid #ffffff;
     color: #9c3022;
@@ -215,6 +219,7 @@ input[type="checkbox"], input[type="radio"] {
     -moz-transition: all 0.3s;
     transition: all 0.3s; }
 
+.button-clear-dark,
 .prefooter .block a {
   border: 3px solid #393635;
   border-radius: 0;
@@ -227,6 +232,7 @@ input[type="checkbox"], input[type="radio"] {
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   transition: all 0.3s; }
+  .button-clear-dark:hover,
   .prefooter .block a:hover {
     background: #9c3022;
     border: 3px solid #9c3022;
@@ -235,7 +241,9 @@ input[type="checkbox"], input[type="radio"] {
     -moz-transition: all 0.3s;
     transition: all 0.3s; }
 
-form .form-actions input[type=submit], form .form-actions button.disabled {
+.button-dark,
+form .form-actions input[type=submit],
+form .form-actions button.disabled {
   background: #393635;
   border: 3px solid #393635;
   border-radius: 0;
@@ -248,7 +256,9 @@ form .form-actions input[type=submit], form .form-actions button.disabled {
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   transition: all 0.3s; }
-  form .form-actions input[type=submit]:hover, form .form-actions button.disabled:hover {
+  .button-dark:hover,
+  form .form-actions input[type=submit]:hover,
+  form .form-actions button.disabled:hover {
     background: #d5292a;
     border: 3px solid #d5292a;
     color: #ffffff;

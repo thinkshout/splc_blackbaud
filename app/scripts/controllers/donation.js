@@ -10,15 +10,19 @@
 angular.module('splcDonationApp')
   .controller('DonationController', ['$scope', '$http', function ($scope, $http) {
 
-    var ds = new BLACKBAUD.api.DonationService(
+    /*var ds = new BLACKBAUD.api.DonationService(
       1117, {
         url: '//bbnc21027d.blackbaudhosting.com/'
       }
-    );
+    );*/
 
     var cs = new BLACKBAUD.api.CountryService({
       url: '//bbnc21027d.blackbaudhosting.com/'
     });
+
+    $scope.logger = function(thing) {
+      console.log(thing);
+    };
 
     // Set countries on form
     $scope.getCountries = function() {
@@ -54,51 +58,54 @@ angular.module('splcDonationApp')
     };
 
     // Create a new donation once the form has been validated
-    $scope.createDonation = function(donation) {
-      $scope.donationData = angular.copy(donation);
-      /*var Donation = {
+    $scope.createDonation = function(donor, gift) {
+    
+      var donationAmount = gift.Designations.Amount == 'other' ? 
+                           gift.OtherAmount : 
+                           gift.Designations.Amount;
+      
+      var donation = {
         "Donor": {
           "Title": '',
-          "FirstName": 'Bruce',
-          "LastName": 'LeRoy',
-          "EmailAddress": 'eric.paxton@thinkshout.com',
-          "Phone": '',
+          "FirstName": donor.FirstName,
+          "LastName": donor.LastName,
+          "EmailAddress": donor.EmailAddress,
+          "Phone": donor.Phone,
           "Address": {
-            "StreetAddress": '123 Easy St',
-            "City": 'Portland',
-            "State": "1cc0674d-6d8a-4f42-942e-030b9e7e9660",
-            "Country": "d81cef85-7569-4b2e-8f2e-f7cf998a3342",
-            "PostalCode": '97209',
+            "StreetAddress": donor.Address.StreetAddress,
+            "City": donor.Address.City,
+            "State": donor.Address.State,
+            "Country": donor.Address.Country,
+            "PostalCode": donor.Address.PostalCode,
           }
         },
         "Gift": {
           "Designations": [
             {
-              "Amount": 5,
+              "Amount": donationAmount,
               "DesignationId": "09ccef1b-97c6-455a-a793-42ab31888036",
             }
           ],
         },
-        "BBSPReturnUri": window.location.href,
+        "BBSPReturnUri": window.location.href + 'confirmation',
         "MerchantAccountId": "c6de7f55-a953-4e64-b382-147268e9b25f",
-      }; // end donation
+      }; // end donation 
 
       $http({
         method: 'POST',
-        url: '//bbnc21027d.blackbaudhosting.com/WebApi/1117/Donation/Create',
-        data: Donation,
+        url: '//bbnc21027d.blackbaudhosting.com/WebApi/1128/Donation/Create',
+        data: donation,
         headers: {
           'Content-Type': 'application/json'
         }
       }).then(function successCallback(response) {
-        console.log(response);
-        var returnedDonation = response.data;
-        console.log(returnedDonation);
+        //console.log(response);
+        //var returnedDonation = response.data;
+        //console.log(returnedDonation);
         window.location = returnedDonation.BBSPCheckoutUri; 
       }, function errorCallback(response) {
         console.log(response);
-
-      });*/
+      });
 
     };
 
