@@ -10,12 +10,7 @@
 angular.module('splcDonationApp')
   .controller('DonationController', ['$scope', '$http', function ($scope, $http) {
 
-    /*var ds = new BLACKBAUD.api.DonationService(
-      1117, {
-        url: '//bbnc21027d.blackbaudhosting.com/'
-      }
-    );*/
-
+    // BB Country Service
     var cs = new BLACKBAUD.api.CountryService({
       url: '//bbnc21027d.blackbaudhosting.com/'
     });
@@ -23,6 +18,98 @@ angular.module('splcDonationApp')
     $scope.logger = function(thing) {
       console.log(thing);
     };
+
+    // RETURN FAKE DONATION
+    $scope.fakeDonation = function() {
+      var fakeDonation = {
+          "Donor": {
+              "Address": {
+                  "City": "Columbia",
+                  "Country": "United States",
+                  "PostalCode": "29212",
+                  "State": "SC",
+                  "StreetAddress": "123 Main St."
+              },
+              "EmailAddress": "john.doe@blackbaud.com",
+              "FirstName": "John",
+              "LastName": "Doe",
+              "Phone": "555-555-5555",
+              "Title": "Mr."
+          },
+          "Gift": {
+              "Designations": [
+                  {
+                      "Amount": 5,
+                      "DesignationId": "3439a5c7-9977-4f9c-ba11-fadfb8144d35"
+                  }
+              ],
+              "FinderNumber": 0,
+              "SourceCode": "Sample Source Code",
+              "IsAnonymous": false,
+              "PaymentMethod": 1,
+              "Comments": "Gift comments here.",
+              "CreateGiftAidDeclaration": false,
+              "Attributes": [
+                  {
+                      "AttributeId": "BD18B3FD-B382-4183-A415-8F84B1E0E411",
+                      "Value": "Volunteer;Member;Alumni"
+                  },
+                  {
+                      "AttributeId": "3607C77D-19DC-4EE0-A0CD-A352762A8EF0",
+                      "Value": "1985"
+                  }
+              ],
+              "Recurrence": {
+                  "DayOfMonth": 26,
+                  "DayOfWeek": null,
+                  "EndDate": null,
+                  "Frequency": 2,
+                  "Month": null,
+                  "StartDate": "Date(1337227200000-0400)"
+              },
+              "Tribute": {
+                  "Acknowledgee": {
+                      "AddressLines": "123 Sunset ln.",
+                      "City": "Charleston",
+                      "Country": "USA",
+                      "Email": "email@address.com",
+                      "FirstName": "Jane",
+                      "LastName": "Doe",
+                      "Phone": "123-123-1234",
+                      "PostalCode": "29482",
+                      "State": "SC"
+                  },
+                  "TributeDefinition": {
+                      "Description": "New tribute",
+                      "FirstName": "John",
+                      "LastName": "Hancock",
+                      "Type": "Tribute"
+                  },
+                  "TributeId": null
+              }
+          },
+          "Id": "853f96be-bf08-4828-aefa-326a06e48d31",
+          "Origin": {
+              "AppealId": "C3B20FD8-6A81-451E-BF78-D195E82B4CBF",
+              "PageId": 784,
+              "PageName": "Sample Page"
+          },
+          "TransactionStatus": 1
+      }
+
+      $http({
+        method: 'POST',
+        url: 'http://localhost:1222',
+        data: fakeDonation,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(function successCallback(response) {
+        console.log(response);
+      }, function errorCallback(response) {
+        console.log(response);
+      });
+    }; // end fakeDonation;
 
     // Set countries on form
     $scope.getCountries = function() {
@@ -57,13 +144,37 @@ angular.module('splcDonationApp')
       });
     };
 
+    $scope.createTribute = function(gift, notification, donor) {
+      console.log(gift);
+      console.log(notification);
+      console.log(donor);
+
+
+      var tributeDonation = {};
+
+      // Build Donor info
+      tributeDonation.Donor = donor;
+      // Build Gift info
+      tributeDonation.Gift = {};
+      tributeDonation.Gift.Designations = [{
+        Amount: gift.Designations.Amount,
+        DesignationId: ""
+      }];
+      tribute.Gift = gift.PaymentMethod;
+      // Build Tribute info
+
+
+
+      console.log(tributeDonation);
+    }
+
     // Create a new donation once the form has been validated
     $scope.createDonation = function(donor, gift) {
-    
-      var donationAmount = gift.Designations.Amount == 'other' ? 
-                           gift.OtherAmount : 
+
+      var donationAmount = gift.Designations.Amount == 'other' ?
+                           gift.OtherAmount :
                            gift.Designations.Amount;
-      
+
       var donation = {
         "Donor": {
           "Title": '',
@@ -89,7 +200,7 @@ angular.module('splcDonationApp')
         },
         "BBSPReturnUri": window.location.href + 'confirmation',
         "MerchantAccountId": "c6de7f55-a953-4e64-b382-147268e9b25f",
-      }; // end donation 
+      }; // end donation
 
       $http({
         method: 'POST',
@@ -102,7 +213,7 @@ angular.module('splcDonationApp')
         //console.log(response);
         //var returnedDonation = response.data;
         //console.log(returnedDonation);
-        window.location = returnedDonation.BBSPCheckoutUri; 
+        window.location = returnedDonation.BBSPCheckoutUri;
       }, function errorCallback(response) {
         console.log(response);
       });

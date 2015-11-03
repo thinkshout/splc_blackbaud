@@ -29,10 +29,15 @@ angular
       .when('/tribute', {
         templateUrl: 'views/tribute.html',
         controller: 'DonationController',
-        controllerAs: 'tribute'
+        controllerAs: 'donation'
       })
       .when('/confirmation', {
         templateUrl: 'views/confirmation.html'
+      })
+      .when('/faker', {
+        controller: 'DonationController',
+        templateUrl: 'views/faker.html',
+        controllerAs: 'donation'
       })
       .otherwise({
         redirectTo: '/'

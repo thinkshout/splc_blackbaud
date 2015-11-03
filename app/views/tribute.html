@@ -4,7 +4,8 @@
   <h3>Tribute Gift:</h3>
   <div class="radio-grp donation-group">
       <div class="radio-btn">
-        <input type="radio" id="25" name="amount" value="25" ng-model="Gift.Designations.Amount"/>
+        <input type="radio" id="25" name="amount" value="25"
+        ng-model="Gift.Designations.Amount"/>
         <label for="25">$25</label>
       </div>
       <div class="radio-btn">
@@ -12,15 +13,18 @@
           <label for="50">$50</label>
       </div>
       <div class="radio-btn">
-          <input type="radio" id="100" name="amount" value="100" ng-model="Gift.Designations.Amount"/>
+          <input type="radio" id="100" name="amount" value="100"
+          ng-model="Gift.Designations.Amount"/>
           <label for="100">$100</label>
       </div>
       <div class="radio-btn">
-          <input type="radio" id="500" name="amount" value="500" ng-model="Gift.Designations.Amount"/>
+          <input type="radio" id="500" name="amount" value="500"
+          ng-model="Gift.Designations.Amount"/>
           <label for="500">$500</label>
       </div>
       <div class="radio-btn">
-          <input type="radio" id="other" name="amount" value="other" ng-model="Gift.Designations.Amount"/>
+          <input type="radio" id="other" name="amount" value="other"
+          ng-model="Gift.Designations.Amount"/>
           <label class="other-toggle" for="other">Other Amount:</label>
       </div>
       <div class="form-group other-group" ng-show="Gift.Designations.Amount == 'other'">
@@ -56,12 +60,11 @@
         </div>
         <div class="form-group">
             <label for="email">Email Address</label>
-            <input type="email" name="email">
+            <input type="email" name="email" ng-model="Notification.Email">
         </div>
         <div class="form-group">
             <label for="confirm_email">Confirm Email Address</label>
-            <input type="email" name="confirm_email">
-            <label class="confirm-message"></label>
+            <input type="email" name="confirm_email" ng-model="Notification.ConfirmEmail">
         </div>
     </div>
 
@@ -137,5 +140,13 @@
       <label for="confirm_email">Confirm Email Address</label>
       <input type="email" name="donor_confirm_email" ng-model="Donor.ConfirmEmail" match="Donor.EmailAddress">
       <p class="error" ng-show="tributeForm.donor_confirm_email.$error.match">Make sure the email addresses match</p>
+  </div>
+  <div class="form-group form-actions">
+    <button class="disabled" value="Enter Required Fields to Submit" disabled
+      ng-show="tributeForm.$invalid">
+        Enter required fields to submit
+    </button>
+    <button class="button-dark" type="submit" ng-show="tributeForm.$valid"
+      ng-click="createTribute(Gift, Notification, Donor)">Continue to Payment</button>
   </div>
 </form>
