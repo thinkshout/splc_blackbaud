@@ -141,7 +141,10 @@
       <input type="email" name="donor_confirm_email" ng-model="Donor.ConfirmEmail" match="Donor.EmailAddress">
       <p class="error" ng-show="tributeForm.donor_confirm_email.$error.match">Make sure the email addresses match</p>
   </div>
+
+  <!-- PAYMENT INFORMATION -->
   <div class="form-group form-actions">
+    <h2>Proceed to Payment</h2>
     <button class="disabled" value="Enter Required Fields to Submit" disabled
       ng-show="tributeForm.$invalid">
         Enter required fields to submit

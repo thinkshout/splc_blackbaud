@@ -21,7 +21,7 @@ angular.module('splcDonationApp')
 
     // RETURN FAKE DONATION
     $scope.fakeDonation = function() {
-      var fakeDonation = {
+      var donor = {
           "Donor": {
               "Address": {
                   "City": "Columbia",
@@ -99,10 +99,10 @@ angular.module('splcDonationApp')
 
       $http({
         method: 'POST',
-        url: 'http://localhost:1222',
-        data: fakeDonation,
+        url: '//splc.dev/ecard',
+        data: JSON.stringify(donor),
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/x-www-form-urlencoded'
         }
       }).then(function successCallback(response) {
         console.log(response);
@@ -144,36 +144,60 @@ angular.module('splcDonationApp')
       });
     };
 
-    $scope.createTribute = function(gift, notification, donor) {
-      console.log(gift);
-      console.log(notification);
-      console.log(donor);
-
-
+    $scope.buildTribute= function(gift, notification, donor) {
       var tributeDonation = {};
 
       // Build Donor info
       tributeDonation.Donor = donor;
+
       // Build Gift info
       tributeDonation.Gift = {};
       tributeDonation.Gift.Designations = [{
         Amount: gift.Designations.Amount,
         DesignationId: ""
       }];
-      tribute.Gift = gift.PaymentMethod;
-      // Build Tribute info
+      tributeDonation.Gift.PaymentMethod = gift.PaymentMethod;
+
+      // Build Tribute and Notification info
+      tributeDonation.TributeDefinition = {};
 
 
+      if (donation.Gift.PaymentMethod == '0') {
+        // TODO: Process credit card
+      } else if (donation.Gift.PaymentMethod == '1') {
+        // TODO: Send pledge and ecard here
+      }
 
       console.log(tributeDonation);
     }
 
+    $scope.createDonation = function(donation) {
+
+      $http({
+        method: 'POST',
+        url: '//bbnc21027d.blackbaudhosting.com/WebApi/1128/Donation/Create',
+        data: donation,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(function successCallback(response) {
+        console.log(response);
+        var returnedDonation = response.data;
+        console.log(returnedDonation);
+        window.location = returnedDonation.BBSPCheckoutUri;
+      }, function errorCallback(response) {
+        console.log(response);
+      });
+    };
+
     // Create a new donation once the form has been validated
-    $scope.createDonation = function(donor, gift) {
+    $scope.buildDonation = function(donor, gift) {
 
       var donationAmount = gift.Designations.Amount == 'other' ?
                            gift.OtherAmount :
                            gift.Designations.Amount;
+
+
 
       var donation = {
         "Donor": {
@@ -202,22 +226,7 @@ angular.module('splcDonationApp')
         "MerchantAccountId": "c6de7f55-a953-4e64-b382-147268e9b25f",
       }; // end donation
 
-      $http({
-        method: 'POST',
-        url: '//bbnc21027d.blackbaudhosting.com/WebApi/1128/Donation/Create',
-        data: donation,
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }).then(function successCallback(response) {
-        //console.log(response);
-        //var returnedDonation = response.data;
-        //console.log(returnedDonation);
-        window.location = returnedDonation.BBSPCheckoutUri;
-      }, function errorCallback(response) {
-        console.log(response);
-      });
-
+      createDonation(donation);
     };
 
     $scope.init = function() {
