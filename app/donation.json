@@ -8,8 +8,13 @@
             "StreetAddress": "123 Main St."
         },
         "EmailAddress": "john.doe@blackbaud.com",
+<<<<<<< HEAD
         "FirstName": "John",
         "LastName": "Doe",
+=======
+        "FirstName": "Amy",
+        "LastName": "VS",
+>>>>>>> 4fe25be6ae0388c7556eda0e50e17b304a7f813f
         "Phone": "555-555-5555",
         "Title": "Mr."
     },
