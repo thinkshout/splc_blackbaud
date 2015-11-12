@@ -230,29 +230,20 @@ form {
 
 .pcards,
 .ecards {
-    display: none;
+    //display: none;
     overflow: hidden;
-}
 
-// ecards
-.ecards .card {
-    float: left;
-    width: 19%;
-    margin-right: 1%;
+    @include row();
 
-    &:last-child {
-        margin-right: 0;
+    .radio-grp {
+      @include span-columns(6);
+      img {
+        width: 100%;
+      }
     }
 }
 
-// Physical cards
-.pcards .radio-grp {
-  @include span-columns(6);
 
-    &:last-child {
-        @include omega;
-    }
-}
 
 .pcards .card {
     img {

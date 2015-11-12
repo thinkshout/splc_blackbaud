@@ -32,7 +32,8 @@ angular
         controllerAs: 'donation'
       })
       .when('/confirmation', {
-        templateUrl: 'views/confirmation.html'
+        templateUrl: 'views/confirmation.html',
+        controller: 'DonationController'
       })
       .when('/faker', {
         controller: 'DonationController',

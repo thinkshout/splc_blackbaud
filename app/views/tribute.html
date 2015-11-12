@@ -28,45 +28,136 @@
           <label class="other-toggle" for="other">Other Amount:</label>
       </div>
       <div class="form-group other-group" ng-show="Gift.Designations.Amount == 'other'">
-          <label for="other_amount">Other Amount: {{donation.otherAmount | currency}}</label>
-          <input type="number" ng-model="Gift.OtherAmount" name="other_amount" ng-min="1" />
-          <p class="error" ng-if="tributeForm.other_amount.$error.min && Gift.Designations.Amount == 'other'">Please enter at least 1.00</p>
+          <label for="other_amount">Other Amount: {{Gift.OtherAmount | currency}}</label>
+          <input type="number" ng-model="Gift.OtherAmount" name="other_amount" ng-min="5" />
+          <p class="error" ng-if="tributeForm.other_amount.$error.min && Gift.Designations.Amount == 'other'">Please enter at least 5.00</p>
       </div>
   </div>
 
-    <!-- Notification options -->
-    <h2>Notification</h2>
-    <div class="radio-grp notification-options-group">
-        <div class="radio-btn" ng-model="Notification.Type">
-            <input type="radio" id="none" name="notification" value="none"/>
-            <label for="none">None</label>
-        </div>
-        <div class="radio-btn">
-            <input type="radio" id="email" name="notification" value="email" ng-model="Notification.Type"/>
-            <label for="email">Email</label>
-        </div>
-    </div>
-    <div class="notification-contact-info">
-        <h3>Notification Contact Information</h3>
-        <div class="form-group half">
-            <label for="notification_first_name">First Name<span class="required">*</span></label>
-            <input type="text" name="notification_first_name" ng-model="Notification.FirstName">
-        </div>
-        <div class="form-group half last">
-            <label for="notification_last_name">Last Name<span class="required">*</span></label>
-            <input type="text" name="notification_last_name"
-            ng-model="Notification.LastName">
-        </div>
-        </div>
-        <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" name="email" ng-model="Notification.Email">
-        </div>
-        <div class="form-group">
-            <label for="confirm_email">Confirm Email Address</label>
-            <input type="email" name="confirm_email" ng-model="Notification.ConfirmEmail">
-        </div>
-    </div>
+  <!-- Honoree buttons -->
+  <div class="radio-grp honoree-group">
+      <div class="radio-btn">
+          <input type="radio" id="in_honor" name="tribute_type" value="In Honor Of" ng-model="Gift.Tribute.TributeDefinition.Type"/>
+          <label for="in_honor">In Honor Of</label>
+      </div>
+      <div class="radio-btn">
+          <input type="radio" id="in_memory" name="tribute_type" value="In Memory Of" ng-model="Gift.Tribute.TributeDefinition.Type"/>
+          <label for="in_memory">In Memory Of</label>
+      </div>
+  </div>
+
+  <div class="form-group half">
+      <label for="first_name">Honoree First Name<span class="required">*</span></label>
+      <input type="text" name="honoree_first_name" ng-model="Gift.Tribute.TributeDefinition.FirstName" required>
+      <div class="error" ng-messages="tributeForm.honoree_first_name.$error" ng-if="tributeForm.honoree_first_name.$touched">
+        <p ng-message="required">Please enter a first name</p>
+      </div>
+  </div>
+  <div class="form-group half last">
+      <label for="last_name">Honoree Last Name<span class="required">*</span></label>
+      <input type="text" name="honoree_last_name" ng-model="Gift.Tribute.TributeDefinition.LastName" required>
+      <div class="error" ng-messages="tributeForm.honoree_last_name.$error" ng-if="tributeForm.honoree_last_name.$touched">
+        <p ng-message="required">Please enter a last name</p>
+      </div>
+  </div>
+
+  <!-- Notification options -->
+  <h2>Notification</h2>
+  <div class="radio-grp notification-options-group">
+      <div class="radio-btn" >
+          <input type="radio" id="none" name="notification_type" value="none" ng-model="Notification.Type"/>
+          <label for="none">None</label>
+      </div>
+      <div class="radio-btn">
+          <input type="radio" id="email" name="notification_type" value="email" ng-model="Notification.Type"/>
+          <label for="email">Email</label>
+      </div>
+  </div>
+  <h1>{{Gift.Tribute.TributeDefinition.Type}}</h1>
+  <div class="notification-contact-info" ng-show="Notification.Type == 'email'">
+      <h3>Notification Contact Information</h3>
+      <div class="form-group half">
+          <label for="notification_first_name">First Name<span class="required">*</span></label>
+          <input type="text" name="notification_first_name" ng-model="Gift.Tribute.Acknowledgee.FirstName" ng-required="Gift.Tribute.TributeDefinition.Type == 'email'">
+      </div>
+      <div class="form-group half last">
+          <label for="notification_last_name">Last Name<span class="required">*</span></label>
+          <input type="text" name="notification_last_name" ng-model="Gift.Tribute.Acknowledgee.LastName" ng-required="Gift.Tribute.TributeDefinition.Type == 'email'">
+      </div>
+      <div class="form-group">
+          <label for="street_address">Address<span class="required">*</span></label>
+          <input type="text" name="notification_address" ng-model="Gift.Tribute.Acknowledgee.AddressLines" ng-required="Gift.Tribute.TributeDefinition.Type == 'email'">
+          <div class="error" ng-messages="tributeForm.notification_address.$error" ng-if="tributeForm.notification_address.$touched">
+            <p ng-message="required">Please enter your address</p>
+          </div>
+      </div>
+      <div class="form-group">
+          <label for="city">City<span class="required">*</span></label>
+          <input type="text" name="notification_city" ng-model="Gift.Tribute.Acknowledgee.City" ng-required="Gift.Tribute.TributeDefinition.Type == 'email'">
+          <div class="error" ng-messages="tributeForm.notification_city.$error" ng-if="tributeForm.notification_city.$touched">
+            <p ng-message="required">Please enter your city</p>
+          </div>
+      </div>
+      <div class="form-group third">
+          <label for="state">State<span class="required">*</span></label>
+          <div class="select">
+              <select class="state-select" name="notification_state" ng-model="Gift.Tribute.Acknowledgee.State">
+              </select>
+          </div>
+      </div>
+      <div class="form-group third">
+          <label for="zipcode">Zip Code<span class="required">*</span></label>
+          <input type="text" name="notification_postal_code" ng-model="Gift.Tribute.Acknowledgee.PostalCode" ng-pattern="/(^([0-9]{5})$)|(^[ABCEGHJKLMNPRSTVXYabceghjklmnprstvxy]{1}\d{1}[A-Za-z]{1} *\d{1}[A-Za-z]{1}\d{1}$)/" ng-required="Gift.Tribute.TributeDefinition.Type == 'email'">
+          <div class="error" ng-messages="tributeForm.notification_postal_code.$error" ng-if="tributeForm.notification_postal_code.$touched">
+            <p ng-message="required">Please enter your zip code</p>
+          </div>
+          <p class="error" ng-show="tributeForm.notification_postal_code.$error.pattern">Please enter a valid zipcode</p>
+      </div>
+      <div class="form-group third last">
+          <label for="country">Country<span class="required">*</span></label>
+          <div class="select">
+              <select class="country-select" name="notification_country" ng-model="Gift.Tribute.Acknowledgee.Country" ng-required="Gift.Tribute.TributeDefinition.Type == 'email'">
+              </select>
+          </div>
+          <div class="error" ng-messages="tributeForm.notification_country.$error" ng-if="tributeForm.notification_country.$touched && Gift.Tribute.Acknowledgee.Country == ''">
+            <p ng-message="required">Please enter your country</p>
+          </div>
+      </div>
+      <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="text" name="phone" ng-model="Gift.Tribute.Acknowledgee.Phone">
+      </div>
+      <div class="form-group">
+          <label for="email">Email Address<span class="required">*</span></label>
+          <input type="email" name="email" ng-model="Gift.Tribute.Acknowledgee.Email" ng-required="Gift.Tribute.TributeDefinition.Type == 'email'">
+      </div>
+      <div class="form-group">
+          <label for="confirm_email">Confirm Email Address</label>
+          <input type="email" name="confirm_email" ng-model="Notification.ConfirmEmail">
+      </div>
+      <!-- Physical Card Options -->
+      <div class="form-group ecards">
+          <h3>E Card Options (Pick one)</h3>
+          <div class="radio-grp">
+              <div class="card">
+                  <label for="tribute card">Tribute Card
+                    <input type="radio" name="ecard_type" value="tribute card" ng-model="Ecard.Type">
+                  </label>
+                  <img src="img/Tribute-card-cover.png" alt="Blue card with splc logo in bottom right corner">
+              </div>
+          </div>
+          <div class="radio-grp">
+              <div class="card">
+                  <label for="tribute card">Holiday Tribute Card
+                    <input type="radio" name="ecard_type" value="holiday card" ng-model="Ecard.Type">
+                  </label>
+                  <img src="img/Holiday-Tribute-card-cover.png" alt="Blue card with splc logo in bottom right corner">
+              </div>
+          </div>
+      </div>
+  </div>
+
+
 
 
   <h2>Payment</h2>
@@ -105,7 +196,7 @@
   <div class="form-group third">
       <label for="state">State<span class="required">*</span></label>
       <div class="select">
-          <select class="state-select" name="state" ng-model="Donor.Address.State" required>
+          <select class="state-select" name="state" ng-model="Donor.Address.State">
           </select>
       </div>
   </div>
@@ -150,6 +241,6 @@
         Enter required fields to submit
     </button>
     <button class="button-dark" type="submit" ng-show="tributeForm.$valid"
-      ng-click="createTribute(Gift, Notification, Donor)">Continue to Payment</button>
+      ng-click="processTribute(Gift, Notification, Donor, Ecard)">Continue to Payment</button>
   </div>
 </form>
