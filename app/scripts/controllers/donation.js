@@ -268,9 +268,8 @@ angular.module('splcDonationApp')
           'Content-Type': 'application/json'
         }
       }).then(function successCallback(response) {
-        var returnedDonation = response.data;
-        // Send to BB for donation
-        window.location = returnedDonation.BBSPCheckoutUri;
+        //var returnedDonation = response.data;
+        console.log(response);
       }, function errorCallback(response) {
         console.log(response);
       });
