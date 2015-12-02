@@ -33,11 +33,12 @@ angular
       })
       .when('/confirmation', {
         templateUrl: 'views/confirmation.html',
-        controller: 'DonationController'
+        controller: 'ConfirmationController',
+        controllerAs: 'confirmation'
       })
       .when('/faker', {
-        controller: 'DonationController',
         templateUrl: 'views/faker.html',
+        controller: 'DonationController',
         controllerAs: 'donation'
       })
       .otherwise({
@@ -47,4 +48,15 @@ angular
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common["X-Requested-With"];
     $httpProvider.defaults.headers.common["Content-Type"] = "text/plain";
+  }).service('donationIdService', function () {
+      var donationId = '';
+
+      return {
+          getDonationId: function () {
+              return donationId;
+          },
+          setDonationId: function(value) {
+              donationId = value;
+          }
+      };
   });

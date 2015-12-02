@@ -4,23 +4,23 @@
   <h3>Donation Amount:</h3>
   <div class="radio-grp donation-group">
       <div class="radio-btn">
-        <input type="radio" id="25" name="amount" value="25" ng-model="Gift.Designations.Amount"/>
+        <input type="radio" id="25" name="amount" value="25" ng-model="Gift.Designations.Amount" ng-required="!amount"/>
         <label for="25">$25</label>
       </div>
       <div class="radio-btn">
-          <input type="radio" id="50" name="amount" value="50" ng-model="Gift.Designations.Amount"/>
+          <input type="radio" id="50" name="amount" value="50" ng-model="Gift.Designations.Amount" ng-required="!amount"/>
           <label for="50">$50</label>
       </div>
       <div class="radio-btn">
-          <input type="radio" id="100" name="amount" value="100" ng-model="Gift.Designations.Amount"/>
+          <input type="radio" id="100" name="amount" value="100" ng-model="Gift.Designations.Amount" ng-required="!amount"/>
           <label for="100">$100</label>
       </div>
       <div class="radio-btn">
-          <input type="radio" id="500" name="amount" value="500" ng-model="Gift.Designations.Amount"/>
+          <input type="radio" id="500" name="amount" value="500" ng-model="Gift.Designations.Amount" ng-required="!amount"/>
           <label for="500">$500</label>
       </div>
       <div class="radio-btn">
-          <input type="radio" id="other" name="amount" value="other" ng-model="Gift.Designations.Amount"/>
+          <input type="radio" id="other" name="amount" value="other" ng-model="Gift.Designations.Amount" ng-required="!amount"/>
           <label class="other-toggle" for="other">Other Amount:</label>
       </div>
       <div class="form-group other-group" ng-show="Gift.Designations.Amount == 'other'">
@@ -128,7 +128,7 @@
   </div>
 
   <!-- PAYMENT INFORMATION -->
-  <h2>Payment</h2>
+  <!--<h2>Payment</h2>
   <div class="radio-grp payment-type">
       <div class="radio-btn">
           <input type="radio" id="credit_card" name="donor_payment_type" value="0"
@@ -140,12 +140,12 @@
           ng-model="Gift.Designations.PaymentMethod"/>
           <label class="bank-draft" for="bank_draft">Bank Draft</label>
       </div>
-  </div>
+  </div>-->
   <!-- Bank Draft -->
-  <div class="bank-draft-group" ng-show="Gift.Designations.PaymentMethod == '1'">
+  <!--<div class="bank-draft-group" ng-show="Gift.Designations.PaymentMethod == '1'">
       <div class="form-group half">
           <label for="routing_number">Routing Number<span class="required">*</span></label>
-          <input type="text" name="routing_number" ng-required="Gift.Designations.PaymentMethod == '1'" required>
+          <input type="text" name="routing_number" ng-required="Gift.Designations.PaymentMethod == '1'" ng-min="9">
           <p class="error" ng-show="donationForm.routing_number.$error">Please enter a valid routing number</p>
       </div>
       <div class="form-group half last">
@@ -156,7 +156,7 @@
           <label for="account_holder">Account Holder's Name<span class="required">*</span></label>
           <input type="text" name="account_holder" ng-required="Gift.Designations.PaymentMethod == '1'">
       </div>
-  </div>
+  </div>-->
 
   <div class="form-group form-actions">
       <button class="disabled" value="Enter Required Fields to Submit" disabled ng-show="donationForm.$invalid">

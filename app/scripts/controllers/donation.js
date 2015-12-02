@@ -8,7 +8,7 @@
  * Controller of the splcDonationApp
  */
 angular.module('splcDonationApp')
-  .controller('DonationController', ['$scope', '$http', function ($scope, $http) {
+  .controller('DonationController', ['$scope', '$http', 'donationIdService', function ($scope, $http, donationIdService) {
 
     // BB Country Service
     var cs = new BLACKBAUD.api.CountryService({
@@ -18,13 +18,8 @@ angular.module('splcDonationApp')
     var designationId = "09ccef1b-97c6-455a-a793-42ab31888036";
     var merchantAccountId = "c6de7f55-a953-4e64-b382-147268e9b25f";
 
-    $scope.logger = function(thing) {
-      console.log(thing);
-    };
-
     // RETURN FAKE DONATION
     $scope.fakeDonation = function() {
-      var ecard = { Type: 'Holiday Card'}
       var tribute = {
           "Donor": {
               "Address": {
@@ -51,7 +46,7 @@ angular.module('splcDonationApp')
               "SourceCode": "Sample Source Code",
               "IsAnonymous": false,
               "PaymentMethod": 1,
-              "Comments": "​There’s a light, in the darkness of everybody’s life​",
+              "Comments": "Gift comments here.",
               "CreateGiftAidDeclaration": false,
               "Attributes": [
                   {
@@ -87,7 +82,7 @@ angular.module('splcDonationApp')
                       "Description": "New tribute",
                       "FirstName": "John",
                       "LastName": "Hancock",
-                      "Type": "Holiday Card"
+                      "Type": "Tribute"
                   },
                   "TributeId": null
               }
@@ -100,20 +95,21 @@ angular.module('splcDonationApp')
           },
           "TransactionStatus": 1
       }
-
-      var ecardInfo = 'TributeeFirstName='+ tribute.Gift.Tribute.TributeDefinition.FirstName +
-                      '&TributeeLastName='+ tribute.Gift.Tribute.TributeDefinition.LastName +
-                      '&ImageIdentifier='+  19 +
-                      '&SenderFirstName=' + tribute.Donor.FirstName +
-                      '&SenderLastName=' + tribute.Donor.LastName +
-                      '&SenderEmailAddress=' + tribute.Donor.EmailAddress +
-                      '&RecipientFirstName=' + tribute.Gift.Tribute.Acknowledgee.FirstName +
-                      '&ReceipientLastName=' + tribute.Gift.Tribute.Acknowledgee.LastName +
-                      '&ReceipientEmailAddress=' + tribute.Gift.Tribute.Acknowledgee.Email +
-                      '&PersonalMessage=' + tribute.Gift.Comments +
+      var ecardInfo = 'TributeeFirstName=Trogdor' +
+                      '&TributeeLastName=Wishiwell' +
+                      '&ImageIdentifier=19' +
+                      '&SenderFirstName=Bruce' +
+                      '&SenderLastName=Gingers' +
+                      '&SenderEmailAddress=bruce@spiceracks.com' +
+                      '&RecipientFirstName=Carlo' +
+                      '&ReceipientLastName=Snarflugen' +
+                      '&ReceipientEmailAddress=carlo@Snarflugen.com' +
+                      '&PersonalMessage=On mange tout le monde' +
                       '&DonationId=' + tribute.Id +
-                      '&TransactionStatus=' + tribute.TransactionStatus +
-                      '&HonorMemory=' + "honor";
+                      '&DonationStatus' + tribute.TransationStatus +
+                      '&TransactionStatus=1' +
+                      '&HonorMemory=honor';
+
 
       $http({
         method: 'POST',
@@ -204,8 +200,8 @@ angular.module('splcDonationApp')
 
       $http({
         method: 'POST',
-        //url: '//bbnc21027d.blackbaudhosting.com/WebApi/1128/Donation/Create',
-        url: 'https://raw.githubusercontent.com/thinkshout/splc_blackbaud/master/app/donation.json?token=AAhMON1PDjr50ve2dcJyiFb3BIq1Hxveks5WROSGwA%3D%3D',
+        url: '//bbnc21027d.blackbaudhosting.com/WebApi/1128/Donation/Create',
+        //url: 'https://raw.githubusercontent.com/thinkshout/splc_blackbaud/master/app/donation.json?token=AAhMON1PDjr50ve2dcJyiFb3BIq1Hxveks5WROSGwA%3D%3D',
         data: tributeDonation,
         headers: {
           'Content-Type': 'application/json'
@@ -220,14 +216,13 @@ angular.module('splcDonationApp')
                         '&ImageIdentifier='+ ecard.Type +
                         '&SenderFirstName=' + tribute.Donor.FirstName +
                         '&SenderLastName=' + tribute.Donor.LastName +
-                        '&SenderEmailAddress=' + tribute.Donor.EmailAddress +
                         '&RecipientFirstName=' + tribute.Gift.Tribute.Acknowledgee.FirstName +
                         '&ReceipientLastName=' + tribute.Gift.Tribute.Acknowledgee.LastName +
                         '&ReceipientEmailAddress=' + tribute.Gift.Tribute.Acknowledgee.Email +
                         '&PersonalMessage=' + tribute.Gift.Comments +
                         '&DonationId=' + tribute.Id +
-                        '&TransactionStatus=' + tribute.TransactionStatus +
-                        '&HonorMemory=' + tribute.Gift.Tribute.TributeDefinition.Type;
+                        '&TransactionStatus' + tribute.TransationStatus +
+                        '&HonorMemory' + tribute.Gift.Tribute.TributeDefinition.Type;
 
         if (notification.Type == 'email' && tribute.TransactionStatus == '1') {
           $http({
@@ -258,59 +253,71 @@ angular.module('splcDonationApp')
     }
 
     $scope.processDonation = function(donation) {
-
       $http({
         method: 'POST',
-        url: '//bbnc21027d.blackbaudhosting.com/WebApi/1128/Donation/Create',
-        //url: 'https://raw.githubusercontent.com/thinkshout/splc_blackbaud/master/app/donation.json?token=AAhMON1PDjr50ve2dcJyiFb3BIq1Hxveks5WROSGwA%3D%3D',
+        url: 'https://bbnc21027d.blackbaudhosting.com/WebApi/1128/Donation/Create',
         data: donation,
         headers: {
           'Content-Type': 'application/json'
         }
       }).then(function successCallback(response) {
-        //var returnedDonation = response.data;
-        console.log(response);
+        var responseData = response.data;
+        // Log the donationId in shared service for later use
+        // donationIdService.setDonationId(response.Donation.Id);
+
+        // Send  donation user to BB payment page 
+        window.location = response.BBSPCheckoutUri;
       }, function errorCallback(response) {
-        console.log(response);
+        // If payment error send to error confirmation page
+        window.location = window.location.origin + '/#/confirmation';
+        //console.log(response);
       });
     };
 
     // Create a new donation once the form has been validated
     $scope.buildDonation = function(donor, gift) {
 
+      // Set the donation amount
       var donationAmount = gift.Designations.Amount == 'other' ?
                            gift.OtherAmount :
                            gift.Designations.Amount;
 
+      // Determine the payment method
+      // Set to CC b/c BBPS doesn't allow ACH
+      var paymentMethod = 0;
 
+      // Declare donation object
       var donation = {};
+      // Build the donor
       donation.Donor = donor;
+      // Build the gift 
       donation.Gift = {};
       donation.Gift.Designations = [{
         "Amount": donationAmount,
         "DesignationId": designationId,
-      }],
+        "PaymentMethod": "BillMeLater (1)"
+      }];
 
-      donation.BBSPReturnUri = window.location.href + '/#/confirmation';
-      donation.MerchantAccountId = merchantAccountId;
+      // Set the confirmation url and return url
+      // Only if the payment method is credit card
+      if (paymentMethod == '0') {
+        donation.BBSPReturnUri = window.location.href + 'confirmation';
+        donation.MerchantAccountId = merchantAccountId;
+      }
 
-      // If the gift is more than a one time contribution
+      // If the gift is a recurring donation 
       if (gift.Recurrence.Frequency == '2') {
         donation.Gift.Recurrence = {};
         // Set recurrence to today
-        donation.Gift.Recurrence.DayOfMonth = new Date().getDay();
-        donation.Gift.Recurrence.Frequency = gift.Recurrence.Frequency;
-        donation.Gift.Recurrence.StartDate = new Date();
+        var today = new Date();
+        donation.Gift.Recurrence.DayOfMonth = today.getDate(); // Set day of month
+        donation.Gift.Recurrence.Frequency = parseInt(gift.Recurrence.Frequency); // Frequency is 2
+        donation.Gift.Recurrence.StartDate = today;
       }
-
-      console.log('built donation');
-      console.log(donation);
 
       // Send donation to BB
       $scope.processDonation(donation);
     };
-
-
 
     $scope.init = function() {
       $scope.getCountries();
