@@ -59,4 +59,15 @@ angular
               donationId = value;
           }
       };
+  }).service('ecardIdService', function () {
+      var ecardId = '';
+
+      return {
+          getEcardId: function () {
+              return ecardId;
+          },
+          setEcardId: function(value) {
+              ecardId = value;
+          }
+      };
   });

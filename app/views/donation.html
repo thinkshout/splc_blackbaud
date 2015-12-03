@@ -48,7 +48,7 @@
           <label for="monthly">Monthly Donation</label>
       </div>
       <div class="radio-btn">
-        <a ng-href="{{tribute}}" class="tribute-btn">Tribute</a>
+        <a ng-href="#tribute" class="tribute-btn">Tribute</a>
       </div>
       <div class="error" ng-messages="donationForm.donation_option.$error.$required">
         <p ng-message="required">Please select a donation option</p>
@@ -128,35 +128,34 @@
   </div>
 
   <!-- PAYMENT INFORMATION -->
-  <!--<h2>Payment</h2>
+  <h2>Payment</h2>
   <div class="radio-grp payment-type">
       <div class="radio-btn">
           <input type="radio" id="credit_card" name="donor_payment_type" value="0"
-          ng-model="Gift.Designations.PaymentMethod"/>
+          ng-model="Gift.PaymentMethod" ng-required="!Gift.PaymentMethod"/>
           <label class="credit-card" for="credit_card">Credit Card</label>
       </div>
       <div class="radio-btn">
           <input type="radio" id="bank_draft" name="donor_payment_type" value="1"
-          ng-model="Gift.Designations.PaymentMethod"/>
+          ng-model="Gift.PaymentMethod" ng-required="!Gift.PaymentMethod"/>
           <label class="bank-draft" for="bank_draft">Bank Draft</label>
       </div>
-  </div>-->
+  </div>
   <!-- Bank Draft -->
-  <!--<div class="bank-draft-group" ng-show="Gift.Designations.PaymentMethod == '1'">
+  <div class="bank-draft-group" ng-show="Gift.PaymentMethod == '1'">
       <div class="form-group half">
           <label for="routing_number">Routing Number<span class="required">*</span></label>
-          <input type="text" name="routing_number" ng-required="Gift.Designations.PaymentMethod == '1'" ng-min="9">
-          <p class="error" ng-show="donationForm.routing_number.$error">Please enter a valid routing number</p>
+          <input type="text" name="routing_number" ng-model="Gift.SourceCode.Routing" ng-required="Gift.PaymentMethod == '1'">
       </div>
       <div class="form-group half last">
           <label for="account_number">Account Number<span class="required">*</span></label>
-          <input type="text" name="account_number" ng-required="Gift.Designations.PaymentMethod == '1'">
+          <input type="text" name="account_number" ng-model="Gift.SourceCode.AccountNumber" ng-required="Gift.PaymentMethod == '1'">
       </div>
       <div class="form-group">
           <label for="account_holder">Account Holder's Name<span class="required">*</span></label>
-          <input type="text" name="account_holder" ng-required="Gift.Designations.PaymentMethod == '1'">
+          <input type="text" name="account_holder" ng-model="Gift.SourceCode.AccountHolder" ng-required="Gift.PaymentMethod == '1'">
       </div>
-  </div>-->
+  </div>
 
   <div class="form-group form-actions">
       <button class="disabled" value="Enter Required Fields to Submit" disabled ng-show="donationForm.$invalid">
@@ -164,5 +163,6 @@
       </button>
       <button class="button-dark" type="submit" ng-show="donationForm.$valid" ng-click="buildDonation(Donor, Gift)">Continue to Payment</button>
   </div>
+  {{Gift.SourceCode|json}}
 
 </form>
