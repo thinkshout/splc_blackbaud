@@ -113,7 +113,7 @@
       <div class="form-group third">
           <label for="state">State<span class="required">*</span></label>
           <div class="select">
-              <select class="state-select" name="notification_state" ng-model="Gift.Tribute.Acknowledgee.State"></select>
+              <select class="state-select first" name="notification_state" ng-model="Gift.Tribute.Acknowledgee.State"></select>
           </div>
       </div>
       <div class="form-group third">
@@ -127,7 +127,7 @@
       <div class="form-group third last">
           <label for="country">Country<span class="required">*</span></label>
           <div class="select">
-              <select class="country-select" name="notification_country" ng-model="Gift.Tribute.Acknowledgee.Country" ng-required="Notification.Type == 'email'">
+              <select class="country-select first" name="notification_country" ng-model="Gift.Tribute.Acknowledgee.Country" ng-required="Notification.Type == 'email'">
               </select>
           </div>
           <div class="error" ng-messages="tributeForm.notification_country.$error" ng-if="tributeForm.notification_country.$touched && Gift.Tribute.Acknowledgee.Country == ''">
@@ -211,7 +211,7 @@
   <div class="form-group third">
       <label for="state">State<span class="required">*</span></label>
       <div class="select">
-          <select class="state-select" name="state" ng-model="Donor.Address.State">
+          <select class="state-select second" name="state" ng-model="Donor.Address.State">
           </select>
       </div>
   </div>
@@ -226,7 +226,7 @@
   <div class="form-group third last">
       <label for="country">Country<span class="required">*</span></label>
       <div class="select">
-          <select class="country-select" name="country" ng-model="Donor.Address.Country" required>
+          <select class="country-select second" name="country" ng-model="Donor.Address.Country" required>
           </select>
       </div>
       <div class="error" ng-messages="tributeForm.donor_country.$error" ng-if="tributeForm.donor_country.$touched && Donor.Address.Country == ''">

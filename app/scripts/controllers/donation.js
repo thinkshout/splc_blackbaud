@@ -35,9 +35,16 @@ angular.module('splcDonationApp')
 
     // Set states based on country selected
     // defaults to United States
-    $scope.getStates = function(newCountryId) {
+    $scope.getStates = function(newCountryId, selectElem) {
       var countryId = newCountryId || "d81cef85-7569-4b2e-8f2e-f7cf998a3342";
-      var stateSelect = $('.state-select').html('');
+      if (selectElem) {
+        var stateSelect = selectElem.html('');
+        console.log(stateSelect);
+      } else {
+        var stateSelect = $('.state-select').html('');
+        console.log(stateSelect);
+      }
+
       cs.getStates(countryId, function(data) {
         for (var i = 0, j = data.length; i < j; i++) {
           stateSelect.append('<option value="' + data[i].Id + '">' + data[i].Description + '</option>');
@@ -47,8 +54,12 @@ angular.module('splcDonationApp')
 
     // Get a new set of states if the country changes
     $scope.changeStates = function() {
-      $('.country-select').on('change', function() {
-        $scope.getStates($(this).val());
+      $('.country-select.first').on('change', function() {
+        $scope.getStates($(this).val(), $('.state-select.first'));
+      });
+
+      $('.country-select.second').on('change', function() {
+        $scope.getStates($(this).val(), $('.state-select.second'));
       });
     };
 
@@ -68,7 +79,7 @@ angular.module('splcDonationApp')
           // Log the donationId in shared service for later use
           donationIdService.setDonationId(responseData.Donation.Id);
           // Send to confirmation page
-          window.location = window.location.origin + '/#/confirmation';
+          window.location = window.location.origin + '/splc_blackbaud/#/confirmation';
         } else {
           // Otherwise send user to BB payment page to pay with cc
           window.location = responseData.BBSPCheckoutUri;
@@ -100,17 +111,20 @@ angular.module('splcDonationApp')
       }];
         
       // Default payment method to 0 if no payment method sent
-      if (gift.PaymentMethod) {
+      /*if (gift.PaymentMethod) {
         donation.Gift.PaymentMethod = parseInt(gift.PaymentMethod);
         // If the payment method is ach capture the account info
         if (donation.Gift.PaymentMethod == 1) {
           donation.Origin = 'Routing:'+gift.SourceCode.Routing +
-                                     ' AccountNumber:'+gift.SourceCode.AccountNumber +  
-                                     ' AccountHolder:'+gift.SourceCode.AccountHolder; 
+                            ' AccountNumber:'+gift.SourceCode.AccountNumber +  
+                            ' AccountHolder:'+gift.SourceCode.AccountHolder; 
         }
       } else {
         donation.Gift.PaymentMethod = 0;
-      }
+      }*/
+
+      donation.Gift.PaymentMethod = 1;
+
 
       // Set the confirmation url and return url
       // Only if the payment method is credit card

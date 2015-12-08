@@ -23,7 +23,6 @@ angular.module('splcDonationApp')
                       '&ReceipientEmailAddress=' + donation.Gift.Tribute.Acknowledgee.Email +
                       '&PersonalMessage=' + donation.Gift.Comments +
                       '&DonationId=' + donation.Id +
-                      '&DonationStatus=' + donation.TransationStatus +
                       '&TransactionStatus=' + donation.TransactionStatus +
                       '&HonorMemory=' + donation.Gift.Tribute.TributeDefinition.Type;
 
@@ -38,6 +37,9 @@ angular.module('splcDonationApp')
           }
         }).then(function successCallback(response) {
           console.log(response);
+          if (response.status == '200') {
+             
+          }
         }, function errorCallback(response) {
           console.log(response);
         });
@@ -54,15 +56,21 @@ angular.module('splcDonationApp')
         }
       }).then(function successCallback(response) {
         var responseData = response.data;
-        if (response.status == 200 && responseData.TransactionStatus == '1') {
+        if (respolnse.status == 200 && responseData.TransactionStatus == '1') {
           // If the transaction is a tribute fire off an email to drupal
           // Check and see if it has an email on it
           if (responseData.Gift.Tribute) {
             $scope.sendEcard(responseData); 
+            $('#status-heading').text('Transaction Complete');
+            $('#status-body').text(
+              'Thank you for your payment of $'+ responseData.Gift.Designations[0].Amount +'.' +
+              'Your notification email has been sent'
+            );
+          } else {
+            // Set confirmation text
+            $('#status-heading').text('Transaction Complete');
+            $('#status-body').text('Thank you for your payment of $'+ responseData.Gift.Designations[0].Amount +'.');
           }
-          // Set confirmation text
-          $('#status-heading').text('Transaction Complete');
-          $('#status-body').text('Thank you for your payment of $'+ responseData.Gift.Designations[0].Amount +'.');
         } else {
           $('#status-heading').text('Transaction Incomplete');
           $('#status-body').text('We were unable to process your payment.');
@@ -75,7 +83,7 @@ angular.module('splcDonationApp')
 
     $scope.init = function() {
       var localDonationId = donationIdService.getDonationId();
-      //var localDonationId = "735250d7-7528-4873-a5f0-11b47efdd9ce";
+      //var localDonationId = "6c0952e5-9177-4055-8c6a-d315d99a0c01";
       if (localDonationId == '') {
         var remoteDonationId = window.location.search.replace('?t=','');
         $scope.checkPaymentStatus(remoteDonationId);
