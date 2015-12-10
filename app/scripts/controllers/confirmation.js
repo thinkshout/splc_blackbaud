@@ -14,13 +14,13 @@ angular.module('splcDonationApp')
       console.log('Donation:'+ donation);
       var ecardInfo = 'TributeeFirstName=' + donation.Gift.Tribute.TributeDefinition.FirstName +
                       '&TributeeLastName=' + donation.Gift.Tribute.TributeDefinition.LastName +
-                      '&ImageIdentifier=19' +
+                      '&ImageIdentifier=' + ecardIdService.getEcardId() +
                       '&SenderFirstName=' + donation.Donor.FirstName +
                       '&SenderLastName=' + donation.Donor.LastName +
                       '&SenderEmailAddress=' + donation.Donor.EmailAddress +
                       '&RecipientFirstName=' + donation.Gift.Tribute.Acknowledgee.FirstName +
-                      '&ReceipientLastName=' + donation.Gift.Tribute.Acknowledgee.LastName +
-                      '&ReceipientEmailAddress=' + donation.Gift.Tribute.Acknowledgee.Email +
+                      '&RecipientLastName=' + donation.Gift.Tribute.Acknowledgee.LastName +
+                      '&RecipientEmailAddress=' + donation.Gift.Tribute.Acknowledgee.Email +
                       '&PersonalMessage=' + donation.Gift.Comments +
                       '&DonationId=' + donation.Id +
                       '&TransactionStatus=' + donation.TransactionStatus +
@@ -56,14 +56,14 @@ angular.module('splcDonationApp')
         }
       }).then(function successCallback(response) {
         var responseData = response.data;
-        if (respolnse.status == 200 && responseData.TransactionStatus == '1') {
+        if (response.status == 200 && responseData.TransactionStatus == '1') {
           // If the transaction is a tribute fire off an email to drupal
           // Check and see if it has an email on it
           if (responseData.Gift.Tribute) {
             $scope.sendEcard(responseData); 
             $('#status-heading').text('Transaction Complete');
             $('#status-body').text(
-              'Thank you for your payment of $'+ responseData.Gift.Designations[0].Amount +'.' +
+              'Thank you for your payment of $'+ responseData.Gift.Designations[0].Amount +'. ' +
               'Your notification email has been sent'
             );
           } else {

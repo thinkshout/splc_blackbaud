@@ -37,11 +37,11 @@
   <!-- Honoree buttons -->
   <div class="radio-grp honoree-group">
       <div class="radio-btn">
-          <input type="radio" id="in_honor" name="tribute_type" value="honor" ng-model="Gift.Tribute.TributeDefinition.Type"/>
+          <input type="radio" id="in_honor" name="tribute_type" value="honor" ng-model="Gift.Tribute.TributeDefinition.Type" ng-required="!Gift.Tribute.TributeDefinition.Type"/>
           <label for="in_honor">In Honor Of</label>
       </div>
       <div class="radio-btn">
-          <input type="radio" id="in_memory" name="tribute_type" value="memory" ng-model="Gift.Tribute.TributeDefinition.Type"/>
+          <input type="radio" id="in_memory" name="tribute_type" value="memory" ng-model="Gift.Tribute.TributeDefinition.Type" ng-required="!Gift.Tribute.TributeDefinition.Type" />
           <label for="in_memory">In Memory Of</label>
       </div>
   </div>
@@ -156,7 +156,7 @@
           <div class="radio-grp">
               <div class="card">
                   <label for="tribute card">Tribute Card
-                    <input type="radio" name="ecard_type" value="tribute card" ng-model="Ecard.Type">
+                    <input type="radio" name="ecard_type" value="11220" ng-model="Ecard.Type">
                   </label>
                   <img src="img/Tribute-card-cover.png" alt="Blue card with splc logo in bottom right corner">
               </div>
@@ -164,7 +164,7 @@
           <div class="radio-grp">
               <div class="card">
                   <label for="tribute card">Holiday Tribute Card
-                    <input type="radio" name="ecard_type" value="holiday card" ng-model="Ecard.Type">
+                    <input type="radio" name="ecard_type" value="11221" ng-model="Ecard.Type">
                   </label>
                   <img src="img/Holiday-Tribute-card-cover.png" alt="Blue card with splc logo in bottom right corner">
               </div>

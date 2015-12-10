@@ -146,8 +146,6 @@ angular.module('splcDonationApp')
 
         donation.Gift.Tribute.Acknowledgee = {};
         donation.Gift.Tribute.Acknowledgee = gift.Tribute.Acknowledgee;
-        //donation.Gift.Tribute.AcknowledgeeInformation = {};
-        //donation.Gift.Tribute.AcknowledgeeInformation.State = gift.Tribute.Acknowledgee.State;
 
         donation.Gift.Comments = gift.Comments;
       }
