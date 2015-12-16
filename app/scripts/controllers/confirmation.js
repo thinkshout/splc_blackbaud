@@ -22,7 +22,6 @@ angular.module('splcDonationApp')
                       '&RecipientLastName=' + donation.Gift.Tribute.Acknowledgee.LastName +
                       '&RecipientEmailAddress=' + donation.Gift.Tribute.Acknowledgee.Email +
                       '&PersonalMessage=' + donation.Gift.Comments +
-                      '&DonationId=' + donation.Id +
                       '&TransactionStatus=' + donation.TransactionStatus +
                       '&HonorMemory=' + donation.Gift.Tribute.TributeDefinition.Type;
 
@@ -30,7 +29,7 @@ angular.module('splcDonationApp')
 
         $http({
           method: 'POST',
-          url: '//splc.dev/ecard',
+          url: '//splc.dev/ecard/' + donation.Id,
           data: encodeURI(ecardInfo),
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
