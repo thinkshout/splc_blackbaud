@@ -15,9 +15,32 @@ angular.module('splcDonationApp')
       url: '//bbnc21027d.blackbaudhosting.com/'
     });
 
+    // Donation service
+    var dOpts = {
+      url: '//bbnc21027d.blackbaudhosting.com/',
+      crossDomain: true
+    };
+    var ds = new BLACKBAUD.api.DonationService('1128', dOpts);
+
     var designationId = "09ccef1b-97c6-455a-a793-42ab31888036";
     var merchantAccountId = "c6de7f55-a953-4e64-b382-147268e9b25f";
 
+     
+    $scope.validateRouting = function(rtgNum) {
+      var r = rtgNum.match(/^\s*([\d]{9})\s*$/);
+      if (!r) {
+        return false;
+      } else {
+        var weights = [3, 7, 1];
+        var aba = r[1];
+        var sum = 0;
+        for (var i=0; i<9; ++i) {
+          sum += aba.charAt(i) * weights[i % 3];
+        }
+
+        return (sum !== 0 && sum % 10 === 0);
+      }
+    }
 
     // Set countries on form
     $scope.getCountries = function() {
@@ -65,30 +88,18 @@ angular.module('splcDonationApp')
 
     // Send the donation to BB
     $scope.processDonation = function(donation) {
-      $http({
-        method: 'POST',
-        url: 'https://bbnc21027d.blackbaudhosting.com/WebApi/1128/Donation/Create',
-        data: donation,
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }).then(function successCallback(response) {
-        var responseData = response.data;
-        console.log(responseData);
-        if (donation.Gift.PaymentMethod == 1) {
-          // Log the donationId in shared service for later use
-          donationIdService.setDonationId(responseData.Donation.Id);
-          // Send to confirmation page
-          window.location = window.location.origin + '/splc_blackbaud/#/confirmation';
-        } else {
-          // Otherwise send user to BB payment page to pay with cc
-          window.location = responseData.BBSPCheckoutUri;
-        }
-      }, function errorCallback(response) {
+      
+      var success = function(response) {
+        //var responseData = response.data;
         console.log(response);
-        // If payment error send to error confirmation page
-        //window.location = window.location.origin + '/#/confirmation';
-      });
+      };
+
+      var failure = function(response) {
+        console.log(response);
+      };
+
+      ds.createDonation(donation, success, failure);
+
     };
 
     // Create a new donation once the form has been validated
@@ -111,19 +122,27 @@ angular.module('splcDonationApp')
       }];
         
       // Default payment method to 0 if no payment method sent
-      /*if (gift.PaymentMethod) {
+      if (gift.PaymentMethod) {
         donation.Gift.PaymentMethod = parseInt(gift.PaymentMethod);
         // If the payment method is ach capture the account info
         if (donation.Gift.PaymentMethod == 1) {
-          donation.Origin = 'Routing:'+gift.SourceCode.Routing +
+          donation.Gift.Attributes = [];
+          donation.Gift.Attributes.push(
+            { AttributeId: 1, value: gift.Routing  },
+            { AttributeId: 2, value: gift.AccountNumber },
+            { AttributeId: 3, value: gift.AccountHolder }
+          );
+
+          /*donation.Origin = 'Routing:'+gift.Routing +
                             ' AccountNumber:'+gift.SourceCode.AccountNumber +  
-                            ' AccountHolder:'+gift.SourceCode.AccountHolder; 
+                            ' AccountHolder:'+gift.SourceCode.AccountHolder; */
+
         }
       } else {
         donation.Gift.PaymentMethod = 0;
-      }*/
+      }
 
-      donation.Gift.PaymentMethod = 1;
+      //donation.Gift.PaymentMethod = 1;
 
 
       // Set the confirmation url and return url
@@ -170,6 +189,17 @@ angular.module('splcDonationApp')
       $scope.getCountries();
       $scope.getStates();
       $scope.changeStates();
+
+      $('[name="routing_number"]').keyup(function() {
+        //console.log($(this).val());
+        var is_valid = $scope.validateRouting($(this).val());
+        //console.log( $scope.validateRouting($(['name="routing_number"']).val() );
+        if (is_valid) {
+          $('.error.aba').hide();
+        } else {
+          $('.error.aba').show();
+        }
+      });    
     };
 
     $scope.init();

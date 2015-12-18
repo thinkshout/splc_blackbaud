@@ -46,8 +46,8 @@ angular
       });
   }).config(function($httpProvider) {
     $httpProvider.defaults.useXDomain = true;
-    delete $httpProvider.defaults.headers.common["X-Requested-With"];
-    $httpProvider.defaults.headers.common["Content-Type"] = "text/plain";
+    //delete $httpProvider.defaults.headers.common["X-Requested-With"];
+    $httpProvider.defaults.headers.common["Content-Type"] = "application/json";
   }).service('donationIdService', function () {
       var donationId = '';
 

@@ -24,7 +24,7 @@
           <label class="other-toggle" for="other">Other Amount:</label>
       </div>
       <div class="form-group other-group" ng-show="Gift.Designations.Amount == 'other'">
-          <label for="other_amount">Other Amount: {{donation.otherAmount | currency}}</label>
+          <label for="other_amount">Other Amount: {{Gift.OtherAmount | currency}}</label>
           <input type="number" ng-model="Gift.OtherAmount" name="other_amount" ng-min="1" />
           <p class="error" ng-if="donationForm.other_amount.$error.min && donation.amount == 'other'">Please enter at least 1.00</p>
       </div>
@@ -135,7 +135,7 @@
           ng-model="Gift.PaymentMethod" ng-required="!Gift.PaymentMethod"/>
           <label class="credit-card" for="credit_card">Credit Card</label>
       </div>
-      <div class="radio-btn">
+      <div class="radio-btn" ng-show="Gift.Recurrence.Frequency == 2">
           <input type="radio" id="bank_draft" name="donor_payment_type" value="1"
           ng-model="Gift.PaymentMethod" ng-required="!Gift.PaymentMethod"/>
           <label class="bank-draft" for="bank_draft">Bank Draft</label>
@@ -145,15 +145,28 @@
   <div class="bank-draft-group" ng-show="Gift.PaymentMethod == '1'">
       <div class="form-group half">
           <label for="routing_number">Routing Number<span class="required">*</span></label>
-          <input type="text" name="routing_number" ng-model="Gift.SourceCode.Routing" ng-required="Gift.PaymentMethod == '1'">
+          <input type="text" name="routing_number" ng-model="Gift.Routing" ng-required="Gift.PaymentMethod == '1'" ng-minlength="9" ng-maxlength="9">
+          <div class="error" 
+            ng-messages="donationForm.routing_number.$error" 
+            ng-if="donationForm.routing_number.$touched">
+            <p ng-message="required">Please enter a routing number</p>
+            <p ng-message="minlength">The routing number must be 9 digits</p>
+            <p ng-message="maxlength">The routing number must be 9 digits</p>
+          </div>
+          <div class="error aba">
+            <p class="error">Your routing number is not valid</p>
+          </div>
       </div>
       <div class="form-group half last">
           <label for="account_number">Account Number<span class="required">*</span></label>
-          <input type="text" name="account_number" ng-model="Gift.SourceCode.AccountNumber" ng-required="Gift.PaymentMethod == '1'">
+          <input type="text" name="account_number" ng-model="Gift.AccountNumber" ng-required="Gift.PaymentMethod == '1'">
+          <div class="error" ng-messages="donationForm.city.$error" ng-if="donationForm.city.$touched">
+            <p ng-message="required">Please enter your city</p>
+          </div>
       </div>
       <div class="form-group">
           <label for="account_holder">Account Holder's Name<span class="required">*</span></label>
-          <input type="text" name="account_holder" ng-model="Gift.SourceCode.AccountHolder" ng-required="Gift.PaymentMethod == '1'">
+          <input type="text" name="account_holder" ng-model="Gift.AccountHolder" ng-required="Gift.PaymentMethod == '1'">
       </div>
   </div>
 
@@ -163,6 +176,5 @@
       </button>
       <button class="button-dark" type="submit" ng-show="donationForm.$valid" ng-click="buildDonation(Donor, Gift)">Continue to Payment</button>
   </div>
-  {{Gift.SourceCode|json}}
 
 </form>
