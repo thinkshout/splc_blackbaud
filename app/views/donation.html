@@ -82,9 +82,10 @@
   </div>
   <div class="form-group">
       <label for="city">City<span class="required">*</span></label>
-      <input type="text" name="city" ng-model="Donor.Address.City" required>
+      <input type="text" name="city" ng-model="Donor.Address.City" ng-maxlength="100" required>
       <div class="error" ng-messages="donationForm.city.$error" ng-if="donationForm.city.$touched">
         <p ng-message="required">Please enter your city</p>
+        <p ng-message="maxlength">Maximum 100 characters</p>
       </div>
   </div>
   <div class="form-group third">
@@ -153,7 +154,7 @@
             <p ng-message="minlength">The routing number must be 9 digits</p>
             <p ng-message="maxlength">The routing number must be 9 digits</p>
           </div>
-          <div class="error aba">
+          <div class="error aba" ng-if="donationForm.routing_number.$touched">
             <p class="error">Your routing number is not valid</p>
           </div>
       </div>

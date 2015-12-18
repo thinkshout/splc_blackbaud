@@ -105,9 +105,10 @@
       </div>
       <div class="form-group">
           <label for="city">City<span class="required">*</span></label>
-          <input type="text" name="notification_city" ng-model="Gift.Tribute.Acknowledgee.City" ng-required="Notification.Type == 'email'">
+          <input type="text" name="notification_city" ng-model="Gift.Tribute.Acknowledgee.City" ng-maxlength="100" ng-required="Notification.Type == 'email'">
           <div class="error" ng-messages="tributeForm.notification_city.$error" ng-if="tributeForm.notification_city.$touched">
             <p ng-message="required">Please enter your city</p>
+            <p ng-message="maxlength">Maximum 100 characters</p>
           </div>
       </div>
       <div class="form-group third">
@@ -203,9 +204,10 @@
   </div>
   <div class="form-group">
       <label for="city">City<span class="required">*</span></label>
-      <input type="text" name="city" ng-model="Donor.Address.City" required>
-      <div class="error" ng-messages="tributeForm.city.$error" ng-if="tributeForm.city.$touched">
+      <input type="text" name="city" ng-model="Donor.Address.City" ng-maxlength="100" required>
+      <div class="error" ng-messages="tributeForm.city.$error" ng-if="tributeForm.city.$touched" ng-maxlength="100">
         <p ng-message="required">Please enter your city</p>
+        <p ng-message="maxlength">Maximum 100 characters</p>
       </div>
   </div>
   <div class="form-group third">
