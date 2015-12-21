@@ -36,17 +36,17 @@ angular
         controller: 'ConfirmationController',
         controllerAs: 'confirmation'
       })
-      .when('/faker', {
-        templateUrl: 'views/faker.html',
-        controller: 'DonationController',
-        controllerAs: 'donation'
+      .when('/paypal', {
+        templateUrl: 'views/paypal.html',
+        controller: 'PaypalController',
+        controllerAs: 'paypal'
       })
       .otherwise({
         redirectTo: '/'
       });
   }).config(function($httpProvider) {
     $httpProvider.defaults.useXDomain = true;
-    //delete $httpProvider.defaults.headers.common["X-Requested-With"];
+    delete $httpProvider.defaults.headers.common["X-Requested-With"];
     $httpProvider.defaults.headers.common["Content-Type"] = "application/json";
   }).service('donationIdService', function () {
       var donationId = '';
@@ -63,11 +63,21 @@ angular
       var ecardId = '';
 
       return {
-          getEcardId: function () {
-              return ecardId;
-          },
-          setEcardId: function(value) {
-              ecardId = value;
-          }
+        getEcardId: function () {
+          return ecardId;
+        },
+        setEcardId: function(value) {
+          var ecardId = value;
+        }
       };
+  }).service('paypalService', function() {
+    var paypalDonor = {};
+    return {
+      getPaypalDonor: function() {
+        return paypalDonor;
+      },
+      setPaypalDonor: function(donation) {
+        paypalDonor = donation;
+      }
+    }
   });

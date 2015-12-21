@@ -29,7 +29,7 @@ angular.module('splcDonationApp')
 
         $http({
           method: 'POST',
-          url: '//splc.dev/ecard/' + donation.Id,
+          url: '//ecard-splc.pantheon.io/' + donation.Id,
           data: encodeURI(ecardInfo),
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -37,10 +37,13 @@ angular.module('splcDonationApp')
         }).then(function successCallback(response) {
           console.log(response);
           if (response.status == '200') {
-             
+            return true;   
+          } else {
+            return false;
           }
         }, function errorCallback(response) {
           console.log(response);
+          return false;
         });
      }
 
@@ -58,8 +61,7 @@ angular.module('splcDonationApp')
         if (response.status == 200 && responseData.TransactionStatus == '1') {
           // If the transaction is a tribute fire off an email to drupal
           // Check and see if it has an email on it
-          if (responseData.Gift.Tribute) {
-            $scope.sendEcard(responseData); 
+          if (responseData.Gift.Tribute  && $scope.sendEcard(responseData)) {
             $('#status-heading').text('Transaction Complete');
             $('#status-body').text(
               'Thank you for your payment of $'+ responseData.Gift.Designations[0].Amount +'. ' +
@@ -69,6 +71,7 @@ angular.module('splcDonationApp')
             // Set confirmation text
             $('#status-heading').text('Transaction Complete');
             $('#status-body').text('Thank you for your payment of $'+ responseData.Gift.Designations[0].Amount +'.');
+            $('#status-body').append('<br><strong> We we\'re unable to send your ecard. Please contact SPLC at 1-800-ECARD-HELP</strong>');
           }
         } else {
           $('#status-heading').text('Transaction Incomplete');

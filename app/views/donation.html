@@ -141,6 +141,11 @@
           ng-model="Gift.PaymentMethod" ng-required="!Gift.PaymentMethod"/>
           <label class="bank-draft" for="bank_draft">Bank Draft</label>
       </div>
+      <div class="radio-btn" ng-if="Gift.Recurrence.Frequency == 'once'">
+          <input type="radio" id="paypal" name="donor_payment_type" value="2"
+          ng-model="Gift.PaymentMethod"  ng-required="!Gift.PaymentMethod"/>
+          <label class="paypal" for="paypal">Paypal</label>
+      </div>
   </div>
   <!-- Bank Draft -->
   <div class="bank-draft-group" ng-show="Gift.PaymentMethod == '1'">

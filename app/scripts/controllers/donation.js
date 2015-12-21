@@ -8,24 +8,22 @@
  * Controller of the splcDonationApp
  */
 angular.module('splcDonationApp')
-  .controller('DonationController', ['$scope', '$http', 'donationIdService', 'ecardIdService', function ($scope, $http, donationIdService, ecardIdService) {
+  .controller('DonationController', 
+                ['$scope', 
+                 '$http', 
+                 '$location',
+                 'donationIdService', 
+                 'ecardIdService', 
+                 'paypalService',
+                 function ($scope, $http, $location, donationIdService, ecardIdService, paypalService) {
 
-    // BB Country Service
-    var cs = new BLACKBAUD.api.CountryService({
-      url: '//bbnc21027d.blackbaudhosting.com/'
-    });
 
-    // Donation service
-    var dOpts = {
-      url: '//bbnc21027d.blackbaudhosting.com/',
-      crossDomain: true
-    };
-    var ds = new BLACKBAUD.api.DonationService('1128', dOpts);
-
+    // Backend attributes
     var designationId = "09ccef1b-97c6-455a-a793-42ab31888036";
     var merchantAccountId = "c6de7f55-a953-4e64-b382-147268e9b25f";
 
      
+    // Validate Routing numbers
     $scope.validateRouting = function(rtgNum) {
       var r = rtgNum.match(/^\s*([\d]{9})\s*$/);
       if (!r) {
@@ -41,6 +39,11 @@ angular.module('splcDonationApp')
         return (sum !== 0 && sum % 10 === 0);
       }
     }
+
+    // BB Country Service
+    var cs = new BLACKBAUD.api.CountryService({
+      url: '//bbnc21027d.blackbaudhosting.com/'
+    });
 
     // Set countries on form
     $scope.getCountries = function() {
@@ -62,10 +65,8 @@ angular.module('splcDonationApp')
       var countryId = newCountryId || "d81cef85-7569-4b2e-8f2e-f7cf998a3342";
       if (selectElem) {
         var stateSelect = selectElem.html('');
-        console.log(stateSelect);
       } else {
         var stateSelect = $('.state-select').html('');
-        console.log(stateSelect);
       }
 
       cs.getStates(countryId, function(data) {
@@ -86,20 +87,32 @@ angular.module('splcDonationApp')
       });
     };
 
+
     // Send the donation to BB
     $scope.processDonation = function(donation) {
-      
-      var success = function(response) {
-        //var responseData = response.data;
+     $http({
+        method: 'POST',
+        url: 'https://bbnc21027d.blackbaudhosting.com/WebApi/1128/Donation/Create',
+        data: donation,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(function successCallback(response) {
+        var responseData = response.data;
+        if (donation.Gift.PaymentMethod == 1) {
+          // Log the donationId in shared service for later use
+          donationIdService.setDonationId(responseData.Donation.Id);
+          // Send to confirmation page
+          console.log(response);
+          //$location.path('/confirmation');
+        } else {
+          // Otherwise send user to BB payment page to pay with cc
+          window.location = responseData.BBSPCheckoutUri;
+        }
+      }, function errorCallback(response) {
         console.log(response);
-      };
-
-      var failure = function(response) {
-        console.log(response);
-      };
-
-      ds.createDonation(donation, success, failure);
-
+          //$location.path('/confirmation');
+      }); 
     };
 
     // Create a new donation once the form has been validated
@@ -124,6 +137,7 @@ angular.module('splcDonationApp')
       // Default payment method to 0 if no payment method sent
       if (gift.PaymentMethod) {
         donation.Gift.PaymentMethod = parseInt(gift.PaymentMethod);
+
         // If the payment method is ach capture the account info
         if (donation.Gift.PaymentMethod == 1) {
           donation.Gift.Attributes = [];
@@ -132,24 +146,21 @@ angular.module('splcDonationApp')
             { AttributeId: 2, value: gift.AccountNumber },
             { AttributeId: 3, value: gift.AccountHolder }
           );
-
-          /*donation.Origin = 'Routing:'+gift.Routing +
-                            ' AccountNumber:'+gift.SourceCode.AccountNumber +  
-                            ' AccountHolder:'+gift.SourceCode.AccountHolder; */
-
         }
+      } else if (donation.Gift.PaymentMethod == 2) {
+          // Were sending a pledge if it's paypal
+          donation.Gift.PaymentMethod = 1;
       } else {
-        donation.Gift.PaymentMethod = 0;
+          // Default payment method is credit card
+          donation.Gift.PaymentMethod = 0; 
       }
-
-      //donation.Gift.PaymentMethod = 1;
-
 
       // Set the confirmation url and return url
       // Only if the payment method is credit card
       if (donation.Gift.PaymentMethod == 0) {
-        donation.BBSPReturnUri = window.location.href + 'confirmation';
+        donation.BBSPReturnUri = window.location.origin + '/#/confirmation';
       }
+
       donation.MerchantAccountId = merchantAccountId;
 
       // Determine if the gift is a tribute
@@ -169,7 +180,6 @@ angular.module('splcDonationApp')
         donation.Gift.Comments = gift.Comments;
       }
       
-
       // If the gift is a recurring donation 
       if (gift.Recurrence && gift.Recurrence.Frequency == '2') {
         donation.Gift.Recurrence = {};
@@ -180,9 +190,15 @@ angular.module('splcDonationApp')
         donation.Gift.Recurrence.StartDate = today;
       }
 
-      console.log(donation);
       // Send donation to BB
-      $scope.processDonation(donation);
+      if (gift.PaymentMethod == '2') {
+        // set the payment type to pledge
+        donation.Gift.PaymentMethod = 1;
+        paypalService.setPaypalDonor(donation);
+        $location.path('/paypal');
+      } else {
+        $scope.processDonation(donation);
+      }
     };
 
     $scope.init = function() {
@@ -190,10 +206,9 @@ angular.module('splcDonationApp')
       $scope.getStates();
       $scope.changeStates();
 
+      // Validate routing number
       $('[name="routing_number"]').keyup(function() {
-        //console.log($(this).val());
         var is_valid = $scope.validateRouting($(this).val());
-        //console.log( $scope.validateRouting($(['name="routing_number"']).val() );
         if (is_valid) {
           $('.error.aba').hide();
         } else {
