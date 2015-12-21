@@ -16,6 +16,8 @@ angular.module('splcDonationApp')
                  'ecardIdService', 
                  'paypalService',
                  'guidService',
+                 'donationBuilder',
+                 'bbDonationService',
                  
   function ($scope, 
             $http, 
@@ -23,7 +25,9 @@ angular.module('splcDonationApp')
             donationIdService, 
             ecardIdService, 
             paypalService,
-            guidService) {
+            guidService,
+            donationBuilder,
+            bbDonationService) {
 
 
     // Backend attributes
@@ -207,7 +211,29 @@ angular.module('splcDonationApp')
       } else {
         $scope.processDonation(donation);
       }
+
     };
+
+    $scope.processCCDonation = function(donor, gift) {
+      var donation = donationBuilder.buildCCDonation(donor, gift); 
+
+      function successCallback(response) {
+        var responseData = response.data;
+        donationIdService.setDonationId(responseData.Donation.Id);
+        window.location = responseData.BBSPCheckoutUri;
+      }
+
+      function errorCallback(response) {
+        $location.path('/confirmation');
+      }
+
+      bbDonationService.createDonation(donation, successCallback, errorCallback);
+    };
+
+    $scope.processCCRecurringDonation = function(donor, gift) {
+      var donation = donationBuilder.buildCCRecurringDonation(donor, gift);
+      console.log(donation);
+    }
 
     $scope.init = function() {
       $scope.getCountries();
