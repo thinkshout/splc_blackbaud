@@ -15,12 +15,20 @@ angular.module('splcDonationApp')
                  'donationIdService', 
                  'ecardIdService', 
                  'paypalService',
-                 function ($scope, $http, $location, donationIdService, ecardIdService, paypalService) {
+                 'guidService',
+                 
+  function ($scope, 
+            $http, 
+            $location, 
+            donationIdService, 
+            ecardIdService, 
+            paypalService,
+            guidService) {
 
 
     // Backend attributes
-    var designationId = "09ccef1b-97c6-455a-a793-42ab31888036";
-    var merchantAccountId = "c6de7f55-a953-4e64-b382-147268e9b25f";
+    //var designationId = "09ccef1b-97c6-455a-a793-42ab31888036";
+    //var merchantAccountId = "c6de7f55-a953-4e64-b382-147268e9b25f";
 
      
     // Validate Routing numbers
@@ -62,7 +70,7 @@ angular.module('splcDonationApp')
     // Set states based on country selected
     // defaults to United States
     $scope.getStates = function(newCountryId, selectElem) {
-      var countryId = newCountryId || "d81cef85-7569-4b2e-8f2e-f7cf998a3342";
+      var countryId = newCountryId || guidService.defaultCountryGuid;
       if (selectElem) {
         var stateSelect = selectElem.html('');
       } else {
@@ -131,7 +139,7 @@ angular.module('splcDonationApp')
       donation.Gift = {};
       donation.Gift.Designations = [{
         "Amount": donationAmount,
-        "DesignationId": designationId,
+        "DesignationId": guidService.designationGuid,
       }];
         
       // Default payment method to 0 if no payment method sent

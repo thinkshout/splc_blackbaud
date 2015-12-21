@@ -7,7 +7,6 @@
     <li>{{paypalDonor.Donor.EmailAddress}}</li>
     <li>{{paypalDonor.Donor.Phone}}</li>
   </ul>
-  {{paypalDonor | json}}
 </div>
 <form method="post" 
       action="https://www.paypal.com/cgi-bin/webscr" 
@@ -19,6 +18,7 @@
   <input type="hidden" name="last_name" value="{{paypalDonor.Donor.LastName}}">
   <input type="hidden" name="address1" value="{{paypalDonor.Donor.Address.StreetAddress}}">
   <input type="hidden" name="zip" value="{{paypalDonor.Donor.Address.StreetAddress}}">
+  <input type="hidden" name="phone" value="{{paypalDonor.Donor.Phone}}">
   <input type="hidden" name="amount" value="{{paypalDonor.Gift.Designations[0].Amount}}">
   <input type="hidden" name="item_name" value="Online Donation">
   <input type="hidden" name="button" value="donate">

@@ -80,4 +80,15 @@ angular
         paypalDonor = donation;
       }
     }
+  }).service('guidService', function() {
+    return {
+        designationGuid:     "09ccef1b-97c6-455a-a793-42ab31888036",
+        merchantAccountGuid: "c6de7f55-a953-4e64-b382-147268e9b25f",
+        defaultCountryGuid:  "d81cef85-7569-4b2e-8f2e-f7cf998a3342",
+        // ACH Monthly
+        achMonthlyGuid:      "9E113408-E211-4DFC-9833-27B0514783A4",
+        accountHolderGuid:   "A36D66E0-7BBB-4226-9DA4-A4238FCA209C",
+        accountNumberGuid:   "7CB68E73-DC56-4AF8-A279-DE762C0A7600",
+        routingNumberGuid:   "F2D65A45-2A53-4850-841E-FD53A0F67431",
+    }  
   });
