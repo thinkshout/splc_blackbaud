@@ -39,12 +39,12 @@
           <label for="once">One Time Contribution</label>
       </div>
       <div class="radio-btn">
-          <input type="radio" id="renewal" name="donation_option" value="2"
+          <input type="radio" id="renewal" name="donation_option" value="renewal"
           ng-model="Gift.Recurrence.Frequency"  ng-required="!Gift.Recurrence.Frequency" />
           <label for="renewal">Renewal</label>
       </div>
       <div class="radio-btn">
-          <input type="radio" id="monthly" name="donation_option" value="2" ng-model="Gift.Recurrence.Frequency" ng-required="!Gift.Recurrence.Frequency" />
+          <input type="radio" id="monthly" name="donation_option" value="monthly" ng-model="Gift.Recurrence.Frequency" ng-required="!Gift.Recurrence.Frequency" />
           <label for="monthly">Monthly Donation</label>
       </div>
       <div class="radio-btn">
@@ -136,7 +136,8 @@
           ng-model="Gift.PaymentMethod" ng-required="!Gift.PaymentMethod"/>
           <label class="credit-card" for="credit_card">Credit Card</label>
       </div>
-      <div class="radio-btn" ng-show="Gift.Recurrence.Frequency == 2">
+      <div class="radio-btn" 
+           ng-show="Gift.Recurrence.Frequency == 'renewal' || Gift.Recurrence.Frequency == 'monthly'">
           <input type="radio" id="bank_draft" name="donor_payment_type" value="1"
           ng-model="Gift.PaymentMethod" ng-required="!Gift.PaymentMethod"/>
           <label class="bank-draft" for="bank_draft">Bank Draft</label>
@@ -180,7 +181,27 @@
       <button class="disabled" value="Enter Required Fields to Submit" disabled ng-show="donationForm.$invalid">
         Enter required fields to submit
       </button>
-      <button class="button-dark" type="submit" ng-show="donationForm.$valid" ng-click="processCCDonation(Donor, Gift)">Continue to Payment</button>
+      <!-- credit card one time -->
+      <button class="button-dark" 
+              type="submit" 
+              ng-show="donationForm.$valid && Gift.PaymentMethod == 0 && Gift.Recurrence.Frequency == 'once'" 
+              ng-click="processCCDonation(Donor, Gift)">
+              Continue to Payment
+      </button>
+      <!-- credit card monthly -->
+      <button class="button-dark" 
+              type="submit" 
+              ng-show="donationForm.$valid && Gift.PaymentMethod == 0 && (Gift.Recurrence.Frequency == 'monthly' || Gift.Recurrence.Frequency == 'renewal')" 
+              ng-click="processCCMonthlyDonation(Donor, Gift)">
+              Continue to Payment
+      </button>
+      <!-- credit ach monthly -->
+      <button class="button-dark" 
+              type="submit" 
+              ng-show="donationForm.$valid && Gift.PaymentMethod == 1 && (Gift.Recurrence.Frequency == 'monthly' || Gift.Recurrence.Frequency == 'renewal')" 
+              ng-click="processACHMonthlyDonation(Donor, Gift)">
+              Continue to Payment
+      </button>
   </div>
 
 </form>

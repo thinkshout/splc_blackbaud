@@ -71,15 +71,15 @@ angular
         }
       };
   }).service('paypalService', function() {
-    var paypalDonor = {};
-    return {
-      getPaypalDonor: function() {
-        return paypalDonor;
-      },
-      setPaypalDonor: function(donation) {
-        paypalDonor = donation;
+      var paypalDonor = {};
+      return {
+        getPaypalDonor: function() {
+          return paypalDonor;
+        },
+        setPaypalDonor: function(donation) {
+          paypalDonor = donation;
+        }
       }
-    }
   }).service('guidService', function() {
       return {
           designationGuid:     "09ccef1b-97c6-455a-a793-42ab31888036",
@@ -92,18 +92,17 @@ angular
           routingNumberGuid:   "F2D65A45-2A53-4850-841E-FD53A0F67431",
       }  
   }).service('donationBuilder', function(guidService) {
+      var donation                   = {};
+      donation.Gift                  = {};
+      donation.Gift.Designations     = [];
+      donation.MerchantAccountId     = guidService.merchantAccountGuid;
+
       return {
+        // Build credit card donation
         buildCCDonation: function(donor, gift) {
-          var donation                   = {};
-          donation.Gift                  = {};
-          donation.Gift.Designations     = [];
-          donation.MerchantAccountId     = guidService.merchantAccountGuid;
-
-          // Add donor info
           donation.Donor                 = donor;
-
-          // Set up gift 
-          donation.Gift.PaymentMethod = parseInt(gift.PaymentMethod);
+          donation.Gift.PaymentMethod    = parseInt(gift.PaymentMethod);
+          donation.BBSPReturnUri         = window.location.origin + '/#/confirmation';
 
           // Add payment amount + designation ID
           if (gift.Designations.Amount == 'other')
@@ -111,8 +110,47 @@ angular
           else 
             donation.Gift.Designations.push({DesignationId: guidService.designationGuid, Amount: parseFloat(gift.Designations.Amount).toFixed(2)});
 
-          // Set return URI since it's cc
-          donation.BBSPReturnUri = window.location.origin + '/#/confirmation';
+          return donation;
+        },
+
+        // Build cc recurring donation
+        buildCCMonthlyDonation: function(donor, gift) {
+          donation.Donor                 = donor;
+          donation.Gift.PaymentMethod    = parseInt(gift.PaymentMethod);
+          donation.BBSPReturnUri         = window.location.origin + '/#/confirmation';
+
+          // Add payment amount + designation ID
+          if (gift.Designations.Amount == 'other')
+            donation.Gift.Designations.push({DesignationId: guidService.designationGuid, Amount: parseFloat(gift.OtherAmount).toFixed(2)});
+          else 
+            donation.Gift.Designations.push({DesignationId: guidService.designationGuid, Amount: parseFloat(gift.Designations.Amount).toFixed(2)});
+
+          // Commented out until issue resolved with attributes
+          /*donation.Gift.Attributes = [
+            { attributeId: guidService.achMonthlyGuid,     value: 'yes'              },  
+          ];*/
+
+          return donation;
+        },
+
+        // Build ach recurring donation
+        buildACHMonthlyDonation: function(donor, gift) {
+          donation.Donor                 = donor;
+          donation.Gift.PaymentMethod    = 1;
+
+          // Add payment amount + designation ID
+          if (gift.Designations.Amount == 'other')
+            donation.Gift.Designations.push({DesignationId: guidService.designationGuid, Amount: parseFloat(gift.OtherAmount).toFixed(2)});
+          else 
+            donation.Gift.Designations.push({DesignationId: guidService.designationGuid, Amount: parseFloat(gift.Designations.Amount).toFixed(2)});
+
+          // Commented out until issue resolved with attributes
+          /*donation.Gift.Attributes = [
+            { AttributeId: guidService.achMonthlyGuid,     Value: 'yes'              },  
+            { AttributeId: guidService.routingNumberGuid,  Value: gift.Routing       },  
+            { AttributeId: guidService.accountNumberGuid,  Value: gift.AccountNumber },  
+            { AttributeId: guidService.accountHolderGuid,  Value: gift.AccountHolder },  
+          ] */
 
           return donation;
         }
@@ -126,10 +164,8 @@ angular
             data: donation,
             headers: {
               'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*'
             }
           }).then(successCallback, errorCallback);
         }
       }
-      
   });

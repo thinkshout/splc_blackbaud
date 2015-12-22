@@ -230,9 +230,36 @@ angular.module('splcDonationApp')
       bbDonationService.createDonation(donation, successCallback, errorCallback);
     };
 
-    $scope.processCCRecurringDonation = function(donor, gift) {
-      var donation = donationBuilder.buildCCRecurringDonation(donor, gift);
-      console.log(donation);
+    $scope.processCCMonthlyDonation = function(donor, gift) {
+      var donation = donationBuilder.buildCCMonthlyDonation(donor, gift);
+
+      function successCallback(response) {
+        var responseData = response.data;
+        donationIdService.setDonationId(responseData.Donation.Id);
+        window.location = responseData.BBSPCheckoutUri;
+      }
+
+      function errorCallback(response) {
+        $location.path('/confirmation');
+      }
+      
+      bbDonationService.createDonation(donation, successCallback, errorCallback);
+    }
+
+    $scope.processACHMonthlyDonation = function(donor, gift) {
+      var donation = donationBuilder.buildACHMonthlyDonation(donor, gift);
+
+      function successCallback(response) {
+        var responseData = response.data;
+        donationIdService.setDonationId(responseData.Donation.Id);
+        $location.path('/confirmation');
+      }
+
+      function errorCallback(response) {
+        $location.path('/confirmation');
+      }
+      
+      bbDonationService.createDonation(donation, successCallback, errorCallback);
     }
 
     $scope.init = function() {
