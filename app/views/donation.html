@@ -112,6 +112,7 @@
       <div class="error" ng-messages="donationForm.donor_country.$error" ng-if="donationForm.donor_country.$touched && Donor.Address.Country == ''">
         <p ng-message="required">Please enter your country</p>
       </div>
+      {{Donor.Address.Country}}
   </div>
   <div class="form-group">
       <label for="phone">Phone Number</label>
@@ -136,7 +137,7 @@
           ng-model="Gift.PaymentMethod" ng-required="!Gift.PaymentMethod"/>
           <label class="credit-card" for="credit_card">Credit Card</label>
       </div>
-      <div class="radio-btn" 
+      <div class="radio-btn"
            ng-show="Gift.Recurrence.Frequency == 'renewal' || Gift.Recurrence.Frequency == 'monthly'">
           <input type="radio" id="bank_draft" name="donor_payment_type" value="1"
           ng-model="Gift.PaymentMethod" ng-required="!Gift.PaymentMethod"/>
@@ -153,8 +154,8 @@
       <div class="form-group half">
           <label for="routing_number">Routing Number<span class="required">*</span></label>
           <input type="text" name="routing_number" ng-model="Gift.Routing" ng-required="Gift.PaymentMethod == '1'" ng-minlength="9" ng-maxlength="9">
-          <div class="error" 
-            ng-messages="donationForm.routing_number.$error" 
+          <div class="error"
+            ng-messages="donationForm.routing_number.$error"
             ng-if="donationForm.routing_number.$touched">
             <p ng-message="required">Please enter a routing number</p>
             <p ng-message="minlength">The routing number must be 9 digits</p>
@@ -182,23 +183,23 @@
         Enter required fields to submit
       </button>
       <!-- credit card one time -->
-      <button class="button-dark" 
-              type="submit" 
-              ng-show="donationForm.$valid && Gift.PaymentMethod == 0 && Gift.Recurrence.Frequency == 'once'" 
+      <button class="button-dark"
+              type="submit"
+              ng-show="donationForm.$valid && Gift.PaymentMethod == 0 && Gift.Recurrence.Frequency == 'once'"
               ng-click="processCCDonation(Donor, Gift)">
               Continue to Payment
       </button>
       <!-- credit card monthly -->
-      <button class="button-dark" 
-              type="submit" 
-              ng-show="donationForm.$valid && Gift.PaymentMethod == 0 && (Gift.Recurrence.Frequency == 'monthly' || Gift.Recurrence.Frequency == 'renewal')" 
+      <button class="button-dark"
+              type="submit"
+              ng-show="donationForm.$valid && Gift.PaymentMethod == 0 && (Gift.Recurrence.Frequency == 'monthly' || Gift.Recurrence.Frequency == 'renewal')"
               ng-click="processCCMonthlyDonation(Donor, Gift)">
               Continue to Payment
       </button>
       <!-- credit ach monthly -->
-      <button class="button-dark" 
-              type="submit" 
-              ng-show="donationForm.$valid && Gift.PaymentMethod == 1 && (Gift.Recurrence.Frequency == 'monthly' || Gift.Recurrence.Frequency == 'renewal')" 
+      <button class="button-dark"
+              type="submit"
+              ng-show="donationForm.$valid && Gift.PaymentMethod == 1 && (Gift.Recurrence.Frequency == 'monthly' || Gift.Recurrence.Frequency == 'renewal')"
               ng-click="processACHMonthlyDonation(Donor, Gift)">
               Continue to Payment
       </button>

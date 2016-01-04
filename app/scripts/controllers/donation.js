@@ -8,22 +8,22 @@
  * Controller of the splcDonationApp
  */
 angular.module('splcDonationApp')
-  .controller('DonationController', 
-                ['$scope', 
-                 '$http', 
+  .controller('DonationController',
+                ['$scope',
+                 '$http',
                  '$location',
-                 'donationIdService', 
-                 'ecardIdService', 
+                 'donationIdService',
+                 'ecardIdService',
                  'paypalService',
                  'guidService',
                  'donationBuilder',
                  'bbDonationService',
-                 
-  function ($scope, 
-            $http, 
-            $location, 
-            donationIdService, 
-            ecardIdService, 
+
+  function ($scope,
+            $http,
+            $location,
+            donationIdService,
+            ecardIdService,
             paypalService,
             guidService,
             donationBuilder,
@@ -34,7 +34,7 @@ angular.module('splcDonationApp')
     //var designationId = "09ccef1b-97c6-455a-a793-42ab31888036";
     //var merchantAccountId = "c6de7f55-a953-4e64-b382-147268e9b25f";
 
-     
+
     // Validate Routing numbers
     $scope.validateRouting = function(rtgNum) {
       var r = rtgNum.match(/^\s*([\d]{9})\s*$/);
@@ -63,7 +63,7 @@ angular.module('splcDonationApp')
         var countrySelect = $('.country-select');
         for (var i = 0; i < data.length; i++) {
           if (data[i].Description === 'United States') {
-            countrySelect.append('<option selected="selected" value="' + data[i].Id + '">' + data[i].Description + '</option>');
+            countrySelect.append('<option value="' + data[i].Id + '">' + data[i].Description + '</option>');
           } else {
             countrySelect.append('<option value="' + data[i].Id + '">' + data[i].Description + '</option>');
           }
@@ -124,7 +124,7 @@ angular.module('splcDonationApp')
       }, function errorCallback(response) {
         console.log(response);
           //$location.path('/confirmation');
-      }); 
+      });
     };
 
     // Create a new donation once the form has been validated
@@ -139,13 +139,13 @@ angular.module('splcDonationApp')
       var donation = {};
       // Build the donor
       donation.Donor = donor;
-      // Build the gift 
+      // Build the gift
       donation.Gift = {};
       donation.Gift.Designations = [{
         "Amount": donationAmount,
         "DesignationId": guidService.designationGuid,
       }];
-        
+
       // Default payment method to 0 if no payment method sent
       if (gift.PaymentMethod) {
         donation.Gift.PaymentMethod = parseInt(gift.PaymentMethod);
@@ -164,7 +164,7 @@ angular.module('splcDonationApp')
           donation.Gift.PaymentMethod = 1;
       } else {
           // Default payment method is credit card
-          donation.Gift.PaymentMethod = 0; 
+          donation.Gift.PaymentMethod = 0;
       }
 
       // Set the confirmation url and return url
@@ -191,8 +191,8 @@ angular.module('splcDonationApp')
 
         donation.Gift.Comments = gift.Comments;
       }
-      
-      // If the gift is a recurring donation 
+
+      // If the gift is a recurring donation
       if (gift.Recurrence && gift.Recurrence.Frequency == '2') {
         donation.Gift.Recurrence = {};
         // Set recurrence to today
@@ -215,7 +215,7 @@ angular.module('splcDonationApp')
     };
 
     $scope.processCCDonation = function(donor, gift) {
-      var donation = donationBuilder.buildCCDonation(donor, gift); 
+      var donation = donationBuilder.buildCCDonation(donor, gift);
 
       function successCallback(response) {
         var responseData = response.data;
@@ -242,7 +242,7 @@ angular.module('splcDonationApp')
       function errorCallback(response) {
         $location.path('/confirmation');
       }
-      
+
       bbDonationService.createDonation(donation, successCallback, errorCallback);
     }
 
@@ -258,7 +258,7 @@ angular.module('splcDonationApp')
       function errorCallback(response) {
         $location.path('/confirmation');
       }
-      
+
       bbDonationService.createDonation(donation, successCallback, errorCallback);
     }
 
@@ -275,7 +275,7 @@ angular.module('splcDonationApp')
         } else {
           $('.error.aba').show();
         }
-      });    
+      });
     };
 
     $scope.init();
