@@ -36,6 +36,13 @@ angular
         controller: 'ConfirmationController',
         controllerAs: 'confirmation'
       })
+      .when('/ccconfirm', {
+        templateUrl: 'views/confirmation.html',
+        controller: 'CCConfirmController'
+      })
+      .when('/incomplete', {
+        templateUrl: 'views/incomplete.html',
+      })
       .when('/paypal', {
         templateUrl: 'views/paypal.html',
         controller: 'PaypalController',
@@ -48,15 +55,15 @@ angular
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common["X-Requested-With"];
     $httpProvider.defaults.headers.common["Content-Type"] = "application/json";
-  }).service('donationIdService', function () {
-      var donationId = '';
+}).service('donationLogger', function () {
+      var donation = {};
 
       return {
-          getDonationId: function () {
-              return donationId;
+          getDonation: function () {
+              return donation;
           },
-          setDonationId: function(value) {
-              donationId = value;
+          setDonation: function(donationObj) {
+              donation = donationObj;
           }
       };
   }).service('ecardIdService', function () {
@@ -79,7 +86,7 @@ angular
         setPaypalDonor: function(donation) {
           paypalDonor = donation;
         }
-      }
+      };
   }).service('guidService', function() {
       return {
           designationGuid:     "09ccef1b-97c6-455a-a793-42ab31888036",
@@ -90,7 +97,7 @@ angular
           accountHolderGuid:   "A36D66E0-7BBB-4226-9DA4-A4238FCA209C",
           accountNumberGuid:   "7CB68E73-DC56-4AF8-A279-DE762C0A7600",
           routingNumberGuid:   "F2D65A45-2A53-4850-841E-FD53A0F67431",
-      }  
+      };
   }).service('donationBuilder', function(guidService) {
       var donation                   = {};
       donation.Gift                  = {};
@@ -107,7 +114,7 @@ angular
           // Add payment amount + designation ID
           if (gift.Designations.Amount == 'other')
             donation.Gift.Designations.push({DesignationId: guidService.designationGuid, Amount: parseFloat(gift.OtherAmount).toFixed(2)});
-          else 
+          else
             donation.Gift.Designations.push({DesignationId: guidService.designationGuid, Amount: parseFloat(gift.Designations.Amount).toFixed(2)});
 
           return donation;
@@ -122,12 +129,12 @@ angular
           // Add payment amount + designation ID
           if (gift.Designations.Amount == 'other')
             donation.Gift.Designations.push({DesignationId: guidService.designationGuid, Amount: parseFloat(gift.OtherAmount).toFixed(2)});
-          else 
+          else
             donation.Gift.Designations.push({DesignationId: guidService.designationGuid, Amount: parseFloat(gift.Designations.Amount).toFixed(2)});
 
           // Commented out until issue resolved with attributes
           /*donation.Gift.Attributes = [
-            { attributeId: guidService.achMonthlyGuid,     value: 'yes'              },  
+            { attributeId: guidService.achMonthlyGuid,     value: 'yes'              },
           ];*/
 
           return donation;
@@ -141,20 +148,20 @@ angular
           // Add payment amount + designation ID
           if (gift.Designations.Amount == 'other')
             donation.Gift.Designations.push({DesignationId: guidService.designationGuid, Amount: parseFloat(gift.OtherAmount).toFixed(2)});
-          else 
+          else
             donation.Gift.Designations.push({DesignationId: guidService.designationGuid, Amount: parseFloat(gift.Designations.Amount).toFixed(2)});
 
           // Commented out until issue resolved with attributes
           /*donation.Gift.Attributes = [
-            { AttributeId: guidService.achMonthlyGuid,     Value: 'yes'              },  
-            { AttributeId: guidService.routingNumberGuid,  Value: gift.Routing       },  
-            { AttributeId: guidService.accountNumberGuid,  Value: gift.AccountNumber },  
-            { AttributeId: guidService.accountHolderGuid,  Value: gift.AccountHolder },  
+            { AttributeId: guidService.achMonthlyGuid,     Value: 'yes'              },
+            { AttributeId: guidService.routingNumberGuid,  Value: gift.Routing       },
+            { AttributeId: guidService.accountNumberGuid,  Value: gift.AccountNumber },
+            { AttributeId: guidService.accountHolderGuid,  Value: gift.AccountHolder },
           ] */
 
           return donation;
         }
-      }
+      };
   }).service('bbDonationService', function($http) {
       return {
         createDonation: function(donation, successCallback, errorCallback) {
@@ -167,5 +174,5 @@ angular
             }
           }).then(successCallback, errorCallback);
         }
-      }
+      };
   });
