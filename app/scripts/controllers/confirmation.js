@@ -47,20 +47,33 @@ angular.module('splcDonationApp')
         });
     };
 
-     $scope.checkPaymentStatus = function(donationId) {
-         $http({
-             method: 'GET',
-             url: 'https://bbnc21027d.blackbaudhosting.com/WebApi/1128/Donation/'+donationId,
-             headers: {
-               'Content-Type': 'application/json'
-             }
-         }).then(function(response) {
-            var donation = response.Data;
-            // If it's a credit card donation
-            if (donation.TransactionId == 1 ) {
+    $scope.checkPaymentStatus = function(donationId) {
+        $http({
+           method: 'GET',
+           url: 'https://bbnc21027d.blackbaudhosting.com/WebApi/1128/Donation/'+donationId,
+           headers: {
+              'Content-Type': 'application/json'
+           }
+        }).then(function successCallback(response) {
+            if (donation.transactionStatus === '1') {
+              $scope.statusHeading = "Your donation is complete";
+              $scope.statusBody = 'Thank you for your donation of $' + donation.Gift.Designations[0].Amount;
 
+              // Additionally if it has a tribute send the Ecard
+              if (donation.Gift.Tribute.Acknowledgee) {
+                var ecardSent = $scope.sendEcard(donation);
+                if (ecardSent) {
+                  $scope.statusBody = 'Thank you for your donation of $' +
+                                      donation.Gift.Designations[0].Amount +
+                                      '. Your ecard has been sent';
+                } else {
+                  $scope.statusBody = 'Thank you for your donation of $' +
+                                      donation.Gift.Designations[0].Amount +
+                                      '. We were unable to send your eCard, please contact us at 1-800-ECARD-NOW.';
+                }
+              }
             }
-        }, function(response) {
+        }, function errorCallback(response) {
             console.log(response);
             $scope.statusHeading = "Transaction Incomplete";
             $scope.statusBody = "We were unable to process your donation."
@@ -70,13 +83,13 @@ angular.module('splcDonationApp')
 
     $scope.init = function() {
       var localDonation = donationLogger.getDonation();
-      var transactionId = localDonation.transactionId;
-      var transactionId = "6c0952e5-9177-4055-8c6a-d315d99a0c01";
-      if (transactionId === '') {
-        var remoteDonationId = window.location.search.replace('?t=','');
-        $scope.checkPaymentStatus(remoteDonationId);
+      var localTransactionId = localDonation.transactionId;
+      var remoteDonationId = window.location.search.replace('?t=','');
+      //var transactionId = "6c0952e5-9177-4055-8c6a-d315d99a0c01";
+      if (remoteDonationId === '') {
+        $scope.checkPaymentStatus(localTransactionId);
       } else {
-        $scope.checkPaymentStatus(transactionId);
+        $scope.checkPaymentStatus(remoteTransactionId);
       }
     };
 

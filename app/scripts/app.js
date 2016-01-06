@@ -160,6 +160,47 @@ angular
           ] */
 
           return donation;
+        },
+
+        // Build standard pledge (used for paypal)
+        buildPledgeDonation: function(donor, gift) {
+          donation.Donor                 = donor;
+          donation.Gift.PaymentMethod    = 1;
+
+          // Add payment amount + designation ID
+          if (gift.Designations.Amount == 'other')
+            donation.Gift.Designations.push({DesignationId: guidService.designationGuid, Amount: parseFloat(gift.OtherAmount).toFixed(2)});
+          else
+            donation.Gift.Designations.push({DesignationId: guidService.designationGuid, Amount: parseFloat(gift.Designations.Amount).toFixed(2)});
+
+          return donation;
+        },
+
+        buildTributeDonation: function(donor, gift, notification, ecard) {
+          donation.Donor                 = donor;
+          donation.Gift.PaymentMethod    = 1;
+
+          // Add payment amount + designation ID
+          if (gift.Designations.Amount == 'other')
+              donation.Gift.Designations.push({DesignationId: guidService.designationGuid, Amount: parseFloat(gift.OtherAmount).toFixed(2)});
+          else
+              donation.Gift.Designations.push({DesignationId: guidService.designationGuid, Amount: parseFloat(gift.Designations.Amount).toFixed(2)});
+
+          if (notification && notification.Type == 'email') {
+              // Set the ecard type in the ecardIdService
+              ecardIdService.setEcardId(ecard.Type);
+
+              donation.Gift.Tribute = {};
+              donation.Gift.Tribute.TributeDefinition = {};
+              donation.Gift.Tribute.TributeDefinition = gift.Tribute.TributeDefinition;
+              donation.Gift.Tribute.TributeDefinition.Type = gift.Tribute.TributeDefinition.Type;
+              donation.Gift.Tribute.TributeDefinition.Description =  gift.Tribute.TributeDefinition.Type;
+
+              donation.Gift.Tribute.Acknowledgee = {};
+              donation.Gift.Tribute.Acknowledgee = gift.Tribute.Acknowledgee;
+
+              donation.Gift.Comments = gift.Comments;
+          }
         }
       };
   }).service('bbDonationService', function($http) {

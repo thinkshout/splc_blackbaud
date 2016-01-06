@@ -149,6 +149,29 @@ angular.module('splcDonationApp')
       bbDonationService.createDonation(donation, successCallback, errorCallback);
     };
 
+    $scope.processPaypalDonation = function(donor, gift) {
+      var donation = donationBuilder.buildPledgeDonation(donor, gift);
+
+      paypalService.setPaypalDonor(donation);
+      $location.path('/paypal');
+    };
+
+    $scope.processTributeDonation = function(donor, gift, notification, ecard) {
+      var donation = donationBuilder.buildPledgeDonation(donor, gift, notification, ecard);
+
+      function successCallback(response) {
+        var responseData = response.data;
+        donationIdService.setDonationId(responseData.Donation.Id);
+        $location.path('/confirmation');
+      }
+
+      function errorCallback(response) {
+        $location.path('/confirmation');
+      }
+
+      bbDonationService.createDonation(donation, successCallback, errorCallback);
+    };
+
     $scope.init = function() {
       $scope.getCountries();
       $scope.getStates();

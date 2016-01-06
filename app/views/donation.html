@@ -202,6 +202,13 @@
               ng-click="processACHMonthlyDonation(Donor, Gift)">
               Continue to Payment
       </button>
+      <!-- Paypal -->
+      <button class="button-dark"
+              type="submit"
+              ng-show="donationForm.$valid && Gift.PaymentMethod == 2"
+              ng-click="processPaypalDonation(Donor, Gift)">
+              Continue
+      </button>
   </div>
 
 </form>

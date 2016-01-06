@@ -26,17 +26,25 @@ angular.module('splcDonationApp')
           }
         }).then(function successCallback(response) {
               var responseData = response.data;
-              donationIdService.setDonationId(responseData.Donation.Id);
+
+              donationLogger.setDonation(responseData);
+              console.log(responseData)
         }, function errorCallback(response) {
             // If payment error send to error confirmation page
             //$location.path('/confirmation');
-            //$('form').submit();
-            console.log(response);
-        }); 
+            var responseData = response.data;
+            console.log(responseData);
+        });
     };
 
     $scope.submitForm = function() {
-      $scope.sendPledgeToBB();
+      $scope.sendPledgeToBB($scope.paypalDonor);
     };
+
+    $scope.init = function() {
+      $scope.sendPledgeToBB($scope.paypalDonor);
+    }
+
+    $scope.init();
 
 }]);
