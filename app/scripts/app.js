@@ -89,11 +89,18 @@ angular
       };
   }).service('guidService', function() {
       return {
+          // Blackbaud account info
           designationGuid:     "09ccef1b-97c6-455a-a793-42ab31888036",
           merchantAccountGuid: "c6de7f55-a953-4e64-b382-147268e9b25f",
+
+          // Default to US for Country Service
           defaultCountryGuid:  "d81cef85-7569-4b2e-8f2e-f7cf998a3342",
-          // ACH Monthly
-          achMonthlyGuid:      "4E1FB9C5-E3D8-4EDE-8BE0-E48D16ABF3FD",
+
+          // Monthly payment or renewal?
+          monthlyGuid:      "4E1FB9C5-E3D8-4EDE-8BE0-E48D16ABF3FD",
+          renewalGuid:      "EF465D68-7F83-4984-8020-02F1-62C50206",
+
+          // ACH info
           accountHolderGuid:   "39062A66-260D-4351-A0FC-41D57061C482",
           accountNumberGuid:   "C56B2DD2-0C58-4F49-8308-2F46428F699D",
           routingNumberGuid:   "A6C7CFA0-5686-45B3-A85C-D5A3E1E4A6AC",
@@ -132,11 +139,17 @@ angular
           else
             donation.Gift.Designations.push({DesignationId: guidService.designationGuid, Amount: parseFloat(gift.Designations.Amount).toFixed(2)});
 
-            donation.Gift.Attributes = [
-              { attributeId: guidService.achMonthlyGuid,     value: 'yes'              },
-            ];
+          var recurrenceType = gift.Recurrence.Frequency;
+          var recurrenceAttribute = '';
+          recurrenceType == 'monthly' ?
+            recurrenceAttribute = guidService.monthlyGuid :
+            recurrenceAttribute = guidService.renewalGuid;
 
-            return donation;
+          donation.Gift.Attributes = [
+            { attributeId: recurrenceAttribute,     value: 'yes'              },
+          ];
+
+          return donation;
         },
 
         // Build ach recurring donation
