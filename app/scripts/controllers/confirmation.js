@@ -55,6 +55,7 @@ angular.module('splcDonationApp')
               'Content-Type': 'application/json'
            }
         }).then(function successCallback(response) {
+            var donation = response.data;
             if (donation.transactionStatus === '1') {
               $scope.statusHeading = "Your donation is complete";
               $scope.statusBody = 'Thank you for your donation of $' + donation.Gift.Designations[0].Amount;
@@ -72,6 +73,9 @@ angular.module('splcDonationApp')
                                       '. We were unable to send your eCard, please contact us at 1-800-ECARD-NOW.';
                 }
               }
+            } else {
+                $scope.statusHeading = "Transaction Incomplete";
+                $scope.statusBody = "We were unable to process your donation."
             }
         }, function errorCallback(response) {
             console.log(response);

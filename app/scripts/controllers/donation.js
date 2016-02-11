@@ -122,7 +122,7 @@ angular.module('splcDonationApp')
 
       function successCallback(response) {
         var responseData = response.data;
-        donationIdService.setDonationId(responseData.Donation.Id);
+        donationLogger.setDonation(responseData);
         window.location = responseData.BBSPCheckoutUri;
       }
 

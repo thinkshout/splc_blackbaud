@@ -93,10 +93,10 @@ angular
           merchantAccountGuid: "c6de7f55-a953-4e64-b382-147268e9b25f",
           defaultCountryGuid:  "d81cef85-7569-4b2e-8f2e-f7cf998a3342",
           // ACH Monthly
-          achMonthlyGuid:      "9E113408-E211-4DFC-9833-27B0514783A4",
-          accountHolderGuid:   "A36D66E0-7BBB-4226-9DA4-A4238FCA209C",
-          accountNumberGuid:   "7CB68E73-DC56-4AF8-A279-DE762C0A7600",
-          routingNumberGuid:   "F2D65A45-2A53-4850-841E-FD53A0F67431",
+          achMonthlyGuid:      "4E1FB9C5-E3D8-4EDE-8BE0-E48D16ABF3FD",
+          accountHolderGuid:   "39062A66-260D-4351-A0FC-41D57061C482",
+          accountNumberGuid:   "C56B2DD2-0C58-4F49-8308-2F46428F699D",
+          routingNumberGuid:   "A6C7CFA0-5686-45B3-A85C-D5A3E1E4A6AC",
       };
   }).service('donationBuilder', function(guidService) {
       var donation                   = {};
@@ -132,13 +132,11 @@ angular
           else
             donation.Gift.Designations.push({DesignationId: guidService.designationGuid, Amount: parseFloat(gift.Designations.Amount).toFixed(2)});
 
-          // Commented out until issue resolved with attributes
-          donation.Gift.Attributes = [
-            { attributeId: guidService.achMonthlyGuid,     value: 'yes'              },
-          ];
+            donation.Gift.Attributes = [
+              { attributeId: guidService.achMonthlyGuid,     value: 'yes'              },
+            ];
 
-          return donation;
-          console.log(donation);
+            return donation;
         },
 
         // Build ach recurring donation
