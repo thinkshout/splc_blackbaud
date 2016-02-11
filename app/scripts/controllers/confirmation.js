@@ -86,10 +86,11 @@ angular.module('splcDonationApp')
       var localTransactionId = localDonation.transactionId;
       var remoteDonationId = window.location.search.replace('?t=','');
       //var transactionId = "6c0952e5-9177-4055-8c6a-d315d99a0c01";
+      console.log(remoteDonationId);
       if (remoteDonationId === '') {
         $scope.checkPaymentStatus(localTransactionId);
       } else {
-        $scope.checkPaymentStatus(remoteTransactionId);
+        $scope.checkPaymentStatus(remoteDonationId);
       }
     };
 

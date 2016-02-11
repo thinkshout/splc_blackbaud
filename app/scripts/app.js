@@ -133,11 +133,12 @@ angular
             donation.Gift.Designations.push({DesignationId: guidService.designationGuid, Amount: parseFloat(gift.Designations.Amount).toFixed(2)});
 
           // Commented out until issue resolved with attributes
-          /*donation.Gift.Attributes = [
+          donation.Gift.Attributes = [
             { attributeId: guidService.achMonthlyGuid,     value: 'yes'              },
-          ];*/
+          ];
 
           return donation;
+          console.log(donation);
         },
 
         // Build ach recurring donation
