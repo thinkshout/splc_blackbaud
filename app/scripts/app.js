@@ -62,8 +62,9 @@ angular
           getDonation: function () {
               return donation;
           },
-          setDonation: function(donationObj) {
+          setDonation: function(donationObj, type) {
               donation = donationObj;
+              donation.DonationType = type;
           }
       };
   }).service('ecardIdService', function () {
@@ -163,13 +164,20 @@ angular
           else
             donation.Gift.Designations.push({DesignationId: guidService.designationGuid, Amount: parseFloat(gift.Designations.Amount).toFixed(2)});
 
+          // Set recurrence type
+          var recurrenceType = gift.Recurrence.Frequency;
+          var recurrenceAttribute = '';
+          recurrenceType == 'monthly' ?
+            recurrenceAttribute = guidService.monthlyGuid :
+            recurrenceAttribute = guidService.renewalGuid;
+
           // Commented out until issue resolved with attributes
-          /*donation.Gift.Attributes = [
-            { AttributeId: guidService.achMonthlyGuid,     Value: 'yes'              },
+          donation.Gift.Attributes = [
+            { AttributeId: recurrenceAttribute,            Value: 'yes'              },
             { AttributeId: guidService.routingNumberGuid,  Value: gift.Routing       },
             { AttributeId: guidService.accountNumberGuid,  Value: gift.AccountNumber },
-            { AttributeId: guidService.accountHolderGuid,  Value: gift.AccountHolder },
-          ] */
+            { AttributeId: guidService.accountHolderGuid,  Value: gift.AccountHolder }
+          ];
 
           return donation;
         },

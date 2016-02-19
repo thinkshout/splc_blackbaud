@@ -106,8 +106,8 @@ angular.module('splcDonationApp')
 
       function successCallback(response) {
         var responseData = response.data;
-        donationLogger.setDonation(responseData);
         window.location = responseData.BBSPCheckoutUri;
+
       }
 
       function errorCallback(response) {
@@ -122,7 +122,7 @@ angular.module('splcDonationApp')
 
       function successCallback(response) {
         var responseData = response.data;
-        donationLogger.setDonation(responseData);
+        donationLogger.setDonation(response, 'monthlyCC')
         window.location = responseData.BBSPCheckoutUri;
       }
 
@@ -137,13 +137,13 @@ angular.module('splcDonationApp')
       var donation = donationBuilder.buildACHMonthlyDonation(donor, gift);
 
       function successCallback(response) {
-        var responseData = response.data;
-        donationIdService.setDonationId(responseData.Donation.Id);
+        donationLogger.setDonation(response, 'monthlyACH')
         $location.path('/confirmation');
       }
 
       function errorCallback(response) {
         $location.path('/confirmation');
+        console.log(response);
       }
 
       bbDonationService.createDonation(donation, successCallback, errorCallback);
@@ -152,6 +152,7 @@ angular.module('splcDonationApp')
     $scope.processPaypalDonation = function(donor, gift) {
       var donation = donationBuilder.buildPledgeDonation(donor, gift);
 
+      donationLogger.setDonation(response, 'paypal');
       paypalService.setPaypalDonor(donation);
       $location.path('/paypal');
     };
@@ -161,7 +162,11 @@ angular.module('splcDonationApp')
 
       function successCallback(response) {
         var responseData = response.data;
-        donationIdService.setDonationId(responseData.Donation.Id);
+        if (notification) {
+          donationLogger.setDonation(response, 'tributeEcard');
+        } else {
+          donationLogger.setDonation(response, 'tribute');
+        }
         $location.path('/confirmation');
       }
 
