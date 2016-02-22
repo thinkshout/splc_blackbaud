@@ -167,7 +167,7 @@ angular.module('splcDonationApp')
     };
 
     $scope.processTributeDonation = function(donor, gift, notification, ecard) {
-      var donation = donationBuilder.buildPledgeDonation(donor, gift, notification, ecard);
+      var donation = donationBuilder.buildTributeDonation(donor, gift, notification, ecard);
 
       function successCallback(response) {
         var responseData = response.data;

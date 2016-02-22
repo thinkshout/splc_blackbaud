@@ -15,7 +15,7 @@ angular.module('splcDonationApp')
     'ecardIdService', function ($scope, $http, donationLogger, ecardIdService) {
 
     $scope.sendEcard = function(donation) {
-      console.log('Donation:'+ donation);
+      console.log(donation);
       var ecardInfo = 'TributeeFirstName=' + donation.Gift.Tribute.TributeDefinition.FirstName +
                       '&TributeeLastName=' + donation.Gift.Tribute.TributeDefinition.LastName +
                       '&ImageIdentifier=' + ecardIdService.getEcardId() +

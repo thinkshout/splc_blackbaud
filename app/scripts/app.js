@@ -106,7 +106,7 @@ angular
           accountNumberGuid:   "C56B2DD2-0C58-4F49-8308-2F46428F699D",
           routingNumberGuid:   "A6C7CFA0-5686-45B3-A85C-D5A3E1E4A6AC",
       };
-  }).service('donationBuilder', function(guidService) {
+  }).service('donationBuilder', function(guidService, ecardIdService) {
       var donation                   = {};
       donation.Gift                  = {};
       donation.Gift.Designations     = [];
