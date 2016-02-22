@@ -152,9 +152,18 @@ angular.module('splcDonationApp')
     $scope.processPaypalDonation = function(donor, gift) {
       var donation = donationBuilder.buildPledgeDonation(donor, gift);
 
-      donationLogger.setDonation(response, 'paypal');
-      paypalService.setPaypalDonor(donation);
-      $location.path('/paypal');
+      function successCallback(response) {
+        var responseData = response.data;
+        donationLogger.setDonation(responseData, 'paypal');
+        $location.path('/paypal');
+      }
+
+      function errorCallback(response) {
+        console.log(response);
+        $location.path('/confirmation');
+      }
+
+      bbDonationService.createDonation(donation, successCallback, errorCallback);
     };
 
     $scope.processTributeDonation = function(donor, gift, notification, ecard) {

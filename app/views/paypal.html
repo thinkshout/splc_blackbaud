@@ -1,11 +1,11 @@
 <div class="donor-info">
   <h2>Donor Information</h2>
   <ul>
-    <li>{{paypalDonor.Donor.FirstName}} {{paypalDonor.Donor.LastName}}</li>
-    <li>{{paypalDonor.Donor.Address.StreetAddress}}</li>
-    <li>{{paypalDonor.Donor.Address.City}} {{paypalDonor.Donor.Address.PostalCode}}</li>
-    <li>{{paypalDonor.Donor.EmailAddress}}</li>
-    <li>{{paypalDonor.Donor.Phone}}</li>
+    <li>{{paypalDonor.Donation.Donor.FirstName}} {{paypalDonor.Donation.Donor.LastName}}</li>
+    <li>{{paypalDonor.Donation.Donor.Address.StreetAddress}}</li>
+    <li>{{paypalDonor.Dontation.Donor.Address.City}} {{paypalDonor.Donation.Donor.Address.PostalCode}}</li>
+    <li>{{paypalDonor.Donation.Donor.EmailAddress}}</li>
+    <li>{{paypalDonor.Donation.Donor.Phone}}</li>
   </ul>
 </div>
 <form method="post"
@@ -14,14 +14,14 @@
       target="_top"
       id="splcPaypalForm">
   <input type="hidden" name="env" value="www">
-  <input type="hidden" name="first_name" value="{{paypalDonor.Donor.FirstName}}">
-  <input type="hidden" name="last_name" value="{{paypalDonor.Donor.LastName}}">
-  <input type="hidden" name="address1" value="{{paypalDonor.Donor.Address.StreetAddress}}">
-  <input type="hidden" name="zip" value="{{paypalDonor.Donor.Address.PostalCode}}">
-  <input type="hidden" name="city" value="{{paypalDonor.Donor.Address.City}}">
-  <input type="hidden" name="phone" value="{{paypalDonor.Donor.Phone}}">
-  <input type="hidden" name="email" value="{{paypalDonor.Donor.EmailAddress}}">
-  <input type="hidden" name="amount" value="{{paypalDonor.Gift.Designations[0].Amount}}">
+  <input type="hidden" name="first_name" value="{{paypalDonor.Donation.Donor.FirstName}}">
+  <input type="hidden" name="last_name" value="{{paypalDonor.Donation.Donor.LastName}}">
+  <input type="hidden" name="address1" value="{{paypalDonor.Donation.Donor.Address.StreetAddress}}">
+  <input type="hidden" name="zip" value="{{paypalDonor.Donation.Donor.Address.PostalCode}}">
+  <input type="hidden" name="city" value="{{paypalDonor.Donation.Donor.Address.City}}">
+  <input type="hidden" name="phone" value="{{paypalDonor.Donation.Donor.Phone}}">
+  <input type="hidden" name="email" value="{{paypalDonor.Donation.Donor.EmailAddress}}">
+  <input type="hidden" name="amount" value="{{paypalDonor.Donation.Gift.Designations[0].Amount}}">
   <input type="hidden" name="item_name" value="Online Donation">
   <input type="hidden" name="button" value="donate">
   <input type="hidden" name="cmd" value="_donations">
