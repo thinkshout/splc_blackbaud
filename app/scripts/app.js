@@ -221,6 +221,8 @@ angular
 
               donation.Gift.Comments = gift.Comments;
           }
+
+          return donation;
         }
       };
   }).service('bbDonationService', function($http) {

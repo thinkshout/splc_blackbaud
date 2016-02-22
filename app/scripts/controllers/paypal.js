@@ -15,4 +15,10 @@ angular.module('splcDonationApp')
     };
 
     $scope.paypalDonor = donationLogger.getDonation();
+
+    $scope.init = function () {
+      window.scrollTo(0,0);
+    }
+
+    $scope.init();
 }]);
