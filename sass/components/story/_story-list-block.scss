@@ -1,0 +1,168 @@
+.view-news {
+  margin-bottom: 4em;
+
+  .feed-icon {
+    display: none;
+  }
+}
+
+.view-news .views-row,
+.view-stories-solr .views-row {
+  @include span-columns(12);
+  border-bottom: 1px solid $alto;
+  margin-bottom: 2em;
+  overflow: hidden;
+  padding-bottom: 2em;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .group-text-field-group {
+    @include span-columns(8);
+
+    @include mq(t) {
+      @include span-columns(12);
+    }
+
+    @include mq(m) {
+      @include span-columns(12);
+    }
+  }
+
+  .field-name-field-image {
+    @include span-columns(4);
+
+    @include mq(t) {
+      @include span-columns(12);
+    }
+
+    @include mq(m) {
+      @include span-columns(12);
+    }
+  }
+
+  .field-name-field-story-type {
+    @extend %tag;
+    margin-bottom: 1em;
+  }
+
+  h1 {
+    font-family: $heading-font;
+    font-size: em(24px);
+    margin: 0 0 0.5em 0;
+
+    a {
+      color: $dune;
+      text-decoration: underline;
+      text-transform: none;
+    }
+    a:hover {
+      color: $brick-red;
+    }
+  }
+
+  .field-name-field-person,
+  .field-name-field-byline,
+  .field-name-field-publish-date {
+    color: $oregon;
+    display: inline;
+    font-size: em(14px);
+
+    .field-name-field-image {
+      display: none;
+    }
+
+    div, article, header {
+      display: inline;
+      float: none;
+    }
+  }
+
+  .field-name-field-person .field-name-title-field .field-item:before,
+  .field-name-field-byline .field-item:before {
+    content: ' | by ';
+  }
+
+  .field-name-field-long-text {
+    margin-top: 0.5em;
+  }
+}
+
+.views-row .node-story.node-promoted {
+  @include feature-gradient;
+  overflow: hidden;
+  position: relative;
+
+  .field-name-field-story-type {
+    color: $white;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .group-text-field-group {
+    float: right;
+    margin: 0;
+    padding: 1em;
+    width: 60%;
+
+    @include mq(t) {
+      width: 100%;
+      float: none;
+    }
+
+    @include mq(m) {
+      width: 100%;
+      float: none;
+    }
+
+    a {
+      color: $brick-red-lower;
+    }
+  }
+
+  .field-name-title-field a {
+    color: $white;
+  }
+
+  .field-name-field-image {
+    float: left;
+    margin: 0;
+    width: 40%;
+
+    @include mq(t) {
+      width: 100%;
+      float: none;
+    }
+
+    @include mq(m) {
+      width: 100%;
+      float: none;
+    }
+
+    img, picture {
+      width: 100%;
+    }
+
+    a {
+      display: block;
+      line-height: 0;
+    }
+  }
+
+  .field-name-field-person,
+  .field-name-field-byline,
+  .field-name-field-publish-date {
+    color: $white;
+  }
+
+  .field-name-field-long-text {
+    color: $white;
+  }
+}
+
+//Remove promoted style from sidebar
+aside .views-row .node-story.node-promoted {
+  background: none !important;
+}

@@ -1,0 +1,67 @@
+// Anything that has an id that starts with this
+[id*="block-bean-cta-"] {
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: $white;
+  float: left;
+  min-height: em(288px);
+  padding: 2em;
+  width: 50%;
+  text-align: center;
+
+  @include mq(m) {
+    width: 100%;
+    padding: 1em;
+  }
+
+  @include mq(t) {
+    width: 100%;
+    padding: 1em;
+  }
+}
+
+[id*="block-bean-cta-"] img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+[id*="block-bean-cta-"] .field-type-text,
+[id*="block-bean-cta-"] .field-type-text-long,
+[id*="block-bean-cta-"] .field-type-link-field {
+  position: relative;
+  z-index: 1;
+
+}
+
+[id*="block-bean-cta-"] .field-type-text {
+  font-size: em(36px);
+  font-family: $heading-font-light;
+  text-transform: uppercase;
+
+  a {
+    color: $white;
+    text-decoration: none;
+  }
+}
+
+[id*="block-bean-cta-"] .field-type-text-long {
+  font-family: $heading-font;
+  font-size: em(18px);
+  margin-bottom: 1em;
+  padding: 0 5em;
+
+  @include mq(m) {
+    padding: 0;
+  }
+}
+
+[id*="block-bean-cta-"] .field-type-link-field a {
+  @extend %button-clear;
+}
+
+#content-bottom-2 [id*="block-bean-cta-"] {
+  height: rem(320px);
+  padding-top: 4em;
+}

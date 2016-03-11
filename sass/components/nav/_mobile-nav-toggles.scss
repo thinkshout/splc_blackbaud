@@ -1,0 +1,71 @@
+.search-toggle,
+.nav-toggle {
+  background: $white;
+  display: block;
+  float: left;
+  position: relative;
+  text-align: center;
+  width: 20%;
+  z-index: 2;
+
+  @include mq(d) {
+    display: none;
+  }
+
+  @include mq(l) {
+    display: none;
+  }
+
+  span {
+    position: absolute;
+    left: -9999px;
+  }
+}
+
+.search-toggle {
+  border-right: 1px solid $seashell;
+}
+
+.search-toggle::after {
+  @extend %splc-search;
+  color: $brick-red-lower;
+  font-size: em(24px);
+  line-height: 55px;
+
+  @include mq(t) {
+    line-height: 85px;
+  }
+}
+
+.nav-toggle::after {
+  @extend %splc-menu;
+  font-size: em(24px);
+  line-height: 55px;
+
+  @include mq(t) {
+    line-height: 85px;
+  }
+}
+
+.search-toggle.open {
+  background: $dune;
+  color: $white;
+}
+
+.nav-toggle.open {
+  background: $brick-red;
+  color: $white;
+}
+
+.nav-toggle.open::after,
+.search-toggle.open::after {
+  @extend %splc-close;
+  color: $white;
+  font-size: em(24px);
+  font-weight: normal;
+  line-height: 55px;
+
+  @include mq(t) {
+    line-height: 85px;
+  }
+}

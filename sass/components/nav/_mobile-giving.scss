@@ -1,0 +1,30 @@
+.mobile-giving {
+  text-align: center;
+  overflow: hidden;
+  @include mq(d) {
+    display: none;
+  }
+}
+.donate,
+.ways-to-give {
+  color: $white;
+  font-family: $heading-font-light;
+  padding: 0.5rem;
+  display: inline-block;
+  text-transform: uppercase;
+  width: 40%;
+
+  &:hover {
+    color: $white;
+  }
+}
+
+.donate {
+  background: $brick-red;
+  margin-right: rem(-2.5);
+}
+
+.ways-to-give {
+  background: $brick-red-lower;
+  margin-left: rem(-2.5);
+}

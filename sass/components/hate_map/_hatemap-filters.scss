@@ -1,0 +1,162 @@
+.page-hate-map .hatemap-filters {
+  @include mq(m) {
+    position: relative;
+    padding-bottom: 80px;
+  }
+}
+
+.page-hate-map .form-item.form-type-select {
+  display: inline-block;
+  margin-bottom: 0;
+  margin-top: 1.3rem;
+
+  @include mq(m) {
+    display: inline-block;
+    margin-bottom: 1rem;
+    width: 48%;
+    float: left;
+  }
+
+  &:nth-of-type(1) {
+    @include mq(m) {
+      margin-right: 2%;
+    }
+  }
+
+  label {
+    display: none;
+  }
+
+  select {
+    @include mq(m) {
+      width: 100%;
+    }
+  }
+
+  .chosen-container {
+    @include mq(d) {
+      max-width: 150px;
+    }
+  }
+  .chosen-single {
+    border: 2px solid $dune;
+  }
+}
+
+.hatemap-sort-by {
+  font-family: $heading-font;
+  margin-right: 1rem;
+
+  @include mq(m) {
+    display: none;
+  }
+}
+
+.hatemap-reset {
+  display: inline;
+
+  a {
+    display: inline-block;
+    @extend %button-clear-dark;
+    border: 2px solid $alto;
+    margin-top: 0.1rem;
+    padding: 0.25em 2em;
+    vertical-align: middle;
+    text-align: center;
+
+    @include mq(m) {
+      clear: left;
+      display: block;
+      margin-top: 1rem;
+      width: 100%;
+    }
+
+    &:hover {
+      color: $dune;
+      border: 2px solid $alto;
+      background: none;
+    }
+  }
+}
+
+.hatemap-group-count {
+  float: right;
+  font-family: $heading-font;
+
+  @include mq(t) {
+    float: none;
+    margin-top: 1rem;
+  }
+
+  @include mq(m) {
+    float: none;
+  }
+}
+
+.hatemap-group-count p {
+  display: block;
+  float: left;
+  font-family: $heading-font;
+  font-size: em(18);
+  margin: 1.7rem 0 0 0;
+
+  @include mq(m) {
+    display: block;
+    float: none;
+    margin: inherit;
+    text-align: center;
+  }
+}
+
+.hatemap-group-count .hatemap-group-count-count {
+  background: $brick-red;
+  display: inline-block;
+  float: left;
+  font-family: $heading-font-light;
+  font-size: 3rem;
+  color: $white;
+  margin-left: rem(15);
+  min-width: rem(73);
+  padding: 0.5rem 1rem;
+  position: relative;
+  text-align: center;
+
+  @include mq(m) {
+    font-size: 2.25rem;
+    width: 100%;
+    margin: 0;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+  }
+
+  &::before {
+    display: block;
+    content: '';
+    width: 0;
+  	height: 0;
+  	border-top: 10px solid transparent;
+  	border-bottom: 10px solid transparent;
+  	border-right:10px solid $brick-red;
+    position: absolute;
+    left: -10px;
+    top: 35%;
+
+    @include mq(m) {
+      border-top: 10px solid $brick-red;
+    	border-left: 10px solid transparent;
+    	border-right:10px solid transparent;
+      top: 99%;
+      bottom: 0;
+      z-index: 100;
+      left: 47%;
+      right: 47%;
+    }
+  }
+}
+
+.hatemap-group-count-ideology,
+.hatemap-group-count-state {
+  font-weight: bold;
+}

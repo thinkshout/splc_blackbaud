@@ -1,0 +1,105 @@
+.view-header {
+  margin-bottom: 2rem;
+}
+
+// Search reset
+.view-header .block-facetapi {
+  float: none;
+  display: inline;
+  margin-right: 1rem;
+  margin-left: 0;
+}
+
+.facetapi-active.search-reset {
+  display: inline;
+  float: none;
+  padding: 0.2rem;
+}
+
+#view_header .block-facetapi {
+  display: inline-block;
+  margin-right: 0.5rem;
+
+  @include mq(m) {
+    width: 100%;
+  }
+}
+
+#view_header .block-facetapi label {
+  display: none;
+}
+
+#view_header .facetapi-facetapi-ajax-select {
+  display: inline;
+}
+
+// Search sorting
+.block-search-api-sorts {
+  clear: left;
+  float: right;
+  margin-bottom: -4em;
+  margin-top: 2rem;
+  position: relative;
+  z-index: 1;
+
+  @include mq(t) {
+    float: none;
+  }
+
+  @include mq(m) {
+    float: none;
+  }
+
+  h2.block-title {
+    display: inline;
+    float: left;
+    font-family: $heading-font;
+    font-size: em(18px);
+    font-weight: normal;
+    line-height: em(27px);
+    margin: 0 0.5em 0 0;
+
+    &:after {
+      content: ": ";
+    }
+  }
+
+  .content {
+    float: left;
+  }
+
+  ul.search-api-sorts {
+    margin: 0;
+  }
+
+  ul.search-api-sorts li {
+    display: inline;
+    margin: 0 0.5em 0 0;
+  }
+
+  ul.search-api-sorts li a {
+    font-family: $heading-font;
+    font-size: em(18px);
+
+    img {
+      display: none;
+    }
+
+    &.sort-asc::after {
+      @extend %splc-chevron-up;
+      text-decoration: none;
+      font-size: em(10px);
+    }
+
+    &.sort-desc::after {
+      @extend %splc-chevron-down;
+      text-decoration: none;
+      font-size: em(10px);
+    }
+
+    &.active-sort,
+    &:hover {
+      color: $brick-red;
+    }
+  }
+}

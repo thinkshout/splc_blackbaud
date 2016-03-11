@@ -1,0 +1,189 @@
+#secondary-nav {
+  @include mq(d) {
+    position: absolute;
+    width: 100%;
+    top: 0;
+  }
+
+  @include mq(t) {
+    display: none;
+    padding: 1em 0.5em;
+  }
+
+  @include mq(m) {
+    display: none;
+    padding: 1em 0.5em;
+  }
+}
+
+#secondary-nav {
+  border-bottom: 3px solid $gallery;
+  padding-bottom: 2px;
+
+  @include mq(t) {
+    background: $white;
+    padding-bottom: 1em;
+  }
+
+  @include mq(m) {
+    background: $white;
+    padding-bottom: 1em;
+  }
+}
+
+#secondary-nav #block-menu_block-2 {
+  @include outer-container;
+}
+
+#secondary-nav #block-menu_block-2 ul.menu {
+  text-align: right;
+
+  @include mq(t) {
+    text-align: center;
+  }
+
+  @include mq(m) {
+    text-align: center;
+  }
+}
+
+#secondary-nav #block-menu_block-2 ul.menu li {
+  display: inline;
+  margin: 0;
+  padding: 0;
+
+  @include mq(t) {
+    display: block;
+    padding: 1em 0.5em;
+
+    // Social Media links
+    &:nth-child(1),
+    &:nth-child(2), {
+      display: inline-block;
+      width: 49%;
+      margin: 0;
+
+      a {
+        display: inline-block;
+        width: 100%;
+      }
+    }
+
+    // Membership and donate buttons
+    &:nth-child(5),
+    &:nth-child(6), {
+      display: inline-block;
+      width: 50%;
+      margin: 0;
+      padding: 0;
+
+      a {
+        display: inline-block;
+        width: 100%;
+      }
+    }
+  }
+
+  @include mq(m) {
+    display: block;
+    padding: 1em 0.5em;
+
+    // Social Media links
+    &:nth-child(1),
+    &:nth-child(2), {
+      display: inline-block;
+      width: 49%;
+      margin: 0;
+
+      a {
+        display: inline-block;
+        width: 100%;
+      }
+    }
+
+    // Membership and donate buttons
+    &:nth-child(5),
+    &:nth-child(6), {
+      display: inline-block;
+      width: 50%;
+      margin: 0;
+      padding: 0;
+
+      a {
+        display: inline-block;
+        width: 100%;
+      }
+    }
+  }
+}
+
+#secondary-nav #block-menu_block-2 ul.menu li a {
+  color: $dune;
+  font-family: $heading-font;
+  font-size: em(16px);
+  padding: 0.4em;
+}
+
+// Facebook list item
+#secondary-nav #block-menu_block-2 ul.menu li:nth-child(1) {
+
+  // Facebook link
+  & a {
+    display: inline-block;
+    overflow: hidden;
+    height: 31px;
+    width: 28px;
+    vertical-align: bottom;
+  }
+
+  & a:before {
+    @extend %splc-facebook;
+  }
+}
+
+#secondary-nav #block-menu_block-2 ul.menu li:nth-child(2) {
+
+  // Facebook link
+  & a {
+    display: inline-block;
+    overflow: hidden;
+    height: 31px;
+    width: 28px;
+    vertical-align: bottom;
+  }
+
+  & a:before {
+    @extend %splc-twitter;
+  }
+}
+// Membership link and donate links
+#secondary-nav #block-menu_block-2 ul.menu li:nth-child(5),
+#secondary-nav #block-menu_block-2 ul.menu li:nth-child(6) {
+  color: $white;
+  text-transform: uppercase;
+
+  @include mq(m) {
+    display: none;
+  }
+
+
+  a {
+    color: $white;
+    font-family: $heading-font-light;
+    font-size: 1.1em;
+  }
+}
+
+// Membership link
+#secondary-nav #block-menu_block-2 ul.menu li:nth-child(5) a {
+  background: $brick-red-lower;
+}
+
+// Donate list item
+#secondary-nav #block-menu_block-2 ul.menu li:nth-child(6) {
+  margin-left: -5px; // Removes natural margin on inline item
+}
+// Donate link
+#secondary-nav #block-menu_block-2 ul.menu li:nth-child(6) a {
+  background: $brick-red;
+}

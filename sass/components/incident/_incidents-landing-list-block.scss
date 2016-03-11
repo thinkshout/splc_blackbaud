@@ -1,0 +1,82 @@
+.page-fighting-hate-hate-incidents .view-hate-incidents {
+  .views-row {
+
+    @include mq(d) {
+      @include span-columns(4);
+      @include omega(3n);
+      border: 1px dotted $alto;
+      margin-bottom: 1em;
+      @include default-transition;
+    }
+
+    @include mq(t) {
+      @include span-columns(6);
+      @include omega(2n);
+    }
+
+    @include mq(m) {
+      @include span-columns(12);
+      @include omega(1n);
+    }
+  }
+
+  .views-row:hover {
+    background: $dune;
+    border: 1px solid $dune;
+    color: $white;
+    @include default-transition;
+
+    .field-name-field-date {
+      border-bottom: 3px solid $oregon-dark;
+    }
+
+    .field-name-field-long-text {
+      border-top: 3px solid $oregon-dark;
+    }
+  }
+
+  .views-row h2 {
+    display: none;
+  }
+
+  .views-row .entity {
+    padding: 1em;
+  }
+
+  .field-name-field-date {
+    color: $oregon;
+    border-bottom: 3px solid $dune;
+    font-size: em(14px);
+    font-style: italic;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+  }
+
+  .field-name-field-hate-incident-type {
+    @extend %tag-red;
+    display: inline-block;
+    float: left;
+    margin-right: 0.5em;
+  }
+
+  .field-name-field-state {
+    display: inline-block;
+    float: left;
+    font-family: $heading-font;
+  }
+
+  .field-name-field-long-text {
+    clear: left;
+    border-top: 3px solid $dune;
+    font-family: $heading-font;
+    font-size: em(18px);
+    margin-top: 3em;
+    padding-top: 1em;
+  }
+}
+
+// Clear load more button around incident blocks
+.page-fighting-hate-hate-incidents .item-list {
+  clear: left;
+  padding-top: 2em;
+}

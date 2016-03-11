@@ -1,0 +1,109 @@
+.page-resources .view-header {
+  margin-bottom: 2em;
+}
+
+.page-resources .view-resource-library .views-row {
+  @include span-columns(12);
+  border-bottom: 1px solid $alto;
+  margin-bottom: 2em;
+  overflow: hidden;
+  padding-bottom: 2em;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .group-text-field-group {
+    @include span-columns(8);
+
+    @include mq(m) {
+      @include span-columns(12);
+    }
+  }
+
+  .field-name-field-image {
+    @include span-columns(4);
+
+    @include mq(m) {
+      display: none;
+    }
+  }
+
+  // Set titles to same style
+  .field-name-title-field,
+  .field-name-title-field a,
+  h1 {
+    font-family: $heading-font;
+    font-size: 24px;
+    margin: 0 0 0.5em 0;
+
+    a {
+      color: $dune;
+      text-decoration: underline;
+      text-transform: none;
+    }
+    a:hover {
+      color: $brick-red;
+    }
+  }
+
+   // Case resource
+  .node-case {
+    .field-type-entityreference a {
+      @extend %tag;
+      text-decoration: none;
+    }
+
+    .field-type-list-boolean {
+      @extend %tag-red;
+    }
+
+    .field-label-inline {
+      @extend %field-label-field-item;
+      color: $oregon;
+
+      .field-label h2 {
+        font-weight: normal;
+      }
+    }
+
+    .field-name-field-issue-area,
+    .field-name-field-case-date-filed,
+    .field-name-field-case-landmark {
+      float: left;
+      line-height: 1;
+      margin-right: 1em;
+      margin-bottom: 1em;
+    }
+
+    .field-name-body {
+      clear: left;
+    }
+  }
+
+  // Story resource
+  .node-story {
+    .field-name-field-story-type {
+      @extend %tag;
+      margin-bottom: 1em;
+    }
+
+    .field-name-field-publish-date {
+      color: $oregon;
+      margin-bottom: 0.5em;
+    }
+  }
+
+  .node-ideology {
+    .field-name-field-icon,
+    .field-name-field-image {
+      @include span-columns(4);
+      float: right;
+      @include omega;
+    }
+
+    .field-name-field-icon img {
+      float: right;
+    }
+  }
+}

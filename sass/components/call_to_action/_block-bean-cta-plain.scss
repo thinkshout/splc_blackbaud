@@ -1,0 +1,116 @@
+#content-bottom-3 {
+  background: $gallery;
+  clear: left;
+  padding: 2em 0;
+  @include clearfix;
+
+  #block-entityform_block-email_signup,
+  [id*="block-bean-"].block {
+    @include span-columns(4);
+    background: $gallery;
+    color: $dune;
+    padding: 1em;
+    min-height: 0;
+
+    @include mq(t) {
+      @include span-columns(12);
+    }
+
+    @include mq(m) {
+      @include span-columns(12);
+    }
+  }
+
+  .block:nth-of-type(2) {
+    border-left: 1px solid $alto;
+    border-right: 1px solid $alto;
+
+    @include mq(t) {
+      border: none;
+    }
+
+    @include mq(m) {
+      border: none;
+    }
+  }
+
+  .block .block-title,
+  .block .field-name-title-field {
+    @extend %h3;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: normal;
+    padding: 0;
+
+    a {
+      color: $dune;
+      text-decoration: none;
+    }
+  }
+
+  .block .block-title {
+    margin: 0.2em 0 0.1em;
+  }
+
+  .block .field-type-link-field a {
+    @extend %button-clear-dark;
+  }
+
+  .block .field-type-text-long {
+    font-family: $body-font;
+    font-size: em(16px);
+    padding: 0;
+    width: auto;
+  }
+
+  .block form {
+    text-align: center;
+  }
+
+  .block label {
+    display: none;
+  }
+
+  .block .form-type-textfield {
+    float: left;
+    margin-top: 0;
+    width: 65%;
+  }
+
+  .block .metatags-form {
+    display: none;
+  }
+
+  .block .form-actions {
+    margin-top: 0;
+  }
+
+  .block input[type=text] {
+    padding: 0;
+    border: 3px solid $dune;
+    border-radius: 0;
+    display: inline-block;
+    height: 44px;
+  }
+
+  .block .form-submit {
+    @extend %button-clear-dark;
+    background: none;
+    border-left: none;
+    border-radius: 0;
+    display: inline-block;
+    float: left;
+    font-size: em(20px);
+    height: 44px;
+    text-align: center;
+    margin-top: 0;
+    width: 35%;
+    font-weight: 400;
+
+    &:hover {
+      border-left: none;
+    }
+  }
+
+
+}

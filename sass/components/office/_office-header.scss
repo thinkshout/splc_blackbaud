@@ -1,0 +1,76 @@
+// Office header 
+.not-front.node-type-office .group-header {
+  @include outer-container;
+  margin-bottom: 2em;
+
+  @include mq(m) {
+    margin-bottom: 1em;
+  }
+
+  // Page title
+  .field-name-title-field {
+    border-bottom: 4px solid $seashell;
+    margin-bottom: 0.5em;
+    text-align: center;
+
+    h1 {
+      @extend %h1;
+    }
+  }
+
+  // Office information
+  .office-info{
+    border-bottom: 6px solid $alto;
+    font-family: $heading-font;
+    font-size: em(20px);
+    margin-bottom: 2em;
+    text-align: center;
+    padding: 2em 0;
+
+    @include mq(m) {
+      padding: 1em 0;
+    }
+  }
+
+  .office-info .field {
+    display: inline-block;
+
+    @include mq(m) {
+      display: block;
+    }
+  }
+
+  .office-info .field-item {
+    display: inline;
+
+    @include mq(m) {
+      display: block;
+    }
+  }
+  
+  .office-info .field-item:after {
+    content: "•";
+    margin: 0 0.5em;
+
+    @include mq(m) {
+      display: none;
+    }
+  }
+
+  .office-info .field-name-field-link-multiple .field-item:last-child::after {
+    display: none;
+  }
+
+  .office-info a {
+    text-decoration: none;
+  }
+
+  .office-info a[href*="facebook"]::before {
+    @extend %splc-facebook-square;
+  }
+
+  .office-info a[href*="twitter"]::before {
+    @extend %splc-twitter;
+  }
+}
+

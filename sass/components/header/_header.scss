@@ -1,0 +1,34 @@
+header#header {
+  background: $white;
+  box-shadow: 0 em(2px) em(7px) rgba($black, 0.5);
+  position: relative;
+  width: 100%;
+  z-index: 100;
+
+  @include mq(t) {
+    position: fixed;
+    width: 100%;
+    top: 0;
+  }
+
+  @include mq(m) {
+    position: fixed;
+    width: 100%;
+    top: 0;
+  }
+
+  &.search-active {
+    @include mq(t) {
+      top: rem(72);
+    }
+
+    @include mq(m) {
+      top: rem(72);
+    }
+  }
+}
+
+
+.logged-in #header {
+  top: 79px;
+}

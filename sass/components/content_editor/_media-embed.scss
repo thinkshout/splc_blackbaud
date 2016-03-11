@@ -1,0 +1,61 @@
+#content-area [data-entity-type="file"] {
+  margin-bottom: 1em;
+
+  img {
+    margin: 0;
+    height: auto;
+    width: 100%;
+  }
+
+  iframe {
+    width: 100%;
+  }
+
+  .field-name-field-file-caption {
+    margin-top: em(-7px);
+    position: relative;
+
+    &::before {
+      @extend %splc-chevron-up;
+      color: $brick-red-lower;
+      font-size: em(14px);
+      margin-right: 1em;
+      position: absolute;
+      left: 0.5em;
+      top: 1em;
+    }
+  }
+
+  .field-name-field-file-caption .field-items {
+    color: $oregon;
+    font-size: em(12px);
+    font-style: italic;
+    padding: 1em;
+
+    .field-item {
+      padding-left: 2.5em;
+    }
+  }
+
+  &.align-left {
+    margin: 0 1em 1em 0;
+    width: 50%;
+
+    @include mq(m) {
+      width: 100%;
+    }
+  }
+
+  &.align-right {
+    margin: 0 0 1em 1em;
+    width: 50%;
+    
+    @include mq(m) {
+      width: 100%;
+    }
+  }
+
+  &.align-center {
+    margin: 0 0 1em 0;
+  }
+}

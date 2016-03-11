@@ -1,0 +1,34 @@
+.node-type-office #content-area aside {
+  .field-office-staff-link {
+    @extend %button-clear-dark;
+    display: block;
+    text-align: center;
+  }
+
+  h2 {
+    @extend %sidebar-heading;
+  }
+
+  .field-name-field-issue-areas {
+    margin-bottom: 1.5em;
+  }
+
+  .field-name-field-issue-areas a {
+    color: $dune;
+    font-family: $heading-font;
+    font-size: em(20px);
+  }
+
+  .view-office-staff {
+    margin-bottom: 1em;
+  }
+
+  .view-office-staff .view-header #staff {
+
+  }
+
+  // Outputs staff person teaser
+  .view-office-staff {
+    @extend %staff-person-teaser; 
+  }
+}

@@ -1,0 +1,370 @@
+.page-hate-map .addthis-body-wrapper {
+  display: none;
+}
+
+#block-splc_hate_map-hate_map {
+
+  .block-title {
+    display: none;
+    @extend %h2;
+    font-family: $heading-font-light;
+    font-weight: normal;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .content {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+
+  .leaflet-control-mapbox-geocoder .leaflet-control-mapbox-geocoder-wrap {
+    border: none;
+    border-radius: 0;
+    left: 44px;
+    height: 44px;
+  }
+
+  .leaflet-control-mapbox-geocoder .leaflet-control-mapbox-geocoder-form input {
+    height: 44px;
+    &:focus {
+      border: none;
+    }
+  }
+
+  .leaflet-bar {
+    border: none;
+  }
+
+  a.leaflet-control-mapbox-geocoder-toggle {
+    background: $brick-red url(../images/search_white_2x.png) no-repeat center center;
+    background-size: 50%;
+    border: none;
+    border-radius: 0;
+    height: 44px;
+    width: 44px;
+  }
+
+  .leaflet-control-mapbox-geocoder-results {
+    left: 44px;
+    top: 47px;
+  }
+
+  .leaflet-control-mapbox-geocoder.active .leaflet-control-mapbox-geocoder-results {
+    border: none;
+  }
+
+  #map {
+    min-height: rem(752);
+
+    @include mq(m) {
+      min-height: rem(400);
+    }
+  }
+
+
+  #marker-list {
+    @include span-columns(3);
+    background: rgba($white, 0.95);
+    position: absolute;
+    height: 47rem;
+    overflow-x: visible;
+    overflow-y: scroll;
+    margin: 3px 0 0 0;
+    right: 0;
+    top: rem(185);
+    z-index: 99;
+
+    @include mq(m) {
+      display: none;
+    }
+  }
+
+  #marker-list.higher {
+    top: rem(97);
+  }
+
+  // Marker list icons
+  #marker-list li.item {
+    border-bottom: rem(1px) solid $alto;
+    font-family: $heading-font;
+    font-size: rem(16px);
+    list-style-type: none;
+    margin: 0;
+    min-height: 100px;
+    padding: 1rem;
+    position: relative;
+
+    > div {
+      line-height: 1.2em;
+      padding-left: 5rem;
+    }
+
+    h1 {
+      font-size: rem(16px);
+      font-family: $heading-font;
+      line-height: 1;
+      margin: 0 0 0.5rem 0;
+      text-transform: none;
+    }
+
+    a {
+      display: block;
+      font-family: $heading-font-light;
+      line-height: 1.2;
+      text-transform: uppercase;
+
+      &:nth-of-type(1) {
+        margin-top: 0.5rem;
+      }
+    }
+
+    &.active,
+    &:hover {
+      background: $white;
+
+      &::after {
+        content: '';
+        height: 0;
+        border-style: solid;
+        border-width: 18px 20.5px 18px 0;
+        border-color: transparent $white transparent transparent;
+        left: -1.2rem;
+        position: absolute;
+        top: calc(50% - 20.5px);
+        width: 0;
+        z-index: 100;
+      }
+    }
+
+    span.icon {
+      display: block;
+      background: url(../images/hate_map_buttons_2x.png) no-repeat;
+      background-position: center 0;
+      background-size: 56px;
+      height: 57px;
+      width: 57px;
+      position: absolute;
+      left: 1rem;
+      top: calc(50% - 28px);
+    }
+
+    &.black-separatist span.icon {
+       background-position: center 0px;
+    }
+
+    .white-nationalist span.icon {
+       background-position: center -60px;
+    }
+
+    .racist-skinhead span.icon {
+       background-position: center -120px;
+    }
+
+    .neo-nazi span.icon {
+      background-position: center -180px
+    }
+
+    .neo-confederate span.icon {
+      background-position: center -239px
+    }
+
+    .kkk span.icon, &.ku-klux-klan span.icon {
+       background-position: center -300px;
+    }
+
+    .christian-identity span.icon {
+       background-position: center -360px;
+    }
+
+    .anti-lgbt span.icon {
+       background-position: center -420px;
+    }
+
+    // General hate
+    .other span.icon {
+       background-position: center -480px;
+    }
+
+    .anti-immigrant span.icon {
+      background-position: center -540px;
+    }
+
+    .holocaust-denial span.icon {
+      background-position: center -600px;
+    }
+
+    .racist-music span.icon {
+       background-position: center -660px;
+    }
+
+    .anti-muslim span.icon {
+       background-position: center -719px;
+    }
+
+    .rad-trad-catholicism span.icon {
+      background-position: center -779px;
+    }
+  }
+
+  // Map marker
+  .leaflet-marker-pane .leaflet-marker-icon.icon {
+    background: url(../images/hate_map_buttons_2x.png) no-repeat;
+    background-position: center 0;
+    background-size: 17px;
+
+    &.black-separatist {
+       background-position: center 0px;
+    }
+
+    &.white-nationalist {
+       background-position: center -18px;
+    }
+
+    &.racist-skinhead {
+       background-position: center -36px;
+    }
+
+    &.neo-nazi {
+      background-position: center -54px
+    }
+
+    &.neo-confederate {
+      background-position: center -72px
+    }
+
+    &.kkk, &.ku-klux-klan {
+       background-position: center -90px;
+    }
+
+    &.christian-identity {
+       background-position: center -108px;
+    }
+
+    &.anti-lgbt {
+       background-position: center -127px;
+    }
+
+    &.other {
+       background-position: center -145px;
+    }
+
+    &.anti-immigrant {
+       background-position: center -163px;
+    }
+
+    &.holocaust-denial {
+       background-position: center -182px;
+    }
+
+    &.racist-music {
+       background-position: center -199px;
+    }
+
+    &.anti-muslim {
+      background-position: center -218px;
+    }
+
+    &.rad-trad-catholicism {
+      background-position: center -236px;
+    }
+  }
+
+  // Map popup
+  .leaflet-popup .leaflet-popup-content-wrapper {
+    h1 {
+      font-size: rem(16px);
+      font-family: $heading-font;
+      line-height: 1;
+      margin: 0 0 0.5rem 0;
+      text-transform: none;
+    }
+
+    a {
+      display: block;
+      font-family: $heading-font-light;
+      font-size: rem(16px);
+      line-height: 1.2;
+      text-transform: uppercase;
+
+      &:nth-of-type(1) {
+        margin-top: 0.5rem;
+      }
+    }
+
+
+    .leaflet-popup-content > div {
+      padding-left: 4rem;
+      position: relative;
+
+      span.icon {
+        background: url(../images/hate_map_buttons_2x.png) no-repeat;
+        background-position: left center;
+        background-size: 56px;
+        height: 57px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 57px;
+      }
+
+      &.black-separatist span.icon {
+        background-position: left 0px;
+      }
+
+      &.white-nationalist span.icon {
+        background-position: left -60px;
+      }
+
+      &.racist-skinhead span.icon {
+        background-position: left -120px;
+      }
+
+      &.neo-nazi span.icon {
+        background-position: left -180px
+      }
+
+      &.neo-confederate span.icon {
+        background-position: left -239px
+      }
+
+      &.kkk span.icon, &.ku-klux-klan span.icon {
+        background-position: left -300px;
+      }
+
+      &.christian-identity span.icon {
+        background-position: left -360px;
+      }
+
+      &.anti-lgbt span.icon {
+        background-position: left -419px;
+      }
+
+      &.other span.icon {
+        background-position: left -479px;
+      }
+
+      &.holocaust-denial span.icon {
+         background-position: center -599px;
+      }
+
+      &.anti-immigrant span.icon {
+         background-position: center -539px;
+      }
+
+      &.racist-music span.icon {
+         background-position: center -659px;
+      }
+
+      &.anti-muslim span.icon {
+        background-position: center -719px;
+      }
+
+      &.rad-trad-catholicism span.icon {
+        background-position: center -779px;
+      }
+    }
+  }
+}

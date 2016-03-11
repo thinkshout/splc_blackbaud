@@ -1,0 +1,42 @@
+.bean-section-header .field-name-title-field {
+  @extend %h2;
+  font-size: em(48px);
+  font-family: $heading-font-light;
+  font-weight: normal;
+  margin: 0;
+  text-align: center;
+  text-transform: uppercase;
+
+  @include mq(t) {
+    font-size: rem(36px);
+  }
+
+  @include mq(m) {
+    font-size: rem(32px);
+  }
+}
+
+.bean-section-header .field-name-field-long-text {
+  border-bottom: 4px solid $alto;
+  color: $oregon;
+  font-family: $heading-font;
+  font-size: rem(20px);
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+  padding: 0em 5em 1em;
+
+  @include mq(t) {
+    font-size: rem(18px);
+    padding: 1em;
+  }
+
+  @include mq(m) {
+    font-size: rem(16px);
+    padding: 1em;
+  }
+}
+
+.front #content-bottom-1 .field-name-field-long-text {
+  border-bottom: none;
+}

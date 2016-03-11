@@ -1,0 +1,77 @@
+.page-fighting-hate-extremist-files #main-content,
+.page-fighting-hate-extremist-files #main-content > .container {
+  max-width: none;
+}
+
+// Header with background image
+.page-fighting-hate-extremist-files.has-background-image .group-header {
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 0;
+  max-width: none !important;
+  min-height: em(470px);
+  position: relative;
+
+  @include mq(m) {
+    background-size: cover;
+    min-height: em(300px);
+  }
+
+  .field-name-field-story-type {
+    background: $dune;
+    color: $white;
+    font-family: $heading-font-light;
+    font-size: em(24px);
+    padding: 0.5em 0;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .field-name-title-field {
+    border-bottom: none !important;
+    padding-top: 8em;
+  }
+
+  h1 {
+    border-bottom: none;
+    color: $white;
+    font-size: em(64px);
+    margin-bottom: 0;
+    padding-bottom: 0;
+    position: relative;
+    text-transform: none;
+    text-align: center;
+    z-index: 2;
+
+    @include mq(m) {
+      font-size: em(36px);
+    }
+  }
+
+  .field-name-field-long-text {
+    @include outer-container;
+    border-bottom: none !important;
+    color: $white;
+    font-size: em(20px);
+    position: relative;
+
+    .field-item {
+      @include span-columns(10);
+      @include shift(1);
+    }
+  }
+
+  // Header gradient
+  &::before {
+    content: "";
+    background: $dune;
+    @include linear-gradient(rgba($mine-shaft-lower, 0) 10%, $mine-shaft-lower 100%);
+    position: absolute;
+    display: block;
+    height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+}

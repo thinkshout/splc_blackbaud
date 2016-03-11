@@ -1,0 +1,166 @@
+#featured {
+  margin: 3rem 0;
+
+  #block-views-featured_news-featured_news h2.block-title {
+    border-bottom: 4px solid $alto;
+    font-weight: normal;
+    font-family: $heading-font-light;
+    text-transform: uppercase;
+  }
+
+  #block-views-featured_news-featured_news .block-inner {
+    @include outer-container;
+
+    @include mq(t) {
+      padding: 0 1em;
+    }
+
+    @include mq(m) {
+      padding: 0 1em;
+    }
+  }
+
+  // Unstyle promoted
+  .views-row .node-story.node-promoted {
+    background: none;
+  }
+
+  // hidden things
+  .field-name-field-publish-date {
+    display: none;
+  }
+
+  // Anything with tag style
+  .node-promoted .field-name-field-issue-area,
+  .node-promoted .field-name-field-story-type {
+    @extend %tag;
+    font-size: rem(16px) !important;
+    margin-bottom: 0.5rem;
+    position: relative;
+
+    .field-item {
+      font-size: rem(16px);
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  // News item without image
+  .view-display-id-featured_news_attach .views-row.views-row-1,
+  .view-display-id-featured_news_attach .views-row {
+    @include span-columns(4);
+    @include omega;
+    margin-bottom: 2rem;
+
+    @include mq(t) {
+      @include span-columns(12);
+    }
+
+    @include mq(m) {
+      @include span-columns(12);
+    }
+
+    .content {
+      border-right: none;
+      padding-left: 1rem;
+
+      @include mq(t) {
+        padding: 0;
+      }
+
+      @include mq(m) {
+        padding: 0;
+      }
+    }
+
+    .field-name-title-field a {
+      color: $dune;
+      font-size: rem(18px);
+      font-family: $heading-font;
+    }
+
+    .links {
+      display: none;
+    }
+  }
+
+  // News item with image
+  .view-featured-news .views-row-1 {
+    @include span-columns(8);
+
+    @include mq(t) {
+      @include span-columns(12);
+    }
+
+    @include mq(m) {
+      @include span-columns(12);
+    }
+
+    .field-name-field-image {
+      @include span-columns(5 of 8);
+
+      @include mq(t) {
+        @include span-columns(12 of 12);
+      }
+
+      @include mq(m) {
+        @include span-columns(12 of 12);
+      }
+    }
+
+    .content {
+      border-right: 1px solid $alto;
+      padding-right: 1rem;
+      overflow: hidden;
+
+      @include mq(t) {
+        padding: 0;
+        border-right: none;
+      }
+
+      @include mq(m) {
+        padding: 0;
+        border-right: none;
+      }
+    }
+
+    .group-text-field-group {
+      @include span-columns(3 of 8);
+      @include shift(0);
+      color: $black;
+      padding: 0;
+
+      @include mq(t) {
+        @include span-columns(12 of 12);
+      }
+
+      @include mq(m) {
+        @include span-columns(12 of 12);
+      }
+    }
+
+    .group-text-field-group .field-name-title-field {
+      h1 {
+        font-family: $heading-font;
+        font-size: rem(18px);
+        margin-top: 0;
+        text-transform: none;
+      }
+
+      a {
+        color: $dune;
+      }
+    }
+
+    .group-text-field-group .field-name-field-long-text {
+      color: $black;
+    }
+  }
+
+  // See more news
+  .more-link {
+    @include span-columns(12);
+    @extend %more-link;
+  }
+
+}

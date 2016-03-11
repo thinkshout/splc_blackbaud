@@ -1,0 +1,39 @@
+$max-width: em(1044px);
+
+// Fonts
+$base-em-size: 16px;
+
+// Knockout
+$knockout-junior-featherweight: 'Knockout 28 A', 'Knockout 28 B', 'Arial', sans-serif;
+$knockout-junior-middleweight: 'Knockout 31 A', 'Knockout 31 B', 'Arial', sans-serif;
+
+// Mercury Screen Smart
+$mercury: 'Mercury SSm A', 'Mercury SSm B', serif;
+
+$body-font: $mercury;
+$heading-font: $knockout-junior-middleweight;
+$heading-font-light: $knockout-junior-featherweight;
+
+// Colors
+// Reds
+$brick-red: #d5292a; // Red
+$brick-red-lower: #9c3022; // Darker red
+// Blues
+$ocean: #008fd8; // Blue
+// Yellows
+$buttercup: #f0b21c; // Yellow
+$mustard: #F0B21C;
+// Blacks
+$black: #000000; // Pitch black
+$mine-shaft: #333333; // Text black
+$mine-shaft-lower: #2e2e2e; // Header text black
+$dune: #393635; // Nav link black
+// Grays
+$seashell: #f1f1f1;
+$gallery: #ececec;
+$alto: #d8d8d8;
+$oregon: #989898;
+$oregon-dark: #484848;
+$oregon-border: #9d9d9d;
+// Whites
+$white: #ffffff;

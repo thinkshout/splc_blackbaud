@@ -1,0 +1,16 @@
+.page-hatewatch .group-header {
+  .field-name-title-field {
+    border-bottom: none !important;
+  }
+}
+
+.page-hatewatch .addthis-body-wrapper {
+  font-family: $heading-font;
+  font-size: em(20px);
+  text-align: center;
+
+  .field-name-body {
+    @include span-columns(8);
+    @include shift(2);
+  }
+}

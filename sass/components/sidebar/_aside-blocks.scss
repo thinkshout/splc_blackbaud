@@ -1,0 +1,103 @@
+// Stories in the sidebar
+aside .view-stories {
+  margin-bottom: 2em;
+
+  .views-row .field-name-field-issue-area {
+    @extend %tag;
+    margin-bottom: 0.5em;
+
+    .field-item {
+      padding: 0;
+    }
+  }
+
+  .views-row .field-name-title-field a {
+    line-height: 1.2;
+  }
+
+  .more-link {
+    @extend %more-link;
+  }
+}
+
+// Issue area links in the sidebar
+aside .group-issue-area {
+  h2 {
+    @extend %sidebar-heading;
+    margin-top: 0;
+  }
+
+  .field-name-field-issue-area {
+    .field-item {
+      padding: 0;
+    }
+
+    .field-item a {
+      @extend %tag;
+      text-decoration: none;
+    }
+  }
+  /*.field-name-field-issue-area .field-item a {
+    @extend %tag;
+    text-decoration: none;
+  }*/
+}
+
+// Case details
+aside .group-case-details {
+  h2 {
+    @extend %sidebar-heading;
+  }
+
+  .field-label-inline .field-label {
+    float: none;
+  }
+
+  .field-name-field-publish-date {
+    @extend %field-label-field-item;
+  }
+
+  .field-name-field-case-active .field-item,
+  .field-name-field-case-landmark .field-item {
+    @extend %tag-red;
+    font-family: $heading-font-light;
+    margin-bottom: 0.2em;
+  }
+
+  .field-name-field-publish-date,
+  .group-case-details .field-label-inline {
+    @extend %field-label-field-item;
+    margin-bottom: 1em;
+  }
+}
+
+// Sidebar tags
+.field-name-field-issue-area {
+  @extend %tag;
+  font-size: em(18px);
+
+  a {
+    padding: 0;
+    text-decoration: none;
+  }
+}
+
+aside .field-name-field-case-date-filed {
+  @extend %field-label-field-item;
+  margin-bottom: 1em;
+}
+
+aside .field-name-field-issue-area .field-label h2 {
+    @extend %sidebar-heading;
+}
+
+.node-type-case aside .field-name-field-issue-area {
+  background: none;
+
+  .field-item {
+    @extend %tag;
+    font-size: 14px;
+    font-family: $heading-font-light !important;
+    font-weight: normal;
+  }
+}

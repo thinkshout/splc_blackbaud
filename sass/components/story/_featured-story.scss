@@ -1,0 +1,229 @@
+// Single story
+#highlighted {
+  clear: left;
+  overflow: hidden;
+
+  @include mq(t) {
+    margin-bottom: -16px;
+  }
+
+  @include mq(m) {
+    margin-bottom: -16px;
+  }
+}
+
+#highlighted [id*="block-bean-featured-banner-"] {
+  .field-name-field-featured-banner-items {
+    min-height: em(508px);
+    position: relative;
+    width: 100%;
+
+    @include mq(t) {
+      min-height: em(378px);
+    }
+
+    @include mq(m) {
+      float: none;
+      min-height: em(258px);
+      width: 100%;
+    }
+
+    // Header gradient
+    &::after {
+      content: "";
+      background: $dune;
+      @include linear-gradient(top, rgba($black,0) 0%,rgba($black,0.85) 100%);
+      position: absolute;
+      display: block;
+      height: 40%;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 2;
+
+      @include mq(t) {
+        bottom: 16px;
+      }
+
+      @include mq(m) {
+        bottom: 16px;
+      }
+    }
+  }
+
+  .field-name-field-featured-banner-items > .field-items {
+    //@include outer-container;
+    position: relative;
+
+    @include mq(m) {
+      padding: 0;
+      bottom: 1em;
+    }
+
+    @include mq(t) {
+      padding: 0;
+      bottom: 1em;
+    }
+
+    > .field-item {
+      background-size: cover;
+      background-repeat: no-repeat;
+      cursor: pointer;
+      margin-bottom: 0;
+      min-height: 508px;
+
+      @include mq(t) {
+        background-repeat: none;
+        background-size: cover;
+        background-position: center top;
+      }
+
+      @include mq(m) {
+        background-repeat: none;
+        background-size: cover;
+        background-position: center top;
+        min-height: em(378px);
+      }
+    }
+
+    .field-collection-view {
+      @include outer-container;
+
+      @include mq(t) {
+        padding: 0 1em;
+      }
+
+      @include mq(m) {
+        padding: 0 1em;
+      }
+    }
+
+    .field-collection-view .entity-field-collection-item {
+      position: absolute;
+      bottom: 2em;
+    }
+
+    .field-name-field-tag {
+      @extend %tag;
+    }
+  }
+
+
+  .field-name-field-featured-banner-items .field-name-title-field h1,
+  .field-name-field-featured-banner-items .field-name-title-field a {
+    @extend %h1;
+    color: $white;
+    font-size: em(108px);
+    margin: 0;
+    text-decoration: none;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 3;
+
+    @include mq(t) {
+      font-size: rem(32px) !important;
+    }
+
+    @include mq(m) {
+      font-size: rem(32px) !important;
+      max-width: 90%;
+    }
+  }
+
+  .field-name-field-long-text {
+    color: $white;
+    font-family: $heading-font;
+    font-size: rem(20px);
+    line-height: rem(22px);
+    width: 75%;
+    position: relative;
+    z-index: 3;
+
+    @include mq(t) {
+      font-size: rem(18px);
+      line-height: 1;
+      width: 80%;
+    }
+
+    @include mq(m) {
+      font-size: rem(18px);
+      line-height: 1;
+      width: 80%;
+    }
+  }
+
+  .field-name-field-link {
+    display: none;
+  }
+}
+
+// 3 Featured Stories
+#highlighted [id*="block-bean-featured-banner-"].three-stories {
+  .field-name-field-featured-banner-items {
+    &::after {
+      display: none;
+    }
+  }
+
+  .field-name-field-featured-banner-items > .field-items {
+    max-width: none;
+  }
+
+  .field-name-field-featured-banner-items > .field-items > .field-item {
+    float: left;
+    min-height: rem(508px);
+    position: relative;
+    width: 33.3333%;
+
+    @include mq(t) {
+      float: none;
+      width: 100%;
+    }
+
+    @include mq(m) {
+      float: none;
+      width: 100%;
+    }
+
+    // Header gradient
+    &::after {
+      content: "";
+      background: $dune;
+      @include linear-gradient(top, rgba($black,0) 0%,rgba($black,0.9) 100%);
+      position: absolute;
+      display: block;
+      height: 100%;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 2;
+    }
+
+    .field-collection-view {
+      bottom: 1em;
+      position: absolute;
+      padding: 0 1em;
+      width: 100%;
+    }
+  }
+
+  .field-name-field-featured-banner-items .field-name-field-tag {
+    position: relative;
+    z-index: 3;
+  }
+
+  .field-name-field-featured-banner-items .field-name-title-field h1 {
+    font-size: rem(42px) !important;
+    position: relative;
+    z-index: 4;
+
+    @include mq(m) {
+      font-size: rem(32px);
+      max-width: 90%;
+    }
+
+    @include mq(t) {
+      font-size: rem(32px);
+    }
+  }
+}

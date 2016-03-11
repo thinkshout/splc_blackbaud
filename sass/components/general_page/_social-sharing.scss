@@ -1,0 +1,61 @@
+.addthis_toolbox {
+  .at-icon-wrapper {
+    background: none !important;
+    border: 3px solid $buttercup;
+    border-radius: 100%;
+    display: inline-block;
+    height: 40px !important;
+    margin-right: 0.2em;
+    margin-left: 0.2em;
+    width: 40px !important;
+
+    svg {
+      display: none;
+    }
+
+  }
+
+  .addthis_button_facebook .at-icon-wrapper  {
+    &::before{
+      @extend %splc-facebook;
+      color: $buttercup !important;
+      font-size: rem(18);
+      line-height: rem(36);
+    }
+  }
+
+  .addthis_button_twitter .at-icon-wrapper  {
+    &::before{
+      @extend %splc-twitter;
+      color: $buttercup !important;
+      font-size: rem(18);
+      line-height: rem(36);
+    }
+  }
+
+  a.at300b {
+    float: none !important;
+    padding: 0 !important;
+  }
+  a .at4-icon {
+    display: block !important;
+    float: none !important;
+    width: 40px;
+    height: 40px;
+    text-indent: -2px !important;
+  }
+
+  a .aticon-facebook::before {
+    @extend %splc-facebook;
+    color: $white;
+    width: 100%;
+    margin-top: 0.7em;
+  }
+
+  a .aticon-twitter::before {
+    @extend %splc-twitter;
+    color: $white;
+    width: 100%;
+    margin-top: 0.7em;
+  }
+}

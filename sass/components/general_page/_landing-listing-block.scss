@@ -1,0 +1,65 @@
+#block-splc_page-landing-child-listing {
+  margin-top: 4em;
+
+  article {
+    @include span-columns(12);
+    margin-bottom: 1em;
+    border-top: 4px solid $alto;
+    padding-top: 1em;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  article .field-name-field-image {
+    float: left;
+    overflow: hidden;
+    width: 40%;
+
+    @include mq(m) {
+      width: 100%;
+    }
+  }
+
+  article .field-name-field-image img {
+    width: 100%;
+  }
+
+  article .group-text-field-group {
+    float: left;
+    padding: 0 1em;
+    width: 60%;
+
+    @include mq(m) {
+      width: 100%;
+    }
+  }
+
+  article .field-name-title-field {
+    @extend %h2;
+    margin-top: 0;
+  }
+
+  article .field-name-title-field a {
+    color: $brick-red-lower;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  article ul.menu {
+    display: inline;
+    padding-left: 0;
+
+    li {
+      display: inline;
+      list-style: none;
+      margin-left: 0;
+    }
+
+    li a {
+      color: $dune;
+      font-family: $heading-font;
+    }
+  }
+}

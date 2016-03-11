@@ -1,0 +1,65 @@
+.page-hatewatch #views-exposed-form-news-hatewatch .views-exposed-form {
+  background: $alto;
+  padding: 1em;
+
+  .views-exposed-widgets {
+    float: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .views-exposed-widget {
+    padding: 0;
+  }
+
+  .views-exposed-widgets #edit-keyword-wrapper {
+    width: 96%;
+
+    @include mq(t) {
+      width: 96%;
+    }
+
+    @include mq(m) {
+      width: 90%;
+    }
+
+    input[type=text] {
+      border: none;
+      border-radius: 0;
+      margin-bottom: 0;
+      padding: 0.7em 1em;
+      @include appearance(none);
+    }
+  }
+
+  .views-exposed-widgets .views-submit-button {
+    width: 4%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+
+    input[type=submit] {
+      background: $brick-red;
+      margin: 0;
+      border-radius: 0;
+      width: 100%;
+      text-indent: -9999px;
+    }
+
+    &::before {
+      @extend %splc-search;
+      color: $white;
+      display: block;
+      width: 100%;
+      line-height: 2.5em;
+      margin: 0;
+      position: absolute;
+      text-align: center;
+      z-index: 1;
+    }
+  }
+
+  #edit-keyword-wrapper label {
+    display: none;
+  }
+}

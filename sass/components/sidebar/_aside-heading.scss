@@ -1,0 +1,5 @@
+aside .title,
+aside .block-title {
+  @extend %sidebar-heading;
+  margin-top: 0;
+}

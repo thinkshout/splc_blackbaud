@@ -1,0 +1,55 @@
+.node-type-case .group-header {
+  @include outer-container;
+  margin-bottom: 2em;
+  padding-bottom: 2em;
+  text-align: center;
+
+  @include mq(m) {
+    margin-bottom: 1em;
+  }
+
+  .field-name-field-case-landmark {
+    display: inline-block;
+    margin-top: 1rem;
+    text-align: center;
+    .field-item {
+      @extend %tag-red;
+    }
+  }
+
+  .field-name-field-case-active {
+    display: inline-block;
+    text-align: center;
+    .field-item {
+      @extend %tag;
+    }
+  }
+
+  // Page title
+  .field-name-title-field {
+    margin-bottom: 0.2em;
+    text-align: center;
+
+    h1 {
+      @extend %h1;
+      margin-bottom: 0.2em;
+    }
+  }
+
+  // Case number
+  .field-name-field-case-number {
+    @extend %field-label-field-item;
+    text-align: center;
+
+    h2 {
+      font-family: $heading-font;
+      font-size: em(20px);
+      font-weight: normal;
+    }
+
+    .field-item {
+      font-family: $heading-font;
+      font-size: em(20px);
+    }
+  }
+}

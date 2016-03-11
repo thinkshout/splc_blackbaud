@@ -1,0 +1,60 @@
+// Become a supporter CTA
+#block-bean-home-page---become-a-supporter {
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: $white;
+  position: relative;
+  margin-bottom: 2em;
+  min-height: em(380px);
+}
+
+#block-bean-home-page---become-a-supporter .field-type-link-field,
+#block-bean-home-page---become-a-supporter .field-type-text-long,
+#block-bean-home-page---become-a-supporter .field-name-title-field {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+#block-bean-home-page---become-a-supporter .field-name-title-field {
+  @extend %h2;
+  font-size: em(72px);
+  line-height: 1.1em;
+  text-transform: uppercase;
+  padding-top: 1em;
+
+  @include mq(m) {
+    padding-top: 0;
+  }
+
+  a {
+    color: $white;
+    text-decoration: none;
+  }
+}
+
+#block-bean-home-page---become-a-supporter .field-type-text-long {
+  font-family: $heading-font;
+  font-size: em(18px);
+  margin: 0 auto 1em;
+  width: em(380px);
+
+  @include mq(m) {
+    width: auto;
+  }
+}
+
+#block-bean-home-page---become-a-supporter .field-type-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  img {
+    width: 100%;
+  }
+}
+
+#block-bean-home-page---become-a-supporter .field-type-link-field a {
+  @extend %button-clear;
+}

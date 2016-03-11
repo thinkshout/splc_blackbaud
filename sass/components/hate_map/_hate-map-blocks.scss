@@ -1,0 +1,117 @@
+.page-hate-map [id*="block-bean-historical-data-header"],
+.page-hate-map [id*="block-bean-section-header"] {
+  @include span-columns(12);
+  border-bottom: 4px solid $alto;
+  margin: 2rem 0;
+}
+
+.page-hate-map [id*="block-bean-factoid"] {
+  @include span-columns(4);
+  text-align: center;
+
+  @include mq(t) {
+    @include span-columns(12);
+  }
+
+  @include mq(m) {
+    @include span-columns(12);
+  }
+
+  .block-inner {
+    padding: 1rem;
+  }
+
+  &:nth-of-type(2) .block-inner {
+  }
+
+  &:nth-of-type(4) {
+    @include omega;
+  }
+
+  .field-name-field-image img {
+    height: 91px;
+    width: 91px;
+  }
+}
+
+.page-hate-map [id*="block-bean-statistic"] {
+  @include span-columns(6);
+
+  @include mq(m) {
+    @include span-columns(12);
+  }
+
+  .field-name-field-tag {
+    color: $brick-red-lower;
+    font-family: $heading-font-light;
+    font-size: rem(174px);
+    float: left;
+    width: 43%;
+    text-align: right;
+
+    @include mq(t) {
+      font-size: 8rem;
+      float: none;
+      width: 100%;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    @include mq(m) {
+      font-size: 8rem;
+      float: none;
+      line-height: 1.2;
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  .field-name-field-quote {
+    margin-top: 5rem;
+
+    @include mq(t) {
+      margin-top: 0;
+    }
+
+    @include mq(m) {
+      margin-top: 0;
+    }
+  }
+
+  .field-name-field-link,
+  .field-name-field-quote {
+    font-family: $heading-font;
+    font-size: rem(24px);
+    float: right;
+    width: 54%;
+
+    @include mq(t) {
+      width: 100%;
+      float: none;
+      text-align: center;
+    }
+
+    @include mq(m) {
+      width: 100%;
+      float: none;
+      text-align: center;
+    }
+  }
+}
+
+#block-bean-statistic-two,
+#block-bean-statistic-four {
+  @include omega;
+}
+
+// About the hatemap
+#hate-map-wide-cta {
+  background: $dune url(../images/about-hatemap-bg.jpg) center center no-repeat;
+  background-size: cover;
+  color: $white;
+  padding: 4rem 0;
+
+  #block-bean-section-header---about-the-hate- {
+    border-bottom: none;
+  }
+}

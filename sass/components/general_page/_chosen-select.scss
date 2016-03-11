@@ -1,0 +1,29 @@
+.chosen-container-single .chosen-single {
+  border-radius: 0;
+  border: 2px solid $alto;
+  background: white;
+  box-shadow: none;
+  font-family: $heading-font;
+  font-size: em(18px);
+  height: 44px;
+
+  span {
+    line-height: 42px;
+    color: $oregon;
+  }
+}
+
+.chosen-container-single .chosen-single div b {
+  background: white;
+}
+
+.chosen-container-single .chosen-single div b {
+  background: none !important;
+
+  &::before {
+    @extend %splc-chevron-down;
+    color: $brick-red-lower;
+    font-size: em(12px);
+    line-height: 42px;
+  }
+}

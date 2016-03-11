@@ -1,0 +1,116 @@
+#header.stuck {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  #main-navigation {
+    padding-top: 0;
+  }
+}
+
+#header.stuck #logo {
+  background: $brick-red-lower url(../images/logo_icon_2x.png) center center no-repeat;
+  background-size: 80%;
+  display: block;
+  height: em(85px);
+  width: em(85px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1
+}
+
+#header.stuck.search-active {
+  top: 72px;
+}
+
+// Donation button shows up when scrolled
+#main-navigation #block-menu_block-1 .menu-block-wrapper > ul.menu > li > a.donate-on-scroll {
+  display: none;
+  background: $brick-red;
+  color: $white;
+  padding: 0.5em;
+}
+
+#main-navigation li.search,
+#main-navigation li.donate {
+  @include mq(t) {
+    display: none;
+  }
+
+  @include mq(m) {
+    display: none;
+  }
+}
+#main-navigation #block-menu_block-1 .menu-block-wrapper > ul.menu > li > a.search-toggle-on-scroll {
+  &::after {
+    @extend %splc-search;
+  }
+}
+
+#site-search {
+  clear: both;
+  background: $dune;
+  display: none;
+  margin-bottom: 0;
+  top: 0;
+
+  @include mq(t) {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+  }
+
+  @include mq(m) {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+  }
+
+  form {
+    margin-bottom: 0;
+  }
+
+  form input {
+    background: url('../images/search_white.png') left center no-repeat;
+    border: none;
+    color: $white;
+    font-size: rem(20);
+    margin-bottom: 0;
+    padding: 1.5rem 0 1.5rem 2rem;
+
+    @include placeholder {
+      color: $white;
+    }
+
+    @include mq(r) {
+      background: url('../images/search_white_2x.png') left center no-repeat;
+      background-size: rem(16);
+    }
+  }
+
+  .close-button {
+    background: none;
+    border: 2px solid $white;
+    border-radius: 0;
+    color: $white;
+    float: right;
+    margin-top: -3.5rem;
+    padding: 0.5rem 0.3rem;
+
+    &::after {
+      @extend %splc-close;
+      font-size: rem(20);
+    }
+  }
+}
+
+#site-search.stuck {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}

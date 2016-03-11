@@ -1,0 +1,22 @@
+#mobile-search {
+  display: none;
+}
+
+#mobile-search input {
+  background: $dune url(../images/search_white.png) 1em center no-repeat;
+  border: none;
+  border-radius: 0;
+  color: $white;
+  font-weight: bold;
+  margin-bottom: 0;
+  padding: 1em 1em 1em 3em;
+
+  @include placeholder {
+    color: $white;
+  }
+
+  @include mq(r) {
+    background: $dune url(../images/search_white_2x.png) 1em center no-repeat;
+    background-size: em(19px) em(19px);
+  }
+}

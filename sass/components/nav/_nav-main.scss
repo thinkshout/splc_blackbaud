@@ -1,0 +1,257 @@
+#main-navigation {
+  @include mq(d) {
+    padding-top: em(36px);
+  }
+
+  @include mq(t) {
+    display: none;
+  }
+
+  @include mq(m) {
+    display: none;
+  }
+}
+
+#main-navigation #block-menu_block-1 {
+  @include outer-container;
+}
+
+// Top level menu container
+#main-navigation #block-menu_block-1 .menu-block-wrapper > ul.menu {
+  text-align: right;
+  padding: 1em 0;
+
+  @include mq(t) {
+    background: $brick-red;
+    clear: left;
+    padding: 0;
+    text-align: left;
+  }
+
+  @include mq(m) {
+    background: $brick-red;
+    clear: left;
+    padding: 0;
+    text-align: left;
+  }
+}
+
+// Top level list items
+#main-navigation #block-menu_block-1 .menu-block-wrapper > ul.menu > li {
+  display: inline;
+  margin: 0;
+  padding: 0;
+
+  @include mq(t) {
+    display: list-item;
+  }
+
+  @include mq(m) {
+    display: list-item;
+  }
+}
+
+// Top level links
+#main-navigation #block-menu_block-1 .menu-block-wrapper > ul.menu > li > a {
+  color: $dune;
+  font-family: $heading-font;
+  font-size: em(18px);
+  padding: 1em 0.5em 1.05em;
+  position: relative;
+  text-transform: uppercase;
+
+  @include mq(t) {
+    color: $white;
+    display: block;
+  }
+
+  @include mq(m) {
+    color: $white;
+    display: block;
+  }
+}
+
+#main-navigation #block-menu_block-1 .menu-block-wrapper > ul.menu > li.expanded {
+  position: relative;
+
+  & > a:after {
+    @extend %splc-chevron-down;
+    color: $brick-red;
+    font-weight: bold;
+    font-size: em(12px);
+    margin-left: 0.5em;
+    vertical-align: middle;
+
+    @include mq(t) {
+      display: none;
+    }
+
+    @include mq(m) {
+      display: none;
+    }
+  }
+
+  span {
+    @include mq(d) {
+      display: none;
+    }
+
+    @include mq(t) {
+      //background: $brick-red-lower;
+      cursor: pointer;
+      font-size: em(12px);
+      margin: 0;
+      padding: 2em 2.41em;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 1;
+    }
+
+    @include mq(m) {
+      //background: $brick-red-lower;
+      cursor: pointer;
+      font-size: em(12px);
+      margin: 0;
+      padding: 2em 2.41em;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 1;
+    }
+  }
+  span:after {
+    @extend %splc-chevron-down;
+    color: $white;
+    font-weight: bold;
+    vertical-align: middle;
+  }
+}
+
+// Top level list items with drop down
+#main-navigation #block-menu_block-1 .menu-block-wrapper > ul.menu > li.expanded > a {
+  @include transition(all 0.1s);
+}
+
+// Show second level menu on hover
+#main-navigation #block-menu_block-1 .menu-block-wrapper > ul.menu > li.expanded:hover  {
+  // Change the appearance of the top level link
+  & > a {
+    background: $brick-red;
+    color: $white;
+    @include transition(all 0.1s);
+
+    span:after {
+      @extend %splc-chevron-up;
+      color: $white;
+
+      @include mq(t) {
+        background: $brick-red-lower;
+        color: $white;
+        display: none;
+        font-size: em(12px);
+        margin: 0;
+        padding: 2em 2.41em;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1;
+      }
+
+      @include mq(m) {
+        background: $brick-red-lower;
+        color: $white;
+        display: none;
+        font-size: em(12px);
+        margin: 0;
+        padding: 2em 2.41em;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1;
+      }
+    }
+  }
+
+  & > a:after {
+    @extend %splc-chevron-up;
+    color: $white;
+    margin-left: 0.5em;
+    font-weight: bold;
+    font-size: em(12px);
+
+    @include mq(t) {
+      display: none;
+    }
+
+    @include mq(m) {
+      display: none;
+    }
+  }
+
+  // Show the second level
+  & > ul.menu {
+    visibility: visible;
+    opacity: 1;
+    @include transition(0.2s opacity);
+  }
+}
+
+// Second level list items
+#main-navigation #block-menu_block-1  .menu-block-wrapper > ul.menu > li > ul.menu {
+  background: $brick-red;
+  opacity: 0;
+  padding-bottom: 1em;
+  position: absolute;
+  top: 2.4em;
+  left: 1px;
+  width: 140%;
+  visibility: hidden;
+  z-index: 10;
+
+  @include mq(t) {
+    background: $dune;
+    display: none;
+    position: relative;
+    opacity: 1;
+    left: 0;
+    top: 0;
+    width: auto;
+    visibility: visible;
+  }
+
+  @include mq(m) {
+    background: $dune;
+    display: none;
+    position: relative;
+    opacity: 1;
+    left: 0;
+    top: 0;
+    width: auto;
+    visibility: visible;
+  }
+
+  & li {
+    display: list-item;
+    list-style: none;
+  }
+
+  & li a {
+    color: $white;
+    display: block;
+    font-family: $heading-font;
+    padding: 0.5em;
+  }
+
+  & li a:hover {
+    color: $dune;
+
+    @include mq(t) {
+      color: $white;
+    }
+
+    @include mq(m) {
+      color: $white;
+    }
+  }
+}

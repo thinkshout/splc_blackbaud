@@ -1,0 +1,24 @@
+.node-type-extremist-profile aside {
+
+  .field-name-field-quote h2,
+  .extremist-info > h2 {
+    display: block;
+    @extend %sidebar-heading;
+  }
+
+  .extremist-info .field {
+    @extend %field-label-field-item;
+    margin-bottom: 1em;
+
+    a {
+      color: $brick-red-lower;
+      font-family: $body-font;
+      font-size: em(16px);
+    }
+  }
+
+  .field-name-field-quote .field-item {
+    font-style: italic;
+    font-weight: bold;
+  }
+}

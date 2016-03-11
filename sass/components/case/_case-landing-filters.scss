@@ -1,0 +1,84 @@
+.page-seeking-justice-case-docket .block-facetapi {
+  float: left;
+  margin-bottom: 2em;
+
+  @include mq(m) {
+    display: block;
+    width: 100%;
+  }
+
+  label,
+  .block-title {
+    display: none;
+  }
+}
+
+.page-seeking-justice-case-docket .facetapi-facet-field-case-landmark ul li.leaf.last {
+  display: none;
+}
+
+
+// On/Off buttons
+ul.facetapi-facetapi-ajax-links li {
+  display: inline-block;
+  margin: 0 0.5em 0 0;
+
+  @include mq(m) {
+    display: block;
+    width: 100%;
+  }
+}
+
+// Button filters
+.facetapi-active,
+.facetapi-inactive {
+  border: 2px solid $alto;
+  color: $oregon;
+  display: inline-block;
+  font-family: $heading-font;
+  margin-top: 1em;
+  text-decoration: none;
+  padding: 0.5em 1em;
+
+  @include mq(m) {
+    display: block;
+  }
+
+
+  // Plus icon
+  &::after {
+    @extend %splc-plus;
+    color: $white;
+    font-size: em(10px);
+    background: $brick-red;
+    border-radius: 100%;
+    display: inline;
+    margin-left: 0.5em;
+    padding: 0.2em 0.3em 0.2em 0.35em;
+  }
+}
+
+.facetapi-active {
+  background: $brick-red;
+  border-color: $brick-red;
+  color: $white;
+
+  &:hover {
+    color: $white;
+  }
+
+  &::after {
+    @extend %splc-close;
+    color: $white;
+    font-size: em(12px);
+  }
+}
+
+.page-resources-case-docket .view-solr-cases .view-header {
+  border-bottom: 4px solid $alto;
+  font-family: $heading-font;
+  font-size: em(18px);
+  margin-bottom: 2em;
+  margin-top: -1.6em;
+  padding-bottom: 1em;
+}

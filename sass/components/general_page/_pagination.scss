@@ -1,0 +1,33 @@
+.item-list ul.pager {
+  margin-top: 2em;
+  li {
+    margin: 0;
+    padding: 0;
+
+    @include mq(t) {
+      line-height: 3rem;
+    }
+
+    @include mq(m) {
+      line-height: 3rem;
+    }
+  }
+
+  li.pager-current,
+  li a {
+    border: 2px solid $dune;
+    color: $dune;
+    font-family: $heading-font-light;
+    font-size: em(21px);
+    padding: 0.3em 0.8em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  li.pager-current {
+    background: $brick-red;
+    border-color: $brick-red;
+    color: $white;
+  }
+
+}
