@@ -3,7 +3,7 @@ task :serve do
   puts "***************************************************"
   puts "* Watching Sass files. *"
   puts "***************************************************"
-  sassPid = Process.spawn('sass --watch app/sass:app/styles')
+  sassPid = Process.spawn('sass -r sass-globbing --watch app/sass:app/styles')
 
   # Kills processes when you hit CTRL + C
   trap("INT") {
