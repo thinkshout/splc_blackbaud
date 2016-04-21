@@ -17,15 +17,163 @@
     <!-- endbuild -->
   </head>
   <body ng-app="splcDonationApp">
-    <header ng-include="'views/partial/header.html'"></header>
-    <section class="hero" ng-include="'views/partial/hero.html'"></section>
+    <header>
+      <div class="outer-container">
+        <a class="logo" href="//www.splcenter.org">
+        </a>
+        <div class="nav-toggle">
+            <a href="#"><i class="fa fa-bars"></i></a>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <div class="outer-container">
+          <ul>
+              <li>
+                  <a href="//www.splcenter.org/what-we-do">What We Do</a>
+              </li>
+              <li>
+                  <a href="//www.splcenter.org/our-issues">Our Issues</a>
+              </li>
+              <li>
+                  <a href="//www.splcenter.org/resources">Resources</a>
+              </li>
+              <li>
+                  <a href="//www.splcenter.org/hate-map">Hate Map</a>
+              </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <section class="hero">
+      <div class="outer-container">
+          <div class="text">
+              <h1>Donate To SPLC</h1>
+              <p>
+                  Your gift will help win justice on behalf of those who have no other champion, expose and fight the hate that thrives in our country, and provide tolerance education materials free of charge to schools across our nation.
+              </p>
+          </div>
+      </div>
+    </section>
     <div class="outer-container">
-      <aside ng-include="'views/partial/sidebar.html'"></aside>
+      <aside>
+        <div class="promo-block memoriam">
+            <h1>Give In Memoriam</h1>
+            <p>
+                Donate to SPLC in someone’s honor, or in memoriam of a friend or loved one.
+            </p>
+            <a class="button-clear" href="/#/tribute">Get Started</a>
+        </div>
+        <div class="promo-block gift">
+            <h1>A Free Gift for You</h1>
+            <img src="img/gift.png" alt="3 Intelligence Report magazines" />
+            <p>
+                Supporters giving $25 or more receive a subscription to our quarterly magazine Intelligence Report.
+            </p>
+        </div>
+      </aside>
       <div class="main-content">
         <div ng-view="" class="BBDonationApiContainer" data-partid="688"></div>
       </div>
     </div>
-    <section class="prefooter" ng-include="'views/partial/footer.html'"></section>
+    <section class="prefooter">
+      <div class="outer-container">
+          <div class="block">
+              <div class="inner">
+                  <h3>Join Our Mailing List</h3>
+                  <p>
+                      Get the latest news updates from the Southern Poverty Law Center.
+                  </p>
+                  <form action="" method="">
+                      <div class="form-group">
+                          <input type="text" placeholder="Email">
+                          <input type="submit" value="Subscribe">
+                      </div>
+                  </form>
+              </div>
+          </div>
+          <div class="block second">
+              <div class="inner">
+                  <h3>Become a Member</h3>
+                  <p>
+                      Friends of the Center support the fight for tolerance and justice with a modest, monthly gift.
+                  </p>
+                  <a href="">Learn More</a>
+              </div>
+          </div>
+          <div class="block">
+              <div class="inner">
+                  <h3>Send Us a Hate Incident Tip</h3>
+                  <p>
+                      Hate and extremist groups operating in the U.S. foment racism, anti-LGBT hate, religious bigotry and anti-immigrant sentiment.
+                  </p>
+                  <a href="">Report Hate Incident</a>
+              </div>
+          </div>
+      </div>
+  </section>
+  <footer>
+      <div class="outer-container">
+        <div class="col-1">
+          <ul class="social">
+            <li><a href="//www.splcenter.org"><img src="img/logo.png" alt="SPLC Logo"></a></li>
+            <li><a href="https://www.facebook.com/SPLCenter"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/splcenter"><i class="fa fa-twitter"></i></a></li>
+          </ul>
+          <div class="address">
+            <h3>The Southern Poverty Law Center</h3>
+            <p>
+                400 Washington Ave<br>
+                Montgomery, AL 36104
+            </p>
+          </div>
+          <div class="memorial-center">
+            <h3>The Civil Rights Memorial Center</h3>
+            <p>
+                <a href="">Learn More</a>
+            </p>
+          </div>
+        </div>
+        <div class="col">
+          <h3>About Us</h3>
+          <ul>
+            <li><a href="">Board of Directors</a></li>
+            <li><a href="">Senior Program Staff</a></li>
+            <li><a href="">Financial Information</a></li>
+            <li><a href="">Careers</a></li>
+          </ul>
+        </div>
+        <div class="col second">
+          <h3>State Offices</h3>
+          <ul>
+            <li><a href="">Florida</a></li>
+            <li><a href="">Mississippi</a></li>
+            <li><a href="">Louisiana</a></li>
+            <li><a href="">Alabama</a></li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Support Us</h3>
+          <ul>
+            <li><a href="">Donate</a></li>
+            <li><a href="">Other Ways of Giving</a></li>
+            <li><a href="">Update Your Giving</a></li>
+            <li><a href=""></a></li>
+          </ul>
+        </div>
+        <div class="col last">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="">News</a></li>
+            <li><a href="">Case Docket</a></li>
+            <li><a href="">Extremist Files</a></li>
+            <li><a href="">Hatewatch</a></li>
+            <li><a href="">Publications</a></li>
+          </ul>
+        </div>
+        <div class="colophon">&copy;2015 Southern Poverty Law Center</div>
+      </div>
+
+    </section>
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
